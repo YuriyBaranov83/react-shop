@@ -26,13 +26,6 @@ const AuthModal = ({ isOpen, onClose }) => {
   }, [isOpen, onClose]);
 
   useEffect(() => {
-    if (!isOpen) return;
-    setStep("start");
-    setPhone("");
-    setOtp(Array.from({ length: OTP_LENGTH }, () => ""));
-  }, [isOpen]);
-
-  useEffect(() => {
     if (isOpen && step === "otp") {
       otpRefs.current?.[0]?.focus?.();
     }

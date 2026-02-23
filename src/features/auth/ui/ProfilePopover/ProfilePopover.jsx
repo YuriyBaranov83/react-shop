@@ -14,8 +14,7 @@ const ProfilePopover = ({
     <div
       className={clsx(
         styles.profile__popover,
-        mode === "hover" && styles
-        
+        mode === "hover" && styles.profile__popover_hover
       )}
       role="menu"
       aria-label="Профіль"

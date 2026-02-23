@@ -17,6 +17,7 @@ const HeaderMain = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authModalSession, setAuthModalSession] = useState(0);
 
   const [isDesktopHover, setIsDesktopHover] = useState(false);
 
@@ -31,7 +32,10 @@ const HeaderMain = () => {
   const openProfile = () => setIsProfileOpen(true);
   const closeProfile = () => setIsProfileOpen(false);
 
-  const openAuth = () => setIsAuthOpen(true);
+  const openAuth = () => {
+    setAuthModalSession((prev) => prev + 1);
+    setIsAuthOpen(true);
+  };
   const closeAuth = () => setIsAuthOpen(false);
 
   useEffect(() => {
@@ -184,7 +188,11 @@ const HeaderMain = () => {
         </div>
       </Container>
 
-      <AuthModal isOpen={isAuthOpen} onClose={closeAuth} />
+      <AuthModal
+        key={authModalSession}
+        isOpen={isAuthOpen}
+        onClose={closeAuth}
+      />
     </div>
   );
 };
