@@ -1,0 +1,40 @@
+:root {
+
+    /* ====Fonts==== */
+    --font-base: "Inter", system-ui, sans-serif;
+    --font-heading: "Poppins", system-ui, sans-serif;
+
+    /* ====theme-main==== */
+    --first-color: #92487A;
+    --second-color: #E49BA6;
+    --third-color: #540863;
+
+    /*=======Hover colors=======*/
+    --fourth-color: #FFD3D5;
+    --white-color: #fff;
+
+    /*=======Background colors=======*/
+    --body-bg-color: #fefefe;
+    --card-bg-color: #fff;
+    --modal-bg-color: #fff;
+    --bg-transparent-color: rgba(0, 0, 0, 0.1);
+    --bg-transparent-color-01: rgba(0, 0, 0, 0.1);
+    --bg-transparent-color-02: rgba(84, 147, 178, 0.1);
+    --liner-color: #d7d7d7;
+
+    /*=======Color Filter=======*/
+    --color-filter: invert(1);
+
+    /*=======Box shadow=======*/
+    --box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+
+    /*=======Font size=======*/
+    --small-font-size: 14px;
+    --normal-font-size: 20px;
+    --title-font-size: 32px;
+
+    /*=======Scroll bar colors=======*/
+    --scroll-bar-color: #c5cadf;
+    --icons-first-color: #70768a;
+    --scroll-thumb-hover-color: #454f6b;
+}

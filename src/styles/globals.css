@@ -1,0 +1,39 @@
+body {
+  font-family: var(--font-base);
+  background-color: #fff;
+  color: #222;
+  line-height: 100%;
+}
+
+a,
+button {
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1290px;
+  padding: 0 1%;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
