@@ -1,5 +1,6 @@
 ﻿import clsx from "clsx";
 import styles from "./ProfilePopover.module.css";
+import { discountIcon, deliveryIcon, starIcon } from "@assets/icons";
 
 const ProfilePopover = ({
   isOpen,
@@ -24,13 +25,46 @@ const ProfilePopover = ({
           <div className={styles.profile__title}>Авторизуйтесь</div>
 
           <ul className={styles.profile__benefits}>
-            <li className={styles.profile__benefit}>
+            <li
+              className={clsx(
+                styles.profile__benefit,
+                styles.profile__benefit_with_icon
+              )}
+            >
+              <img
+                src={discountIcon}
+                alt=""
+                aria-hidden="true"
+                className={styles.profile__benefit_icon}
+              />
               Купуйте товари зі знижками
             </li>
-            <li className={styles.profile__benefit}>
+            <li
+              className={clsx(
+                styles.profile__benefit,
+                styles.profile__benefit_with_icon
+              )}
+            >
+              <img
+                src={deliveryIcon}
+                alt=""
+                aria-hidden="true"
+                className={styles.profile__benefit_icon}
+              />
               Керуйте доставками для себе та близьких
             </li>
-            <li className={styles.profile__benefit}>
+            <li
+              className={clsx(
+                styles.profile__benefit,
+                styles.profile__benefit_with_icon
+              )}
+            >
+              <img
+                src={starIcon}
+                alt=""
+                aria-hidden="true"
+                className={styles.profile__benefit_icon}
+              />
               Відстежуйте покупки та акції
             </li>
           </ul>
@@ -76,3 +110,4 @@ const ProfilePopover = ({
 };
 
 export default ProfilePopover;
+
