@@ -7,6 +7,8 @@ import { MdPhoneInTalk, MdLocationOn, MdPublic, MdMailOutline } from "react-icon
 import { FaCcMastercard, FaCcVisa } from "react-icons/fa6";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const FOOTER_EMAIL_INPUT_ID = "footer-subscribe-email";
+const FOOTER_POLICY_CHECKBOX_ID = "footer-policy-checkbox";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -129,8 +131,11 @@ const Footer = () => {
             <form className={styles.footer__subscribe} onSubmit={handleSubmit} noValidate>
               <div className={styles.footer__subscribe_field}>
                 <input
+                  id={FOOTER_EMAIL_INPUT_ID}
+                  name="subscribeEmail"
                   type="email"
                   placeholder="Ваш e-mail"
+                  autoComplete="email"
                   value={email}
                   onChange={handleEmailChange}
                   onBlur={handleEmailBlur}
@@ -154,6 +159,8 @@ const Footer = () => {
             <div className={styles.footer__policy_wrap}>
               <label className={styles.footer__policy}>
                 <RoundCheckbox
+                  id={FOOTER_POLICY_CHECKBOX_ID}
+                  name="privacyPolicyAccepted"
                   checked={isPolicyAccepted}
                   onChange={handlePolicyChange}
                   ariaLabel="Згода з політикою конфіденційності"

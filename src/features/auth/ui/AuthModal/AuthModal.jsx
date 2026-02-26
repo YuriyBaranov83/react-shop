@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import styles from "./AuthModal.module.css";
 
@@ -104,7 +104,7 @@ const AuthModal = ({ isOpen, onClose }) => {
           onClick={onClose}
           aria-label="Закрити"
         >
-          ×
+          ?
         </button>
 
         {step === "start" && (

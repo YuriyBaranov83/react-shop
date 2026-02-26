@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./header.module.css";
 import Container from "../layout/Container";
 import clsx from "clsx";

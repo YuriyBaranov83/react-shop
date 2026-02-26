@@ -1,4 +1,4 @@
-﻿import clsx from "clsx";
+import clsx from "clsx";
 import styles from "./ProfilePopover.module.css";
 import { discountIcon, deliveryIcon, starIcon } from "@assets/icons";
 

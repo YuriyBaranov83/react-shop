@@ -216,6 +216,8 @@
     font-size: var(--normal-font-size);
     box-shadow: var(--box-shadow);
     border-radius: 14px;
+    background-color: var(--white-color);
+    z-index: 10;
 }
 
 .catalog__left,

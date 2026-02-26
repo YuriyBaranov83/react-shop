@@ -1,1 +1,1 @@
-﻿export { default as logo } from "./logo-header.png";
+export { default as logo } from "./logo-header.png";

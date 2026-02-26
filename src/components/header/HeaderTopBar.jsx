@@ -1,4 +1,4 @@
-﻿import Container from "../layout/Container";
+import Container from "../layout/Container";
 import clsx from "clsx";
 import styles from "./header.module.css";
 
