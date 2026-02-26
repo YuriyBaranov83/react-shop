@@ -171,6 +171,11 @@ const HeaderMain = () => {
     setIsMobileSearchOpen((prev) => !prev);
   };
 
+  const openMobileSearchFromDrawer = () => {
+    setIsCatalogOpen(false);
+    setIsMobileSearchOpen(true);
+  };
+
   return (
     <div className={styles.header__main}>
       <Container className="flex-between">
@@ -274,7 +279,10 @@ const HeaderMain = () => {
       />
 
       {isMobileCatalog && isCatalogOpen && (
-        <MobileCatalogDrawer onClose={closeCatalog} />
+        <MobileCatalogDrawer
+          onClose={closeCatalog}
+          onSearchClick={openMobileSearchFromDrawer}
+        />
       )}
     </div>
   );
