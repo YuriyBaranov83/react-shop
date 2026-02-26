@@ -7,12 +7,19 @@ import { IoSearch, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import { FaHeart, FaUser, FaBasketShopping } from "react-icons/fa6";
 
 import CatalogDropdown from "./CatalogDropdown";
+import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { logo } from "@assets/images";
 
+const MOBILE_CATALOG_MEDIA = "(max-width: 900px)";
+
 const HeaderMain = () => {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const [isMobileCatalog, setIsMobileCatalog] = useState(() =>
+    window.matchMedia(MOBILE_CATALOG_MEDIA).matches
+  );
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   
@@ -22,10 +29,15 @@ const HeaderMain = () => {
   const [isDesktopHover, setIsDesktopHover] = useState(false);
 
   const catalogWrapRef = useRef(null);
+  const searchWrapRef = useRef(null);
+  const mobileSearchInputRef = useRef(null);
   
   const profileWrapRef = useRef(null);
 
-  const toggleCatalog = () => setIsCatalogOpen((v) => !v);
+  const toggleCatalog = () => {
+    if (isMobileCatalog) setIsMobileSearchOpen(false);
+    setIsCatalogOpen((v) => !v);
+  };
   const closeCatalog = () => setIsCatalogOpen(false);
 
   const toggleProfile = () => setIsProfileOpen((v) => !v);
@@ -47,9 +59,21 @@ const HeaderMain = () => {
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_CATALOG_MEDIA);
+    const onChange = (event) => {
+      setIsMobileCatalog(event.matches);
+      setIsCatalogOpen(false);
+      setIsMobileSearchOpen(false);
+    };
+
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
  
   useEffect(() => {
-    if (!isCatalogOpen) return;
+    if (!isCatalogOpen || isMobileCatalog) return;
 
     const onDown = (e) => {
       if (!catalogWrapRef.current) return;
@@ -58,7 +82,38 @@ const HeaderMain = () => {
 
     document.addEventListener("mousedown", onDown);
     return () => document.removeEventListener("mousedown", onDown);
-  }, [isCatalogOpen]);
+  }, [isCatalogOpen, isMobileCatalog]);
+
+  useEffect(() => {
+    if (!isCatalogOpen || !isMobileCatalog) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isCatalogOpen, isMobileCatalog]);
+
+  useEffect(() => {
+    if (!isMobileCatalog || !isMobileSearchOpen) return;
+
+    mobileSearchInputRef.current?.focus();
+  }, [isMobileCatalog, isMobileSearchOpen]);
+
+  useEffect(() => {
+    if (!isMobileCatalog || !isMobileSearchOpen) return;
+
+    const onDown = (e) => {
+      if (!searchWrapRef.current) return;
+      if (!searchWrapRef.current.contains(e.target)) {
+        setIsMobileSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, [isMobileCatalog, isMobileSearchOpen]);
 
 
   useEffect(() => {
@@ -75,18 +130,19 @@ const HeaderMain = () => {
 
   
   useEffect(() => {
-    if (!isCatalogOpen && !isProfileOpen && !isAuthOpen) return;
+    if (!isCatalogOpen && !isProfileOpen && !isAuthOpen && !isMobileSearchOpen) return;
 
     const onKey = (e) => {
       if (e.key !== "Escape") return;
       closeCatalog();
       closeProfile();
       closeAuth();
+      setIsMobileSearchOpen(false);
     };
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isCatalogOpen, isProfileOpen, isAuthOpen]);
+  }, [isCatalogOpen, isProfileOpen, isAuthOpen, isMobileSearchOpen]);
 
   
   const handleProfileMouseEnter = () => {
@@ -107,6 +163,12 @@ const HeaderMain = () => {
   const handleLoginClick = () => {
     openAuth();
     closeProfile();
+  };
+
+  const toggleMobileSearch = () => {
+    if (!isMobileCatalog) return;
+    if (isCatalogOpen) closeCatalog();
+    setIsMobileSearchOpen((prev) => !prev);
   };
 
   return (
@@ -132,16 +194,33 @@ const HeaderMain = () => {
               <span>Каталог</span>
             </button>
 
-            {isCatalogOpen && <CatalogDropdown onClose={closeCatalog} />}
+            {isCatalogOpen && !isMobileCatalog && <CatalogDropdown onClose={closeCatalog} />}
           </div>
 
           <form
-            className={styles.search}
+            ref={searchWrapRef}
+            className={clsx(
+              styles.search,
+              isMobileCatalog && styles.search_mobile,
+              isMobileSearchOpen && styles.search_mobile_open
+            )}
             role="search"
             onSubmit={(e) => e.preventDefault()}
           >
             <IoSearch className={styles.search__icon} />
+            <button
+              type="button"
+              className={styles.search__toggle}
+              onClick={toggleMobileSearch}
+              aria-label={isMobileSearchOpen ? "Закрити пошук" : "Відкрити пошук"}
+              aria-expanded={isMobileSearchOpen}
+              aria-controls="header-search-input"
+            >
+              <IoSearch />
+            </button>
             <input
+              id="header-search-input"
+              ref={mobileSearchInputRef}
               type="search"
               name="search"
               placeholder="Почати пошук"
@@ -193,6 +272,10 @@ const HeaderMain = () => {
         isOpen={isAuthOpen}
         onClose={closeAuth}
       />
+
+      {isMobileCatalog && isCatalogOpen && (
+        <MobileCatalogDrawer onClose={closeCatalog} />
+      )}
     </div>
   );
 };

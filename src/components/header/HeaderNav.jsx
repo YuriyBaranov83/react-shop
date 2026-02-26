@@ -30,17 +30,17 @@ const HeaderNav = () => {
     <nav className={styles.header__nav} aria-label="Навигация по категориям">
       <Container>
         <ul className={styles.header__nav_list}>
-          {navItems.map(({ id, label, Icon, emphasized }) => (
-            <li key={id} className={styles.header__nav_item}>
+          {navItems.map((item) => (
+            <li key={item.id} className={styles.header__nav_item}>
               <button
                 type="button"
                 className={clsx(
                   styles.header__nav_button,
-                  emphasized && styles.header__nav_button_emphasized
+                  item.emphasized && styles.header__nav_button_emphasized
                 )}
               >
-                <Icon aria-hidden="true" />
-                <span>{label}</span>
+                <item.Icon aria-hidden="true" />
+                <span>{item.label}</span>
               </button>
             </li>
           ))}
