@@ -9,6 +9,7 @@ import { FaCcMastercard, FaCcVisa } from "react-icons/fa6";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const FOOTER_EMAIL_INPUT_ID = "footer-subscribe-email";
 const FOOTER_POLICY_CHECKBOX_ID = "footer-policy-checkbox";
+const FOOTER_SUBSCRIBE_FORM_ID = "footer-subscribe-form";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -70,7 +71,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Container>
         <div className={styles.footer__top}>
-          <div className={styles.footer__column}>
+          <div className={`${styles.footer__column} ${styles.footer__column_club}`}>
             <h3 className={styles.footer__title}>Здорова їжа клуб</h3>
             <ul className={styles.footer__links}>
               {footerClubLinks.map((item) => (
@@ -81,7 +82,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={styles.footer__column}>
+          <div className={`${styles.footer__column} ${styles.footer__column_client}`}>
             <h3 className={styles.footer__title}>Клієнтам</h3>
             <ul className={styles.footer__links}>
               {footerClientLinks.map((item) => (
@@ -92,7 +93,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={styles.footer__column}>
+          <div className={`${styles.footer__column} ${styles.footer__column_phone}`}>
             <div className={styles.footer__phone_wrap}>
               <a className={styles.footer__phone_link} href="tel:+38000490999">
                 <MdPhoneInTalk aria-hidden="true" />
@@ -123,12 +124,17 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={styles.footer__column}>
+          <div className={`${styles.footer__column} ${styles.footer__column_subscribe}`}>
             <h3 className={styles.footer__title}>
               Підпишіться на смачні та корисні новини
             </h3>
 
-            <form className={styles.footer__subscribe} onSubmit={handleSubmit} noValidate>
+            <form
+              id={FOOTER_SUBSCRIBE_FORM_ID}
+              className={styles.footer__subscribe}
+              onSubmit={handleSubmit}
+              noValidate
+            >
               <div className={styles.footer__subscribe_field}>
                 <input
                   id={FOOTER_EMAIL_INPUT_ID}
@@ -153,7 +159,6 @@ const Footer = () => {
                 )}
               </div>
 
-              <button type="submit">Підписатися</button>
             </form>
 
             <div className={styles.footer__policy_wrap}>
@@ -177,15 +182,23 @@ const Footer = () => {
                 </p>
               )}
             </div>
+
+            <button
+              type="submit"
+              form={FOOTER_SUBSCRIBE_FORM_ID}
+              className={styles.footer__subscribe_submit}
+            >
+              Підписатися
+            </button>
           </div>
         </div>
 
         <div className={styles.footer__bottom}>
-          <p>
+          <p className={styles.footer__copy}>
             © {currentYear} Здорова їжа клуб і онлайн - доставка товарів і продуктів
             додому
           </p>
-          <p>Інформація на сайті не є публічною офертою</p>
+          <p className={styles.footer__disclaimer}>Інформація на сайті не є публічною офертою</p>
           <div className={styles.footer__payment} aria-label="Способи оплати">
             <FaCcVisa title="VISA" aria-label="VISA" />
             <FaCcMastercard title="Mastercard" aria-label="Mastercard" />

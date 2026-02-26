@@ -22,6 +22,21 @@
     min-width: 0;
 }
 
+.footer__column_subscribe {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "title title"
+        "form submit"
+        "policy policy";
+    column-gap: 10px;
+    align-items: start;
+}
+
+.footer__column_subscribe .footer__title {
+    grid-area: title;
+}
+
 .footer__title {
     font-size: 18px;
     line-height: 1.25;
@@ -70,7 +85,7 @@
     white-space: nowrap;
     font-size: var(--normal-font-size);
     line-height: 1.2;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .footer__work_time {
@@ -93,7 +108,7 @@
     gap: 8px;
     font-size: var(--normal-font-size);
     line-height: 1.2;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .footer__contacts a>svg {
@@ -103,9 +118,8 @@
 }
 
 .footer__subscribe {
-    display: flex;
-    align-items: stretch;
-    gap: 10px;
+    grid-area: form;
+    display: block;
 }
 
 .footer__subscribe_field {
@@ -134,7 +148,8 @@
     border-color: var(--second-color);
 }
 
-.footer__subscribe button {
+.footer__subscribe_submit {
+    grid-area: submit;
     flex-shrink: 0;
     min-height: 44px;
     border: 1px solid var(--white-color);
@@ -145,12 +160,13 @@
     font-weight: 600;
 }
 
-.footer__subscribe button:hover {
+.footer__subscribe_submit:hover {
     background: var(--white-color);
     color: var(--first-color);
 }
 
 .footer__policy_wrap {
+    grid-area: policy;
     position: relative;
     margin-top: var(--footer-policy-offset);
 }
@@ -249,15 +265,6 @@
         white-space: nowrap;
     }
 
-    .footer__subscribe {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .footer__subscribe button {
-        width: 100%;
-    }
-
     .footer__subscribe_field {
         width: 100%;
     }
@@ -273,5 +280,157 @@
 
     .footer__payment {
         justify-self: start;
+    }
+}
+
+@media (max-width: 499px) {
+
+    .footer {
+        padding: 28px 0 20px;
+        margin-top: 28px;
+    }
+    .footer .container {
+        padding: 0 2%;
+    }
+    .footer__top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 28px 18px;
+        padding: 0 10px 20px;
+    }
+
+    .footer__column_phone {
+        order: 1;
+        grid-column: 1 / -1;
+    }
+
+    .footer__column_subscribe {
+        order: 2;
+        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "title"
+            "form"
+            "policy"
+            "submit";
+        row-gap: 22px;
+    }
+
+    .footer__column_club {
+        order: 3;
+    }
+
+    .footer__column_client {
+        order: 4;
+    }
+
+    .footer__phone_wrap {
+        margin-bottom: 8px;
+    }
+
+    .footer__phone_link {
+        gap: 10px;
+    }
+
+    .footer__phone_link>svg {
+        font-size: 24px;
+    }
+
+    .footer__phone {
+        font-size: 22px;
+        line-height: 1.2;
+    }
+
+    .footer__work_time {
+        padding-left: 38px;
+        font-size: 19px;
+        line-height: 1.25;
+    }
+
+    .footer__contacts {
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .footer__contacts a {
+        font-size: 19px;
+    }
+
+    .footer__contacts a>svg {
+        font-size: 24px;
+    }
+
+    .footer__column_subscribe .footer__title {
+        max-width: 300px;
+        margin-bottom: 0;
+        font-size: 22px;
+    }
+
+    .footer__subscribe input {
+        min-height: 56px;
+        border-radius: 24px;
+    }
+
+    .footer__policy_wrap {
+        margin-top: 10px;
+    }
+
+    .footer__policy {
+        font-size: 16px;
+    }
+
+    .footer__subscribe_submit {
+        width: fit-content;
+        min-width: 224px;
+        min-height: 56px;
+        padding: 0 26px;
+        border-radius: 28px;
+        font-size: 18px;
+        line-height: 1;
+    }
+
+    .footer__title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .footer__links {
+        gap: 8px;
+    }
+
+    .footer__links a {
+        font-size: 14px;
+    }
+
+    .footer__bottom {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        border-top: 0;
+        padding:0 10px ;
+    }
+
+    .footer__bottom p {
+        font-size: 12px;
+    }
+
+    .footer__payment {
+        order: 1;
+        justify-self: start;
+        gap: 16px;
+    }
+
+    .footer__payment>svg {
+        font-size: 56px;
+    }
+
+    .footer__disclaimer {
+        order: 2;
+        max-width: 360px;
+        font-size: 16px;
+    }
+
+    .footer__copy {
+        order: 3;
+        max-width: 360px;
+        font-size: 16px;
     }
 }
