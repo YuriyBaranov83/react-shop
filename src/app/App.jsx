@@ -1,9 +1,12 @@
-import { Header } from "@/components";
+import { Footer, Header } from "@/components";
 
 function App() {
-  return(
-    <><Header/></>
-  )
+  return (
+    <>
+      <Header />
+      <Footer />
+    </>
+  );
 }
 
 export default App;
