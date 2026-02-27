@@ -91,13 +91,14 @@
 
 .deals__image_wrap {
     margin-top: 8px;
-    height: 132px;
+    height: 130px;
     border-radius: 10px;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #F7F7F7;
+    padding: 10px 0;
 }
 
 .deals__image_wrap img {
@@ -214,7 +215,7 @@
     }
 
     .deals__image_wrap {
-        height: 86px;
+        height: 100px;
     }
 
     .deals__meta {

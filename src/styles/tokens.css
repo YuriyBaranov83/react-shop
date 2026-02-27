@@ -23,6 +23,12 @@
     --liner-color: #d7d7d7;
     --light-green-bg-color: #eaf2d8;
     --light-green-border-color: #d6e2bc;
+    --light-beige-bg-color: #f6efe2;
+    --light-beige-border-color: #eedec4;
+    --light-lilac-bg-color: #e8e9fa;
+    --light-lilac-border-color: #d6dbf8;
+    --light-cyan-bg-color: #e5f1f4;
+    --light-cyan-border-color: #cde2e9;
 
     /*=======Color Filter=======*/
     --color-filter: invert(1);
