@@ -38,7 +38,12 @@ const HeroSection = () => {
           <div className={styles.hero__slider_wrap}>
             <button
               type="button"
-              className={clsx(styles.hero__nav, styles.hero__nav_prev, "hero-nav-prev")}
+              className={clsx(
+                styles.hero__nav,
+                styles.hero__nav_prev,
+                "slider-nav-button",
+                "hero-nav-prev"
+              )}
               aria-label="Попередній слайд"
             >
               <MdChevronLeft />
@@ -92,7 +97,12 @@ const HeroSection = () => {
 
             <button
               type="button"
-              className={clsx(styles.hero__nav, styles.hero__nav_next, "hero-nav-next")}
+              className={clsx(
+                styles.hero__nav,
+                styles.hero__nav_next,
+                "slider-nav-button",
+                "hero-nav-next"
+              )}
               aria-label="Наступний слайд"
             >
               <MdChevronRight />

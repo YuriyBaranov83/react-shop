@@ -155,7 +155,7 @@ export const homeOtherTiles = [
   },
   {
     id: "household-chemistry",
-    title: "Побутова хімія",
+    title: "Побутова техніка",
     image: otherHouseholdChemistryImage,
     href: "#",
   },

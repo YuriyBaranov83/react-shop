@@ -11,6 +11,7 @@ import {
 } from "@/data/homeCategoryTilesData";
 import DealsSection from "./sections/DealsSection";
 import HeroSection from "./sections/HeroSection";
+import PromotionsSection from "./sections/PromotionsSection";
 import styles from "./HomePage.module.css";
 import sectionStyles from "./sections/HomeCategorySections.module.css";
 
@@ -39,6 +40,7 @@ const HomePage = () => {
         items={homeOtherTiles}
         className={sectionStyles.otherSection}
       />
+      <PromotionsSection />
     </MainLayout>
   );
 };

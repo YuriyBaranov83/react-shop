@@ -13,25 +13,7 @@
 }
 
 .deals__nav {
-    width: 34px;
-    height: 34px;
-    border-radius: 999px;
-    border: 1px solid var(--second-color);
-    color: var(--third-color);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .2s ease, color .2s ease, border-color .2s ease;
-}
-
-.deals__nav svg {
-    font-size: 22px;
-}
-
-.deals__nav:hover {
-    background: var(--first-color);
-    border-color: var(--first-color);
-    color: var(--white-color);
+    flex-shrink: 0;
 }
 
 .deals__swiper {
@@ -97,7 +79,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #F7F7F7;
     padding: 10px 0;
 }
 
@@ -170,7 +151,6 @@
     display: none;
 }
 
-.deals__nav:focus-visible,
 .deals__favorite:focus-visible {
     outline: 2px solid var(--first-color);
     outline-offset: 2px;

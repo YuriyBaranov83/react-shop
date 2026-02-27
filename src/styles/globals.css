@@ -69,3 +69,38 @@ button {
   outline: none;
   box-shadow: none;
 }
+
+.slider-nav-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid var(--second-color);
+  background: var(--fourth-color);
+  color: var(--third-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.slider-nav-button svg {
+  font-size: 22px;
+}
+
+.slider-nav-button:hover {
+  background: var(--first-color);
+  border-color: var(--first-color);
+  color: var(--white-color);
+}
+
+.slider-nav-button.swiper-button-disabled {
+  background: var(--fourth-color);
+  border-color: var(--second-color);
+  color: var(--second-color);
+  cursor: default;
+}
+
+.slider-nav-button:focus-visible {
+  outline: 2px solid var(--first-color);
+  outline-offset: 2px;
+}
