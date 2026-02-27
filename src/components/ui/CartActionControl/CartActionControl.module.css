@@ -1,0 +1,60 @@
+.cartAction {
+    --cart-action-height: 36px;
+    --cart-action-font-size: 14px;
+    width: 100%;
+}
+
+.actionButton {
+    width: 100%;
+    min-height: var(--cart-action-height);
+    border-radius: 999px;
+    border: 1px solid var(--first-color);
+    color: var(--first-color);
+    font-size: var(--cart-action-font-size);
+    font-weight: 600;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.actionButton:hover {
+    background: var(--first-color);
+    border-color: var(--first-color);
+    color: var(--white-color);
+    transform: translateY(-1px);
+}
+
+.counter {
+    width: 100%;
+    min-height: var(--cart-action-height);
+    border-radius: 999px;
+    border: 1px solid var(--second-color);
+    background: var(--fourth-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--third-color);
+    font-size: var(--cart-action-font-size);
+    font-weight: 600;
+}
+
+.counter button {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    color: var(--third-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s ease, color .2s ease;
+}
+
+.counter button:hover {
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.actionButton:focus-visible,
+.counter button:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}

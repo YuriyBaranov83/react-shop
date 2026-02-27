@@ -5,6 +5,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 
+import CartActionControl from "@/components/ui/CartActionControl";
 import Container from "@/components/layout/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { homeDealsData } from "@/data/homeDealsData";
@@ -24,14 +25,6 @@ const getDiscountBadge = (deal) => {
 
   const discount = Math.round(((oldPrice - currentPrice) / oldPrice) * 100);
   return `-${discount}%`;
-};
-
-const renderDealAction = (deal) => {
-  return (
-    <button type="button" className={styles.deals__action_btn}>
-      {deal.action.label}
-    </button>
-  );
 };
 
 const DealsSection = () => {
@@ -153,7 +146,10 @@ const DealsSection = () => {
                   </div>
 
                   <div className={styles.deals__action}>
-                    {renderDealAction(item)}
+                    <CartActionControl
+                      className={styles.deals__action_control}
+                      label={item.action.label}
+                    />
                   </div>
                 </article>
               </SwiperSlide>
