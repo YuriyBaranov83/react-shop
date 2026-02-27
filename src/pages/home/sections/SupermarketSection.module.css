@@ -1,0 +1,120 @@
+.supermarket {
+}
+
+.supermarket__head {
+    margin-bottom: 18px;
+}
+
+.supermarket__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+}
+
+.supermarket__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 1 / 1;
+    padding: 30px 0 0 30px;
+    border-radius: 28px;
+    border: 1px solid var(--light-green-border-color);
+    background: var(--light-green-bg-color);
+    overflow: hidden;
+    transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.supermarket__card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgb(0 0 0 / 8%);
+}
+
+.supermarket__title {
+    position: relative;
+    z-index: 1;
+    display: block;
+    max-width: 50%;
+    color: #3b3f69;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.supermarket__card img {
+    width: min(100%, 200px);
+    object-fit: contain;
+    align-self: flex-end;
+}
+
+.supermarket__card:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}
+
+@media (max-width: 1200px) {
+    .supermarket__card {
+        padding: 24px 0 0 24px;
+    }
+
+    .supermarket__title {
+        font-size: 26px;
+    }
+
+    .supermarket__card img {
+        width: min(100%, 170px);
+    }
+}
+
+@media (max-width: 900px) {
+    .supermarket__head {
+        margin-bottom: 14px;
+    }
+
+    .supermarket__grid {
+        grid-template-columns: repeat(4, minmax(154px, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+    }
+
+    .supermarket__grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .supermarket__card {
+        padding: 16px 0 0 16px;
+        border-radius: 22px;
+    }
+
+    .supermarket__title {
+        max-width: 72%;
+        font-size: 17px;
+    }
+
+    .supermarket__card img {
+        width: min(100%, 120px);
+    }
+}
+
+@media (max-width: 499px) {
+    .supermarket__grid {
+        grid-template-columns: repeat(4, minmax(142px, 1fr));
+        gap: 10px;
+    }
+
+    .supermarket__card {
+        padding: 14px 0 0 12px;
+        border-radius: 20px;
+    }
+
+    .supermarket__title {
+        font-size: 15px;
+    }
+
+    .supermarket__card img {
+        width: min(100%, 106px);
+    }
+}

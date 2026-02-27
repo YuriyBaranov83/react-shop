@@ -1,4 +1,4 @@
-import clsx from "clsx";
+﻿import clsx from "clsx";
 import { useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
@@ -44,21 +44,21 @@ const DealsSection = () => {
     <section className={styles.deals}>
       <Container>
         <SectionHeader
-          title="АКЦІЇ"
+          title="ЗНИЖКИ"
           className={styles.deals__head}
           actions={
             <div className={styles.deals__head_nav}>
               <button
                 type="button"
                 className={clsx(styles.deals__nav, "deals-nav-prev")}
-                aria-label="Попередні товари"
+                aria-label="РџРѕРїРµСЂРµРґРЅС– С‚РѕРІР°СЂРё"
               >
                 <MdChevronLeft />
               </button>
               <button
                 type="button"
                 className={clsx(styles.deals__nav, "deals-nav-next")}
-                aria-label="Наступні товари"
+                aria-label="РќР°СЃС‚СѓРїРЅС– С‚РѕРІР°СЂРё"
               >
                 <MdChevronRight />
               </button>
@@ -113,7 +113,7 @@ const DealsSection = () => {
                   <button
                     type="button"
                     className={styles.deals__favorite}
-                    aria-label={item.isFavorite ? "Прибрати з обраного" : "Додати в обране"}
+                    aria-label={item.isFavorite ? "РџСЂРёР±СЂР°С‚Рё Р· РѕР±СЂР°РЅРѕРіРѕ" : "Р”РѕРґР°С‚Рё РІ РѕР±СЂР°РЅРµ"}
                     aria-pressed={item.isFavorite}
                     onClick={() => toggleFavorite(item.id)}
                   >
@@ -170,3 +170,4 @@ const DealsSection = () => {
 };
 
 export default DealsSection;
+
