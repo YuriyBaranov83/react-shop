@@ -1,4 +1,6 @@
 import clsx from "clsx";
+import { useEffect } from "react";
+import { useState } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -8,6 +10,27 @@ import { homeHeroBanners, homeHeroSlides } from "@/data/homeHeroData";
 import styles from "./HeroSection.module.css";
 
 const HeroSection = () => {
+  const lcpSlideImage = homeHeroSlides[0]?.image;
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  useEffect(() => {
+    if (!lcpSlideImage) return;
+
+    let preloadLink = document.querySelector('link[data-hero-lcp-preload="true"]');
+
+    if (!preloadLink) {
+      preloadLink = document.createElement("link");
+      preloadLink.setAttribute("data-hero-lcp-preload", "true");
+      preloadLink.rel = "preload";
+      preloadLink.as = "image";
+      preloadLink.media = "(max-width: 900px)";
+      preloadLink.setAttribute("fetchpriority", "high");
+      document.head.appendChild(preloadLink);
+    }
+
+    preloadLink.href = lcpSlideImage;
+  }, [lcpSlideImage]);
+
   return (
     <section className={styles.hero}>
       <Container>
@@ -38,16 +61,28 @@ const HeroSection = () => {
                 el: ".hero-pagination",
                 clickable: true,
               }}
+              onInit={(swiper) => setActiveSlideIndex(swiper.realIndex)}
+              onSlideChange={(swiper) => setActiveSlideIndex(swiper.realIndex)}
               className={styles.hero__swiper}
             >
-              {homeHeroSlides.map((slide) => (
+              {homeHeroSlides.map((slide, index) => (
                 <SwiperSlide key={slide.id}>
                   <article className={styles.hero__slide}>
-                    <img src={slide.image} alt={slide.title} />
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      loading={index === 0 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
+                    />
                     <span className={styles.hero__slide_overlay} aria-hidden="true" />
 
                     <div className={styles.hero__slide_content}>
-                      <h1>{slide.title}</h1>
+                      {index === activeSlideIndex ? (
+                        <h1 className={styles.hero__slide_title}>{slide.title}</h1>
+                      ) : (
+                        <p className={styles.hero__slide_title}>{slide.title}</p>
+                      )}
                       <a href={slide.href}>{slide.buttonText}</a>
                     </div>
                   </article>
@@ -82,7 +117,7 @@ const HeroSection = () => {
                   banner.tone === "dark" && styles.hero__banner_dark
                 )}
               >
-                <img src={banner.image} alt={banner.title} />
+                <img src={banner.image} alt={banner.title} loading="lazy" decoding="async" />
                 <span className={styles.hero__banner_overlay} aria-hidden="true" />
                 <p>{banner.title}</p>
               </a>
