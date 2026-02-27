@@ -1,0 +1,27 @@
+.homePageMain > section + section {
+    margin-top: 100px;
+}
+
+@media (max-width: 1200px) {
+    .homePageMain > section + section {
+        margin-top: 80px;
+    }
+}
+
+@media (max-width: 900px) {
+    .homePageMain > section + section {
+        margin-top: 64px;
+    }
+}
+
+@media (max-width: 720px) {
+    .homePageMain > section + section {
+        margin-top: 52px;
+    }
+}
+
+@media (max-width: 499px) {
+    .homePageMain > section + section {
+        margin-top: 40px;
+    }
+}

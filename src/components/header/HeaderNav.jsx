@@ -13,21 +13,21 @@ import styles from "./header.module.css";
 
 const navItems = [
   { id: "supermarket", label: "Супермаркет", Icon: MdLocalGroceryStore },
-  { id: "cooking", label: "Кулинария", Icon: MdLocalPizza },
+  { id: "cooking", label: "Кулінарія", Icon: MdLocalPizza },
   { id: "freeze", label: "Заморозка", Icon: MdAcUnit },
-  { id: "other", label: "Другое", Icon: MdCategory },
+  { id: "other", label: "Інше", Icon: MdCategory },
   {
     id: "promo",
-    label: "Акции",
+    label: "Акції",
     Icon: MdLocalFireDepartment,
     emphasized: true,
   },
-  { id: "stores", label: "Магазины", Icon: MdStorefront },
+  { id: "stores", label: "Магазини", Icon: MdStorefront },
 ];
 
 const HeaderNav = () => {
   return (
-    <nav className={styles.header__nav} aria-label="Навигация по категориям">
+    <nav className={styles.header__nav} aria-label="Навігація за категоріями">
       <Container>
         <ul className={styles.header__nav_list}>
           {navItems.map((item) => (

@@ -1,11 +1,13 @@
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, mainClassName, mainId }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className={mainClassName} id={mainId}>
+        {children}
+      </main>
       <Footer />
     </>
   );

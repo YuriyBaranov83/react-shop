@@ -63,7 +63,13 @@ const HeroSection = () => {
               <MdChevronRight />
             </button>
 
-            <div className={clsx(styles.hero__pagination, "hero-pagination")} />
+            <div
+              className={clsx(
+                styles.hero__pagination,
+                "hero-pagination",
+                "swiper-pagination-brand"
+              )}
+            />
           </div>
 
           <div className={styles.hero__banners}>

@@ -37,3 +37,35 @@ button {
   display: flex;
   flex-direction: column;
 }
+
+.swiper-pagination .swiper-pagination-bullet,
+.swiper-pagination-brand .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px 0 0 !important;
+  opacity: 1;
+  background: rgb(228 155 166 / 72%);
+  transition: width .2s ease;
+  outline: none;
+  box-shadow: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  caret-color: transparent;
+  cursor: pointer;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active,
+.swiper-pagination-brand .swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 999px;
+  background: var(--first-color);
+}
+
+.swiper-pagination .swiper-pagination-bullet:focus,
+.swiper-pagination .swiper-pagination-bullet:focus-visible,
+.swiper-pagination-brand .swiper-pagination-bullet:focus,
+.swiper-pagination-brand .swiper-pagination-bullet:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
