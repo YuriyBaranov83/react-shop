@@ -1,0 +1,336 @@
+.deliveryPayment {}
+
+.deliveryPayment__head {
+    margin-bottom: 24px;
+}
+
+.deliveryPayment__head h2 {
+    font-size: clamp(24px, 2vw, 42px);
+}
+
+.deliveryPayment__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 520px);
+    gap: 34px;
+    align-items: start;
+}
+
+.deliveryPayment__details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.deliveryPayment__rule h3 {
+    margin-bottom: 8px;
+    color: var(--coral-color);
+    font-size: clamp(19px, 1.2vw, 24px);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.deliveryPayment__rule p,
+.deliveryPayment__note {
+    color: #282828;
+    font-size: clamp(17px, .95vw, 21px);
+    line-height: 1.45;
+}
+
+.deliveryPayment__note {
+    margin-top: 2px;
+}
+
+.deliveryPayment__mapWrap {
+    min-width: 0;
+}
+
+.deliveryPayment__mapTitle {
+    margin-bottom: 10px;
+    color: var(--coral-color);
+    font-size: clamp(18px, 1.2vw, 23px);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.deliveryPayment__map {
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #f1ded7;
+}
+
+.deliveryPayment__map img {
+    width: 100%;
+    display: block;
+}
+
+.deliveryPayment__promo {
+    margin-top: 34px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 32px 42px;
+    border-radius: 34px;
+    background: linear-gradient(90deg, var(--first-color) 0%, var(--second-color) 100%);
+}
+
+.deliveryPayment__promo::after {
+    content: "";
+    position: absolute;
+    right: -110px;
+    top: -90px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgb(255 255 255 / 18%) 0%, transparent 64%);
+    pointer-events: none;
+}
+
+.deliveryPayment__promoText {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px 26px;
+    color: var(--white-color);
+}
+
+.deliveryPayment__promoText strong {
+    width: 100%;
+    font-size: clamp(26px, 2vw, 46px);
+    line-height: 1.08;
+    font-weight: 700;
+}
+
+.deliveryPayment__promoText span {
+    font-size: clamp(20px, 1.05vw, 24px);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.deliveryPayment__promoButton {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 250px;
+    min-height: 56px;
+    padding: 0 28px;
+    border-radius: 999px;
+    border: 2px solid var(--white-color);
+    color: var(--white-color);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.deliveryPayment__promoButton:hover {
+    background: rgb(255 255 255 / 18%);
+}
+
+.deliveryPayment__promoButton:focus-visible {
+    outline: 2px solid var(--white-color);
+    outline-offset: 3px;
+}
+
+.deliveryPayment__review {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 22px 18px 24px;
+    border-radius: 20px;
+    border: 1px solid var(--light-beige-border-color);
+    background: var(--light-beige-bg-color);
+}
+
+.deliveryPayment__reviewContent {
+    min-width: 0;
+}
+
+.deliveryPayment__reviewContent h3 {
+    font-size: clamp(30px, 1.8vw, 42px);
+    line-height: 1.1;
+    font-weight: 700;
+    color: #2f1212;
+}
+
+.deliveryPayment__reviewContent p {
+    margin-top: 8px;
+    max-width: 580px;
+    font-size: clamp(17px, .95vw, 21px);
+    line-height: 1.35;
+    color: #2f1212;
+}
+
+.deliveryPayment__reviewActions {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.deliveryPayment__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #f7c839;
+    font-size: clamp(22px, 1.15vw, 30px);
+}
+
+.deliveryPayment__stars svg:last-child {
+    color: #c7c7c7;
+}
+
+.deliveryPayment__reviewButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    min-width: 220px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 2px solid var(--coral-color);
+    color: var(--coral-color);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.deliveryPayment__reviewButton:hover {
+    background: rgb(255 91 84 / 10%);
+}
+
+.deliveryPayment__reviewButton:focus-visible {
+    outline: 2px solid var(--coral-color);
+    outline-offset: 3px;
+}
+
+.deliveryPayment__reviewDecor {
+    width: clamp(190px, 18vw, 292px);
+    min-width: 170px;
+}
+
+@media (max-width: 1200px) {
+    .deliveryPayment__top {
+        gap: 24px;
+    }
+
+    .deliveryPayment__promo {
+        border-radius: 26px;
+        padding: 24px 28px;
+    }
+
+    .deliveryPayment__promoButton {
+        min-width: 214px;
+        min-height: 52px;
+        font-size: 20px;
+    }
+
+    .deliveryPayment__reviewButton {
+        min-height: 48px;
+        min-width: 186px;
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 900px) {
+    .deliveryPayment__head {
+        margin-bottom: 16px;
+    }
+
+    .deliveryPayment__top {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .deliveryPayment__rule {
+        gap: 6px;
+    }
+
+    .deliveryPayment__promo {
+        margin-top: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .deliveryPayment__promoText {
+        gap: 10px 20px;
+    }
+
+    .deliveryPayment__promoText strong {
+        font-size: clamp(20px, 2.8vw, 30px);
+    }
+
+    .deliveryPayment__promoButton {
+        min-width: 0;
+        width: fit-content;
+    }
+
+    .deliveryPayment__review {
+        margin-top: 16px;
+        padding: 16px;
+    }
+
+    .deliveryPayment__reviewActions {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .deliveryPayment__reviewDecor {
+        width: clamp(140px, 25vw, 240px);
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 620px) {
+    .deliveryPayment__promo {
+        border-radius: 18px;
+        padding: 18px 16px;
+    }
+
+    .deliveryPayment__promoButton {
+        min-height: 42px;
+        padding: 0 16px;
+        font-size: 15px;
+    }
+
+    .deliveryPayment__review {
+        position: relative;
+        align-items: flex-start;
+        padding-bottom: 84px;
+    }
+
+    .deliveryPayment__reviewContent h3 {
+        font-size: 19px;
+    }
+
+    .deliveryPayment__reviewContent p {
+        margin-top: 6px;
+        font-size: 13px;
+    }
+
+    .deliveryPayment__stars {
+        font-size: 20px;
+    }
+
+    .deliveryPayment__reviewButton {
+        min-height: 40px;
+        min-width: 154px;
+        padding: 0 14px;
+        font-size: 14px;
+        border-width: 1px;
+    }
+
+    .deliveryPayment__reviewDecor {
+        position: absolute;
+        right: 10px;
+        bottom: 6px;
+        width: 120px;
+        min-width: 120px;
+    }
+}

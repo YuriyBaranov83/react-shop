@@ -1,4 +1,4 @@
-import "swiper/css";
+﻿import "swiper/css";
 import "swiper/css/pagination";
 
 import CategoryTilesSection from "@/components/ui/CategoryTilesSection";
@@ -10,6 +10,7 @@ import {
   homeSupermarketTiles,
 } from "@/data/homeCategoryTilesData";
 import DealsSection from "./sections/DealsSection";
+import DeliveryPaymentSection from "./sections/delivery-payment";
 import HeroSection from "./sections/HeroSection";
 import PromotionsSection from "./sections/PromotionsSection";
 import styles from "./HomePage.module.css";
@@ -21,28 +22,30 @@ const HomePage = () => {
       <HeroSection />
       <DealsSection />
       <CategoryTilesSection
-        title="СУПЕРМАРКЕТ"
+        title="РЎРЈРџР•Р РњРђР РљР•Рў"
         items={homeSupermarketTiles}
         className={sectionStyles.supermarketSection}
       />
       <CategoryTilesSection
-        title="КУЛІНАРІЯ"
+        title="РљРЈР›Р†РќРђР Р†РЇ"
         items={homeCulinaryTiles}
         className={sectionStyles.culinarySection}
       />
       <CategoryTilesSection
-        title="ЗАМОРОЗКА"
+        title="Р—РђРњРћР РћР—РљРђ"
         items={homeFrozenTiles}
         className={sectionStyles.frozenSection}
       />
       <CategoryTilesSection
-        title="ІНШЕ"
+        title="Р†РќРЁР•"
         items={homeOtherTiles}
         className={sectionStyles.otherSection}
       />
       <PromotionsSection />
+      <DeliveryPaymentSection />
     </MainLayout>
   );
 };
 
 export default HomePage;
+
