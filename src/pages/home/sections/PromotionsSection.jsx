@@ -10,7 +10,7 @@ import styles from "./PromotionsSection.module.css";
 
 const PromotionsSection = () => {
   return (
-    <section className={styles.promotions}>
+    <section id="promotions" className={styles.promotions}>
       <Container>
         <SectionHeader
           title="АКЦІЇ"

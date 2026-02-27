@@ -61,3 +61,13 @@ body {
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

@@ -25,7 +25,9 @@ const HeroSection = () => {
       preloadLink.as = "image";
       preloadLink.media = "(max-width: 900px)";
       preloadLink.setAttribute("fetchpriority", "high");
+      preloadLink.href = lcpSlideImage;
       document.head.appendChild(preloadLink);
+      return;
     }
 
     preloadLink.href = lcpSlideImage;

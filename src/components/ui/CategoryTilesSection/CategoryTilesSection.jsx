@@ -7,12 +7,13 @@ import styles from "./CategoryTilesSection.module.css";
 const CategoryTilesSection = ({
   title,
   items,
+  sectionId,
   className,
   linkHref = "#",
   linkLabel = "Дивитися все",
 }) => {
   return (
-    <section className={clsx(styles.section, className)}>
+    <section id={sectionId} className={clsx(styles.section, className)}>
       <Container>
         <SectionHeader
           title={title}
