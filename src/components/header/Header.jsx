@@ -2,6 +2,7 @@ import styles from "./header.module.css";
 import HeaderTopBar from "./HeaderTopBar";
 import HeaderMain from "./HeaderMain";
 import HeaderNav from "./HeaderNav";
+import ScrollToTopButton from "../ui/ScrollToTopButton";
 
 const Header = () => {
   return (
@@ -9,6 +10,7 @@ const Header = () => {
       <HeaderTopBar />
       <HeaderMain />
       <HeaderNav />
+      <ScrollToTopButton />
     </header>
   );
 };

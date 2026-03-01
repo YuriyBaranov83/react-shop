@@ -362,3 +362,12 @@
         left: 5px !important;
     }
 }
+@media (max-width: 399px){
+
+    .hero__slide_content a {
+        min-height: 30px;
+    }
+    .hero__slide_title {
+        font-size: 24px;
+    }
+}
