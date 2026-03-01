@@ -1,7 +1,6 @@
 import "swiper/css";
 import "swiper/css/pagination";
 
-import MainLayout from "@/components/layout/MainLayout";
 import CategoryTilesSection from "@/components/ui/CategoryTilesSection";
 import {
   homeCulinaryTiles,
@@ -9,7 +8,6 @@ import {
   homeOtherTiles,
   homeSupermarketTiles,
 } from "@/data/homeCategoryTilesData";
-import styles from "./HomePage.module.css";
 import DealsSection from "./sections/DealsSection";
 import DeliveryPaymentSection from "./sections/delivery-payment";
 import HeroSection from "./sections/HeroSection";
@@ -18,7 +16,7 @@ import sectionStyles from "./sections/HomeCategorySections.module.css";
 
 const HomePage = () => {
   return (
-    <MainLayout mainClassName={styles.homePageMain} mainId="home-page">
+    <>
       <HeroSection />
       <DealsSection />
 
@@ -52,7 +50,7 @@ const HomePage = () => {
 
       <PromotionsSection />
       <DeliveryPaymentSection />
-    </MainLayout>
+    </>
   );
 };
 

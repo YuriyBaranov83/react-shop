@@ -1,5 +1,4 @@
 import Container from "@/components/layout/Container";
-import MainLayout from "@/components/layout/MainLayout";
 import ukraineCoverageMapImage from "@/assets/images/contacts/delivery-map.webp";
 import styles from "./ContactsPage.module.css";
 
@@ -56,9 +55,8 @@ const stores = [
 
 const ContactsPage = () => {
   return (
-    <MainLayout mainClassName={styles.contacts__main} mainId="contacts-page">
-      <section className={styles.contacts__section}>
-        <Container>
+    <section className={styles.contacts__section}>
+      <Container>
           <h1>Контакти</h1>
           <p className={styles.contacts__lead}>
             Urbanfood - мережа магазинів та кулінарії. Працюємо в межах України та оперативно
@@ -108,9 +106,8 @@ const ContactsPage = () => {
               </article>
             ))}
           </div>
-        </Container>
-      </section>
-    </MainLayout>
+      </Container>
+    </section>
   );
 };
 
