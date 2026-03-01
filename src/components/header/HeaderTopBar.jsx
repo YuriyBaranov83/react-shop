@@ -4,10 +4,10 @@ import styles from "./header.module.css";
 
 const HeaderTopBar = () => {
   return (
-    <div className={styles.header__topbar}>
+    <div className={styles["header-topbar"]}>
       <Container>
-        <div className={clsx("flex-center", styles.header__topbar_inner)}>
-          <div className={styles.header__topbar_left}>
+        <div className={clsx("flex-center", styles["header-topbar-inner"])}>
+          <div className={styles["header-topbar-left"]}>
             Харчуйтеся різноманітно і накопичуйте <a href="">знижку</a> до 10%
           </div>
           <button>Отримати знижку</button>

@@ -1,17 +1,17 @@
-﻿.sectionHeader {
+﻿.section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
 }
 
-.sectionHeader__left {
+.section-header-left {
     display: inline-flex;
     align-items: stretch;
     gap: 14px;
 }
 
-.sectionHeader__left h2 {
+.section-header-left h2 {
     display: inline-flex;
     align-items: center;
     font-size: 36px;
@@ -20,7 +20,7 @@
     color: var(--third-color);
 }
 
-.sectionHeader__left a {
+.section-header-left a {
     display: inline-flex;
     align-self: stretch;
     align-items: center;
@@ -35,47 +35,47 @@
     transition: transform .2s ease, filter .2s ease;
 }
 
-.sectionHeader__left a::after {
+.section-header-left a::after {
     content: "❯";
     margin-left: 8px;
     font-size: 16px;
     line-height: 1;
 }
 
-.sectionHeader__left a:hover {
+.section-header-left a:hover {
     transform: translateY(-1px);
     filter: brightness(1.05);
 }
 
-.sectionHeader__actions {
+.section-header-actions {
     display: inline-flex;
 }
 
-.sectionHeader__left a:focus-visible {
+.section-header-left a:focus-visible {
     outline: 2px solid var(--first-color);
     outline-offset: 2px;
 }
 
 @media (max-width: 1200px) {
-    .sectionHeader__left h2 {
+    .section-header-left h2 {
         font-size: 32px;
     }
 }
 
 @media (max-width: 499px) {
-    .sectionHeader {
+    .section-header {
         gap: 10px;
     }
 
-    .sectionHeader__left {
+    .section-header-left {
         gap: 10px;
     }
 
-    .sectionHeader__left h2 {
+    .section-header-left h2 {
         font-size: 22px;
     }
 
-    .sectionHeader__left a {
+    .section-header-left a {
         padding: 0 12px;
         font-size: 11px;
     }

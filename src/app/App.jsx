@@ -7,14 +7,14 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route element={<MainLayout mainClassName={homeStyles.homePageMain} mainId="home-page" />}>
+      <Route element={<MainLayout mainClassName={homeStyles["home-page-main"]} mainId="home-page" />}>
         <Route path="/" element={<HomePage />} />
       </Route>
 
       <Route
         element={
           <MainLayout
-            mainClassName={contactsStyles.contacts__main}
+            mainClassName={contactsStyles["contacts-main"]}
             mainId="contacts-page"
           />
         }

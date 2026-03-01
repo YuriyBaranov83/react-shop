@@ -14,13 +14,13 @@ const PromotionsSection = () => {
       <Container>
         <SectionHeader
           title="АКЦІЇ"
-          className={styles.promotions__head}
+          className={styles["promotions-head"]}
           actions={
-            <div className={styles.promotions__head_nav}>
+            <div className={styles["promotions-head-nav"]}>
               <button
                 type="button"
                 className={clsx(
-                  styles.promotions__nav,
+                  styles["promotions-nav"],
                   "slider-nav-button",
                   "promotions-nav-prev"
                 )}
@@ -31,7 +31,7 @@ const PromotionsSection = () => {
               <button
                 type="button"
                 className={clsx(
-                  styles.promotions__nav,
+                  styles["promotions-nav"],
                   "slider-nav-button",
                   "promotions-nav-next"
                 )}
@@ -72,33 +72,33 @@ const PromotionsSection = () => {
               spaceBetween: 12,
             },
           }}
-          className={styles.promotions__swiper}
+          className={styles["promotions-swiper"]}
         >
           {homePromotionsData.map((promo) => (
-            <SwiperSlide key={promo.id} className={styles.promotions__slide}>
+            <SwiperSlide key={promo.id} className={styles["promotions-slide"]}>
               <a
                 href="#"
                 className={clsx(
-                  styles.promotions__card,
-                  styles[`promotions__card_${promo.variant}`]
+                  styles["promotions-card"],
+                  styles[`promotions-card-${promo.variant}`]
                 )}
               >
                 <div
                   className={clsx(
-                    styles.promotions__content,
-                    styles[`promotions__content_${promo.variant}`]
+                    styles["promotions-content"],
+                    styles[`promotions-content-${promo.variant}`]
                   )}
                 >
                   <h3>{promo.title}</h3>
                   {promo.badge ? (
-                    <span className={styles.promotions__badge}>{promo.badge}</span>
+                    <span className={styles["promotions-badge"]}>{promo.badge}</span>
                   ) : null}
                 </div>
 
                 <img
                   className={clsx(
-                    styles.promotions__image,
-                    styles[`promotions__image_${promo.variant}`]
+                    styles["promotions-image"],
+                    styles[`promotions-image-${promo.variant}`]
                   )}
                   src={promo.image}
                   alt={promo.title}
@@ -112,7 +112,7 @@ const PromotionsSection = () => {
 
         <div
           className={clsx(
-            styles.promotions__pagination,
+            styles["promotions-pagination"],
             "promotions-pagination",
             "swiper-pagination-brand"
           )}

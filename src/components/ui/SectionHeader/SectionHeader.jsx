@@ -9,13 +9,13 @@ const SectionHeader = ({
   className,
 }) => {
   return (
-    <div className={clsx(styles.sectionHeader, className)}>
-      <div className={styles.sectionHeader__left}>
+    <div className={clsx(styles["section-header"], className)}>
+      <div className={styles["section-header-left"]}>
         <h2>{title}</h2>
         {linkLabel ? <a href={linkHref}>{linkLabel}</a> : null}
       </div>
 
-      {actions ? <div className={styles.sectionHeader__actions}>{actions}</div> : null}
+      {actions ? <div className={styles["section-header-actions"]}>{actions}</div> : null}
     </div>
   );
 };

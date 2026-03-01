@@ -55,38 +55,38 @@ const stores = [
 
 const ContactsPage = () => {
   return (
-    <section className={styles.contacts__section}>
+    <section className={styles["contacts-section"]}>
       <Container>
           <h1>Контакти</h1>
-          <p className={styles.contacts__lead}>
+          <p className={styles["contacts-lead"]}>
             Urbanfood - мережа магазинів та кулінарії. Працюємо в межах України та оперативно
             обробляємо звернення клієнтів.
           </p>
 
-          <div className={styles.contacts__meta_grid}>
-            <article className={styles.contacts__card}>
+          <div className={styles["contacts-meta-grid"]}>
+            <article className={styles["contacts-card"]}>
               <h2>Графік підтримки</h2>
               <p>Щоденно з 08:00 до 21:00</p>
               <p>Без вихідних</p>
             </article>
 
-            <article className={styles.contacts__card}>
+            <article className={styles["contacts-card"]}>
               <h2>Зв&apos;язок</h2>
-              <div className={styles.contacts__link_list}>
-                <a className={styles.contacts__link} href="tel:+38000490999">
-                  <span className={styles.contacts__link_label}>Телефон:</span> +38 (000) 49-09-99
+              <div className={styles["contacts-link-list"]}>
+                <a className={styles["contacts-link"]} href="tel:+38000490999">
+                  <span className={styles["contacts-link-label"]}>Телефон:</span> +38 (000) 49-09-99
                 </a>
-                <a className={styles.contacts__link} href="mailto:contact@urbanfood.ua">
-                  <span className={styles.contacts__link_label}>Email:</span> contact@urbanfood.ua
+                <a className={styles["contacts-link"]} href="mailto:contact@urbanfood.ua">
+                  <span className={styles["contacts-link-label"]}>Email:</span> contact@urbanfood.ua
                 </a>
-                <a className={styles.contacts__link} href="mailto:feedback@urbanfood.ua">
-                  <span className={styles.contacts__link_label}>Відгуки:</span> feedback@urbanfood.ua
+                <a className={styles["contacts-link"]} href="mailto:feedback@urbanfood.ua">
+                  <span className={styles["contacts-link-label"]}>Відгуки:</span> feedback@urbanfood.ua
                 </a>
               </div>
             </article>
           </div>
 
-          <figure className={styles.contacts__map_card}>
+          <figure className={styles["contacts-map-card"]}>
             <img
               src={ukraineCoverageMapImage}
               alt="Карта покриття Urbanfood на території України"
@@ -96,10 +96,10 @@ const ContactsPage = () => {
             <figcaption>Покриття Urbanfood виключно на території України.</figcaption>
           </figure>
 
-          <h2 className={styles.contacts__stores_title}>Магазини Urbanfood в Україні</h2>
-          <div className={styles.contacts__stores_grid}>
+          <h2 className={styles["contacts-stores-title"]}>Магазини Urbanfood в Україні</h2>
+          <div className={styles["contacts-stores-grid"]}>
             {stores.map((store) => (
-              <article key={store.id} className={styles.contacts__store_card}>
+              <article key={store.id} className={styles["contacts-store-card"]}>
                 <h3>{store.title}</h3>
                 <p>{store.address}</p>
                 <p>{store.hours}</p>

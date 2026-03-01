@@ -36,13 +36,13 @@ const HeroSection = () => {
   return (
     <section className={styles.hero}>
       <Container>
-        <div className={styles.hero__grid}>
-          <div className={styles.hero__slider_wrap}>
+        <div className={styles["hero-grid"]}>
+          <div className={styles["hero-slider-wrap"]}>
             <button
               type="button"
               className={clsx(
-                styles.hero__nav,
-                styles.hero__nav_prev,
+                styles["hero-nav"],
+                styles["hero-nav-prev"],
                 "slider-nav-button",
                 "hero-nav-prev"
               )}
@@ -70,11 +70,11 @@ const HeroSection = () => {
               }}
               onInit={(swiper) => setActiveSlideIndex(swiper.realIndex)}
               onSlideChange={(swiper) => setActiveSlideIndex(swiper.realIndex)}
-              className={styles.hero__swiper}
+              className={styles["hero-swiper"]}
             >
               {homeHeroSlides.map((slide, index) => (
                 <SwiperSlide key={slide.id}>
-                  <article className={styles.hero__slide}>
+                  <article className={styles["hero-slide"]}>
                     <img
                       src={slide.image}
                       alt={slide.title}
@@ -82,13 +82,13 @@ const HeroSection = () => {
                       fetchPriority={index === 0 ? "high" : "auto"}
                       decoding="async"
                     />
-                    <span className={styles.hero__slide_overlay} aria-hidden="true" />
+                    <span className={styles["hero-slide-overlay"]} aria-hidden="true" />
 
-                    <div className={styles.hero__slide_content}>
+                    <div className={styles["hero-slide-content"]}>
                       {index === activeSlideIndex ? (
-                        <h1 className={styles.hero__slide_title}>{slide.title}</h1>
+                        <h1 className={styles["hero-slide-title"]}>{slide.title}</h1>
                       ) : (
-                        <p className={styles.hero__slide_title}>{slide.title}</p>
+                        <p className={styles["hero-slide-title"]}>{slide.title}</p>
                       )}
                       <a href={slide.href}>{slide.buttonText}</a>
                     </div>
@@ -100,8 +100,8 @@ const HeroSection = () => {
             <button
               type="button"
               className={clsx(
-                styles.hero__nav,
-                styles.hero__nav_next,
+                styles["hero-nav"],
+                styles["hero-nav-next"],
                 "slider-nav-button",
                 "hero-nav-next"
               )}
@@ -112,25 +112,25 @@ const HeroSection = () => {
 
             <div
               className={clsx(
-                styles.hero__pagination,
+                styles["hero-pagination"],
                 "hero-pagination",
                 "swiper-pagination-brand"
               )}
             />
           </div>
 
-          <div className={styles.hero__banners}>
+          <div className={styles["hero-banners"]}>
             {homeHeroBanners.map((banner) => (
               <a
                 key={banner.id}
                 href={banner.href}
                 className={clsx(
-                  styles.hero__banner,
-                  banner.tone === "dark" && styles.hero__banner_dark
+                  styles["hero-banner"],
+                  banner.tone === "dark" && styles["hero-banner-dark"]
                 )}
               >
                 <img src={banner.image} alt={banner.title} loading="lazy" decoding="async" />
-                <span className={styles.hero__banner_overlay} aria-hidden="true" />
+                <span className={styles["hero-banner-overlay"]} aria-hidden="true" />
                 <p>{banner.title}</p>
               </a>
             ))}

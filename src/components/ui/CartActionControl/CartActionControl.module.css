@@ -1,10 +1,10 @@
-.cartAction {
+.cart-action {
     --cart-action-height: 36px;
     --cart-action-font-size: 14px;
     width: 100%;
 }
 
-.actionButton {
+.action-button {
     width: 100%;
     min-height: var(--cart-action-height);
     border-radius: 999px;
@@ -15,7 +15,7 @@
     transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
 }
 
-.actionButton:hover {
+.action-button:hover {
     background: var(--first-color);
     border-color: var(--first-color);
     color: var(--white-color);
@@ -53,7 +53,7 @@
     color: var(--white-color);
 }
 
-.actionButton:focus-visible,
+.action-button:focus-visible,
 .counter button:focus-visible {
     outline: 2px solid var(--first-color);
     outline-offset: 2px;

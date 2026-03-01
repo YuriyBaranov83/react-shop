@@ -1,4 +1,4 @@
-.profile__popover {
+.profile-popover {
   position: absolute;
   top: 99%;
   left: 50%;
@@ -8,50 +8,50 @@
   z-index: 10;
   padding-top: 10px;
 }
-.profile__popover_hover {
+.profile-popover-hover {
 
 }
-.profile__guest {
+.profile-guest {
   border-radius: 12px;
   box-shadow: var(--box-shadow);
   padding: 16px;
 }
 
-.profile__guest,
-.profile__authed {
+.profile-guest,
+.profile-authed {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.profile__title {
+.profile-title {
   font-size: 18px;
   font-weight: 600;
 }
 
-.profile__benefits {
+.profile-benefits {
   margin: 0;
   padding-left: 18px;
   color: #4d4d4d;
 }
 
-.profile__benefit {
+.profile-benefit {
   margin-bottom: 6px;
 }
 
-.profile__benefit_with_icon {
+.profile-benefit-with-icon {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.profile__benefit_icon {
+.profile-benefit-icon {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
 }
 
-.profile__guest .profile__login_btn {
+.profile-guest .profile-login-btn {
   display: flex;
   align-items: center;
   width: 100%;
@@ -60,14 +60,14 @@
   background-color: var(--first-color);
   border: 1px solid var(--first-color);
 }
-.profile__guest .profile__login_btn:hover {
+.profile-guest .profile-login-btn:hover {
   background-color: ;
 } 
-.profile__name {
+.profile-name {
   font-weight: 600;
 }
 
-.profile__menu_item {
+.profile-menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -78,12 +78,12 @@
   cursor: pointer;
 }
 
-.profile__menu_item:hover {
+.profile-menu-item:hover {
   border-color: #e1e1e1;
   background: #f2f2f2;
 }
 
-.profile__badge {
+.profile-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -96,12 +96,12 @@
   font-size: 12px;
 }
 
-.profile__muted {
+.profile-muted {
   color: #8d8d8d;
   font-size: 12px;
 }
 
-.profile__logout {
+.profile-logout {
   color: #b02020;
   background: #fff5f5;
   border-color: #ffd8d8;

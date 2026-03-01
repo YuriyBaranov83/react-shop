@@ -1,30 +1,30 @@
 .promotions {
 }
 
-.promotions__head {
+.promotions-head {
     margin-bottom: 16px;
 }
 
-.promotions__head_nav {
+.promotions-head-nav {
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
-.promotions__nav {
+.promotions-nav {
     flex-shrink: 0;
 }
 
-.promotions__swiper {
+.promotions-swiper {
     padding-bottom: 4px;
 }
 
-.promotions__slide {
+.promotions-slide {
     height: auto;
     width: clamp(214px, 56vw, 226px);
 }
 
-.promotions__card {
+.promotions-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,28 +36,28 @@
     transition: transform .22s ease, box-shadow .22s ease;
 }
 
-.promotions__card:hover {
+.promotions-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgb(0 0 0 / 9%);
 }
 
-.promotions__card_preorder {
+.promotions-card-preorder {
     background: var(--rose-color);
 }
 
-.promotions__card_holiday {
+.promotions-card-holiday {
     background: var(--coral-color);
 }
 
-.promotions__card_cleanline {
+.promotions-card-cleanline {
     background: var(--peach-color);
 }
 
-.promotions__card_combo {
+.promotions-card-combo {
     background: var(--sunflower-color);
 }
 
-.promotions__content {
+.promotions-content {
     padding: 20px 0 0 20px;
     max-width: 70%;
     display: flex;
@@ -66,13 +66,36 @@
     gap: 10px;
 }
 
-.promotions__card h3 {
+.promotions-content-preorder {}
+
+.promotions-content-holiday {}
+
+.promotions-content-cleanline {}
+
+.promotions-content-combo {}
+
+.promotions-image {
+    width: 100%;
+    margin-top: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.promotions-image-preorder {}
+
+.promotions-image-holiday {}
+
+.promotions-image-cleanline {}
+
+.promotions-image-combo {}
+
+.promotions-card h3 {
     font-size: clamp(20px, 1.35vw, 29px);
     line-height: 1.18;
     font-weight: 600;
 }
 
-.promotions__badge {
+.promotions-badge {
     min-height: 30px;
     padding: 0 14px;
     border-radius: 999px;
@@ -85,25 +108,25 @@
     justify-content: center;
 }
 
-.promotions__pagination {
+.promotions-pagination {
     display: none;
 }
 
-.promotions__card:focus-visible {
+.promotions-card:focus-visible {
     outline: 2px solid var(--first-color);
     outline-offset: 2px;
 }
 
 @media (max-width: 1200px) {
-    .promotions__card {
+    .promotions-card {
         border-radius: 14px;
     }
 
-    .promotions__card h3 {
+    .promotions-card h3 {
         font-size: clamp(18px, 1.45vw, 24px);
     }
 
-    .promotions__badge {
+    .promotions-badge {
         min-height: 26px;
         padding: 0 10px;
         font-size: 12px;
@@ -111,41 +134,41 @@
 }
 
 @media (max-width: 900px) {
-    .promotions__head_nav {
+    .promotions-head-nav {
         display: none;
     }
 
-    .promotions__pagination {
+    .promotions-pagination {
         display: inline-flex;
         margin-top: 10px;
     }
 }
 
 @media (min-width: 900px) {
-    .promotions__slide {
+    .promotions-slide {
         width: auto;
     }
 }
 
 @media (max-width: 499px) {
-    .promotions__head {
+    .promotions-head {
         margin-bottom: 12px;
     }
 
-    .promotions__card {
+    .promotions-card {
         border-radius: 14px;
         padding: 12px;
     }
 
-    .promotions__content {
+    .promotions-content {
         gap: 8px;
     }
 
-    .promotions__card h3 {
+    .promotions-card h3 {
         font-size: 18px;
     }
 
-    .promotions__badge {
+    .promotions-badge {
         min-height: 22px;
         padding: 0 8px;
         font-size: 10px;

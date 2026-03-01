@@ -1,15 +1,15 @@
-.contacts__main {
+.contacts-main {
     padding: clamp(26px, 3vw, 44px) 0 90px;
 }
 
-.contacts__section h1 {
+.contacts-section h1 {
     color: var(--third-color);
     font-size: clamp(30px, 3.4vw, 44px);
     line-height: 1.08;
     font-weight: 700;
 }
 
-.contacts__lead {
+.contacts-lead {
     margin-top: 14px;
     max-width: 860px;
     color: #363636;
@@ -17,14 +17,14 @@
     line-height: 1.45;
 }
 
-.contacts__meta_grid {
+.contacts-meta-grid {
     margin-top: 24px;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
 }
 
-.contacts__card {
+.contacts-card {
     min-height: 142px;
     border-radius: 18px;
     border: 1px solid rgb(84 8 99 / 12%);
@@ -32,27 +32,27 @@
     padding: 18px 20px;
 }
 
-.contacts__card h2 {
+.contacts-card h2 {
     color: var(--coral-color);
     font-size: clamp(20px, 1.8vw, 30px);
     line-height: 1.15;
     font-weight: 700;
 }
 
-.contacts__card p {
+.contacts-card p {
     margin-top: 8px;
     color: #272727;
     font-size: clamp(15px, 1.2vw, 18px);
     line-height: 1.35;
 }
 
-.contacts__link_list {
+.contacts-link-list {
     margin-top: 8px;
     display: grid;
     gap: 8px;
 }
 
-.contacts__link {
+.contacts-link {
     width: fit-content;
     color: var(--third-color);
     font-size: clamp(15px, 1.2vw, 18px);
@@ -64,24 +64,24 @@
     transition: color .2s ease, text-decoration-color .2s ease, transform .2s ease;
 }
 
-.contacts__link_label {
+.contacts-link-label {
     color: var(--coral-color);
     font-weight: 700;
 }
 
-.contacts__link:hover {
+.contacts-link:hover {
     color: var(--first-color);
     text-decoration-color: var(--first-color);
     transform: translateX(2px);
 }
 
-.contacts__link:focus-visible {
+.contacts-link:focus-visible {
     outline: 2px solid var(--first-color);
     outline-offset: 3px;
     border-radius: 6px;
 }
 
-.contacts__map_card {
+.contacts-map-card {
     margin-top: 24px;
     border-radius: 20px;
     overflow: hidden;
@@ -89,21 +89,21 @@
     background: #fff;
 }
 
-.contacts__map_card img {
+.contacts-map-card img {
     width: 100%;
     display: block;
     aspect-ratio: 2.16 / 1;
     object-fit: cover;
 }
 
-.contacts__map_card figcaption {
+.contacts-map-card figcaption {
     padding: 10px 16px;
     color: #4b4b4b;
     font-size: 14px;
     line-height: 1.3;
 }
 
-.contacts__stores_title {
+.contacts-stores-title {
     margin-top: clamp(30px, 3.6vw, 48px);
     color: var(--third-color);
     font-size: clamp(28px, 3vw, 40px);
@@ -111,14 +111,14 @@
     font-weight: 700;
 }
 
-.contacts__stores_grid {
+.contacts-stores-grid {
     margin-top: 16px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
 }
 
-.contacts__store_card {
+.contacts-store-card {
     border-radius: 16px;
     border: 1px solid rgb(84 8 99 / 11%);
     background: #fff;
@@ -126,14 +126,14 @@
     min-height: 144px;
 }
 
-.contacts__store_card h3 {
+.contacts-store-card h3 {
     color: var(--third-color);
     font-size: 20px;
     line-height: 1.15;
     font-weight: 700;
 }
 
-.contacts__store_card p {
+.contacts-store-card p {
     margin-top: 8px;
     color: #242424;
     font-size: 16px;
@@ -141,25 +141,25 @@
 }
 
 @media (max-width: 1100px) {
-    .contacts__stores_grid {
+    .contacts-stores-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 760px) {
-    .contacts__main {
+    .contacts-main {
         padding: 20px 0 56px;
     }
 
-    .contacts__meta_grid {
+    .contacts-meta-grid {
         grid-template-columns: 1fr;
     }
 
-    .contacts__stores_grid {
+    .contacts-stores-grid {
         grid-template-columns: 1fr;
     }
 
-    .contacts__store_card {
+    .contacts-store-card {
         min-height: 0;
     }
 }

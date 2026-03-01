@@ -2,25 +2,25 @@
     padding-bottom: 20px;
 }
 
-.deals__head {
+.deals-head {
     margin-bottom: 14px;
 }
 
-.deals__head_nav {
+.deals-head-nav {
     display: inline-flex;
     align-items: center;
     gap: 6px;
 }
 
-.deals__nav {
+.deals-nav {
     flex-shrink: 0;
 }
 
-.deals__swiper {
+.deals-swiper {
     padding-bottom: 4px;
 }
 
-.deals__card {
+.deals-card {
     position: relative;
     min-height: 358px;
     background: var(--white-color);
@@ -31,7 +31,7 @@
     flex-direction: column;
 }
 
-.deals__discount {
+.deals-discount {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -48,7 +48,7 @@
     z-index: 2;
 }
 
-.deals__favorite {
+.deals-favorite {
     position: absolute;
     top: 10px;
     right: 8px;
@@ -62,16 +62,16 @@
     transition: color .2s ease, transform .2s ease;
 }
 
-.deals__favorite svg {
+.deals-favorite svg {
     font-size: 19px;
 }
 
-.deals__favorite:hover {
+.deals-favorite:hover {
     color: var(--first-color);
     transform: scale(1.06);
 }
 
-.deals__image_wrap {
+.deals-image-wrap {
     margin-top: 8px;
     height: 130px;
     border-radius: 10px;
@@ -82,13 +82,13 @@
     padding: 10px 0;
 }
 
-.deals__image_wrap img {
+.deals-image-wrap img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-.deals__meta {
+.deals-meta {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
@@ -98,7 +98,7 @@
     color: rgb(84 8 99 / 45%);
 }
 
-.deals__card h3 {
+.deals-card h3 {
     margin-top: 8px;
     min-height: 70px;
     font-size: 21px;
@@ -111,7 +111,7 @@
     -webkit-box-orient: vertical;
 }
 
-.deals__price_row {
+.deals-price-row {
     margin-top: auto;
     min-height: 44px;
     display: flex;
@@ -120,126 +120,126 @@
     justify-content: center;
 }
 
-.deals__price {
+.deals-price {
     font-size: 34px;
     line-height: 1;
     color: var(--third-color);
     font-weight: 600;
 }
 
-.deals__price_discount {
+.deals-price-discount {
     color: var(--first-color);
 }
 
-.deals__old_price {
+.deals-old-price {
     margin-top: 4px;
     color: #A7A7A7;
     font-size: 12px;
     text-decoration: line-through;
 }
 
-.deals__action {
+.deals-action {
     margin-top: 10px;
 }
 
-.deals__action_control {
+.deals-action-control {
     --cart-action-height: 36px;
     --cart-action-font-size: 14px;
 }
 
-.deals__pagination {
+.deals-pagination {
     display: none;
 }
 
-.deals__favorite:focus-visible {
+.deals-favorite:focus-visible {
     outline: 2px solid var(--first-color);
     outline-offset: 2px;
 }
 
 @media (max-width: 1200px) {
-    .deals__card h3 {
+    .deals-card h3 {
         font-size: 19px;
     }
 
-    .deals__price {
+    .deals-price {
         font-size: 30px;
     }
 }
 
 @media (max-width: 900px) {
-    .deals__head_nav {
+    .deals-head-nav {
         display: none;
     }
 
-    .deals__pagination {
+    .deals-pagination {
         display: inline-flex;
         margin-top: 10px;
     }
 }
 
 @media (max-width: 499px) {
-    .deals__head {
+    .deals-head {
         margin-bottom: 10px;
     }
 
-    .deals__card {
+    .deals-card {
         min-height: 268px;
         padding: 8px 8px 10px;
     }
 
-    .deals__discount {
+    .deals-discount {
         min-width: 24px;
         height: 20px;
         font-size: 12px;
         border-radius: 6px;
     }
 
-    .deals__image_wrap {
+    .deals-image-wrap {
         height: 100px;
     }
 
-    .deals__meta {
+    .deals-meta {
         margin-top: 8px;
         font-size: 9px;
     }
 
-    .deals__card h3 {
+    .deals-card h3 {
         min-height: 44px;
         margin-top: 6px;
         font-size: 12px;
         -webkit-line-clamp: 2;
     }
 
-    .deals__price_row {
+    .deals-price-row {
         min-height: 34px;
     }
 
-    .deals__price {
+    .deals-price {
         font-size: 18px;
     }
 
-    .deals__old_price {
+    .deals-old-price {
         margin-top: 2px;
         font-size: 9px;
     }
 
-    .deals__action {
+    .deals-action {
         margin-top: 6px;
     }
 
-    .deals__action_control {
+    .deals-action-control {
         --cart-action-height: 28px;
         --cart-action-font-size: 11px;
     }
 
-    .deals__favorite {
+    .deals-favorite {
         top: 7px;
         right: 6px;
         width: 22px;
         height: 22px;
     }
 
-    .deals__favorite svg {
+    .deals-favorite svg {
         font-size: 15px;
     }
 }

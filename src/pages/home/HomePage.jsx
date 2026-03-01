@@ -24,28 +24,28 @@ const HomePage = () => {
         sectionId="supermarket"
         title="СУПЕРМАРКЕТ"
         items={homeSupermarketTiles}
-        className={sectionStyles.supermarketSection}
+        className={sectionStyles["supermarket-section"]}
       />
 
       <CategoryTilesSection
         sectionId="culinary"
         title="КУЛІНАРІЯ"
         items={homeCulinaryTiles}
-        className={sectionStyles.culinarySection}
+        className={sectionStyles["culinary-section"]}
       />
 
       <CategoryTilesSection
         sectionId="frozen"
         title="ЗАМОРОЗКА"
         items={homeFrozenTiles}
-        className={sectionStyles.frozenSection}
+        className={sectionStyles["frozen-section"]}
       />
 
       <CategoryTilesSection
         sectionId="other"
         title="ІНШЕ"
         items={homeOtherTiles}
-        className={sectionStyles.otherSection}
+        className={sectionStyles["other-section"]}
       />
 
       <PromotionsSection />

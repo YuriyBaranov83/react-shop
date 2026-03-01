@@ -8,12 +8,12 @@ import styles from "./DeliveryPaymentSection.module.css";
 
 const DeliveryPaymentSection = () => {
   return (
-    <section id="delivery-payment" className={styles.deliveryPayment}>
+    <section id="delivery-payment" className={styles["delivery-payment"]}>
       <Container>
         <SectionHeader
           title="ДОСТАВКА Й ОПЛАТА"
           linkLabel={null}
-          className={styles.deliveryPayment__head}
+          className={styles["delivery-payment-head"]}
         />
 
         <DeliveryDetailsCard />

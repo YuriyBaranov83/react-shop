@@ -13,16 +13,16 @@ const CatalogDropdown = () => {
   );
 
   return (
-    <div className={styles.catalog__menu}>
-      <div className={clsx("flex-column", styles.catalog__left)}>
+    <div className={styles["catalog-menu"]}>
+      <div className={clsx("flex-column", styles["catalog-left"])}>
         {catalogData.map((c) => (
           <button
             key={c.id}
             type="button"
             className={clsx(
               "flex-between",
-              styles.cat__item,
-              c.id === activeId && styles.cat__item_active
+              styles["cat-item"],
+              c.id === activeId && styles["cat-item-active"]
             )}
             onMouseEnter={() => setActiveId(c.id)}
             onClick={() => setActiveId(c.id)}
@@ -35,10 +35,10 @@ const CatalogDropdown = () => {
         ))}
       </div>
 
-      <div className={clsx("flex-column", styles.catalog__right)}>
-        <div className={styles.catalog__title}>{active?.title}</div>
+      <div className={clsx("flex-column", styles["catalog-right"])}>
+        <div className={styles["catalog-title"]}>{active?.title}</div>
 
-        <ul className={clsx("flex-column", styles.sub__list)}>
+        <ul className={clsx("flex-column", styles["sub-list"])}>
           {active?.items?.map((name) => (
             <li key={name}>
               <a href="#">{name}</a>

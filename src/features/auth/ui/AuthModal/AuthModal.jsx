@@ -89,18 +89,18 @@ const AuthModal = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={styles.auth__backdrop}
+      className={styles["auth-backdrop"]}
       onMouseDown={handleBackdropMouseDown}
     >
       <div
-        className={styles.auth__dialog}
+        className={styles["auth-dialog"]}
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
       >
         <button
           type="button"
-          className={styles.auth__close}
+          className={styles["auth-close"]}
           onClick={onClose}
           aria-label="Закрити"
         >
@@ -108,24 +108,24 @@ const AuthModal = ({ isOpen, onClose }) => {
         </button>
 
         {step === "start" && (
-          <div className={styles.auth__step}>
-            <div className={styles.auth__title}>Вітаємо!</div>
+          <div className={styles["auth-step"]}>
+            <div className={styles["auth-title"]}>Вітаємо!</div>
 
-            <ul className={styles.auth__benefits}>
-              <li className={styles.auth__benefit}>
+            <ul className={styles["auth-benefits"]}>
+              <li className={styles["auth-benefit"]}>
                 Отримуйте персональні пропозиції
               </li>
-              <li className={styles.auth__benefit}>
+              <li className={styles["auth-benefit"]}>
                 Зберігайте улюблені товари та адреси
               </li>
-              <li className={styles.auth__benefit}>
+              <li className={styles["auth-benefit"]}>
                 Відстежуйте бонуси та знижки
               </li>
             </ul>
 
             <button
               type="button"
-              className={clsx("btn__primary", styles.auth__primary_btn)}
+              className={clsx("btn__primary", styles["auth-primary-btn"])}
               onClick={() => setStep("phone")}
             >
               Увійти за номером телефону
@@ -134,11 +134,11 @@ const AuthModal = ({ isOpen, onClose }) => {
         )}
 
         {step === "phone" && (
-          <div className={styles.auth__step}>
-            <div className={styles.auth__title}>Введіть номер телефону</div>
+          <div className={styles["auth-step"]}>
+            <div className={styles["auth-title"]}>Введіть номер телефону</div>
 
             <input
-              className={styles.auth__input}
+              className={styles["auth-input"]}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="+38 (___) ___-__-__"
@@ -146,17 +146,17 @@ const AuthModal = ({ isOpen, onClose }) => {
               autoFocus
             />
 
-            <label className={styles.auth__check}>
+            <label className={styles["auth-check"]}>
               <input type="checkbox" /> Я погоджуюсь з умовами користування
             </label>
 
-            <label className={styles.auth__check}>
+            <label className={styles["auth-check"]}>
               <input type="checkbox" /> Я даю згоду на обробку персональних даних
             </label>
 
             <button
               type="button"
-              className={clsx("btn__primary", styles.auth__primary_btn)}
+              className={clsx("btn__primary", styles["auth-primary-btn"])}
               onClick={() => setStep("otp")}
             >
               Отримати код у SMS
@@ -165,18 +165,18 @@ const AuthModal = ({ isOpen, onClose }) => {
         )}
 
         {step === "otp" && (
-          <div className={styles.auth__step}>
-            <div className={styles.auth__title}>Введіть код</div>
-            <div className={styles.auth__subtitle}>
+          <div className={styles["auth-step"]}>
+            <div className={styles["auth-title"]}>Введіть код</div>
+            <div className={styles["auth-subtitle"]}>
               Ми надіслали код на номер <b>{phone || "+38 ..."}</b>
             </div>
 
-            <div className={styles.auth__otp} onPaste={handleOtpPaste}>
+            <div className={styles["auth-otp"]} onPaste={handleOtpPaste}>
               {otp.map((val, i) => (
                 <input
                   key={i}
                   ref={(el) => (otpRefs.current[i] = el)}
-                  className={styles.auth__otp_input}
+                  className={styles["auth-otp-input"]}
                   value={val}
                   onChange={(e) => handleOtpChange(i, e.target.value)}
                   onKeyDown={(e) => handleOtpKeyDown(i, e)}
@@ -188,7 +188,7 @@ const AuthModal = ({ isOpen, onClose }) => {
 
             <button
               type="button"
-              className={clsx("btn__primary", styles.auth__primary_btn)}
+              className={clsx("btn__primary", styles["auth-primary-btn"])}
               disabled={otpValue.length !== OTP_LENGTH}
               onClick={() => {
                 onClose?.();

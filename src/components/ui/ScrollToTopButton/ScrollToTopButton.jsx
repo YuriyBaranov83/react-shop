@@ -42,7 +42,7 @@ const ScrollToTopButton = ({ showAfter = 320 }) => {
       title="Back to top"
       onClick={scrollToTop}
       tabIndex={isVisible ? 0 : -1}
-      className={clsx(styles.scrollTopButton, isVisible && styles.scrollTopButton_visible)}
+      className={clsx(styles["scroll-top-button"], isVisible && styles["scroll-top-button-visible"])}
     >
       <IoArrowUp aria-hidden="true" />
     </button>

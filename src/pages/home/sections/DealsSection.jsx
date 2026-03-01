@@ -45,19 +45,19 @@ const DealsSection = () => {
       <Container>
         <SectionHeader
           title="ЗНИЖКИ"
-          className={styles.deals__head}
+          className={styles["deals-head"]}
           actions={
-            <div className={styles.deals__head_nav}>
+            <div className={styles["deals-head-nav"]}>
               <button
                 type="button"
-                className={clsx(styles.deals__nav, "slider-nav-button", "deals-nav-prev")}
+                className={clsx(styles["deals-nav"], "slider-nav-button", "deals-nav-prev")}
                 aria-label="РџРѕРїРµСЂРµРґРЅС– С‚РѕРІР°СЂРё"
               >
                 <MdChevronLeft />
               </button>
               <button
                 type="button"
-                className={clsx(styles.deals__nav, "slider-nav-button", "deals-nav-next")}
+                className={clsx(styles["deals-nav"], "slider-nav-button", "deals-nav-next")}
                 aria-label="РќР°СЃС‚СѓРїРЅС– С‚РѕРІР°СЂРё"
               >
                 <MdChevronRight />
@@ -98,21 +98,21 @@ const DealsSection = () => {
               spaceBetween: 14,
             },
           }}
-          className={styles.deals__swiper}
+          className={styles["deals-swiper"]}
         >
           {deals.map((item) => {
             const discountBadge = getDiscountBadge(item);
 
             return (
               <SwiperSlide key={item.id}>
-                <article className={styles.deals__card}>
+                <article className={styles["deals-card"]}>
                   {discountBadge && (
-                    <span className={styles.deals__discount}>{discountBadge}</span>
+                    <span className={styles["deals-discount"]}>{discountBadge}</span>
                   )}
 
                   <button
                     type="button"
-                    className={styles.deals__favorite}
+                    className={styles["deals-favorite"]}
                     aria-label={item.isFavorite ? "РџСЂРёР±СЂР°С‚Рё Р· РѕР±СЂР°РЅРѕРіРѕ" : "Р”РѕРґР°С‚Рё РІ РѕР±СЂР°РЅРµ"}
                     aria-pressed={item.isFavorite}
                     onClick={() => toggleFavorite(item.id)}
@@ -120,34 +120,34 @@ const DealsSection = () => {
                     {item.isFavorite ? <IoHeart /> : <IoHeartOutline />}
                   </button>
 
-                  <div className={styles.deals__image_wrap}>
+                  <div className={styles["deals-image-wrap"]}>
                     <img src={item.image} alt={item.title} />
                   </div>
 
-                  <div className={styles.deals__meta}>
+                  <div className={styles["deals-meta"]}>
                     <span>{item.meta}</span>
                     <span>{item.unitPrice}</span>
                   </div>
 
                   <h3>{item.title}</h3>
 
-                  <div className={styles.deals__price_row}>
+                  <div className={styles["deals-price-row"]}>
                     <span
                       className={clsx(
-                        styles.deals__price,
-                        item.oldPrice && styles.deals__price_discount
+                        styles["deals-price"],
+                        item.oldPrice && styles["deals-price-discount"]
                       )}
                     >
                       {item.price}
                     </span>
                     {item.oldPrice && (
-                      <span className={styles.deals__old_price}>{item.oldPrice}</span>
+                      <span className={styles["deals-old-price"]}>{item.oldPrice}</span>
                     )}
                   </div>
 
-                  <div className={styles.deals__action}>
+                  <div className={styles["deals-action"]}>
                     <CartActionControl
-                      className={styles.deals__action_control}
+                      className={styles["deals-action-control"]}
                       label={item.action.label}
                     />
                   </div>
@@ -159,7 +159,7 @@ const DealsSection = () => {
 
         <div
           className={clsx(
-            styles.deals__pagination,
+            styles["deals-pagination"],
             "deals-pagination",
             "swiper-pagination-brand"
           )}

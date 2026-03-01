@@ -29,18 +29,18 @@ const navItems = [
 
 const HeaderNav = () => {
   return (
-    <nav className={styles.header__nav} aria-label="Навігація за категоріями">
+    <nav className={styles["header-nav"]} aria-label="Навігація за категоріями">
       <Container>
-        <ul className={styles.header__nav_list}>
+        <ul className={styles["header-nav-list"]}>
           {navItems.map((item) => {
             const linkClassName = clsx(
-              styles.header__nav_button,
-              item.emphasized && styles.header__nav_button_emphasized
+              styles["header-nav-button"],
+              item.emphasized && styles["header-nav-button-emphasized"]
             );
 
             if (item.href.startsWith("/")) {
               return (
-                <li key={item.id} className={styles.header__nav_item}>
+                <li key={item.id} className={styles["header-nav-item"]}>
                   <Link to={item.href} className={linkClassName}>
                     <item.Icon aria-hidden="true" />
                     <span>{item.label}</span>
@@ -50,7 +50,7 @@ const HeaderNav = () => {
             }
 
             return (
-              <li key={item.id} className={styles.header__nav_item}>
+              <li key={item.id} className={styles["header-nav-item"]}>
                 <a href={item.href} className={linkClassName}>
                   <item.Icon aria-hidden="true" />
                   <span>{item.label}</span>

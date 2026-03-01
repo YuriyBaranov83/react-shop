@@ -61,12 +61,12 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
   }, [isAuthed, userName, hasCartItems, bonusCount, favoritesCount]);
 
   return (
-    <div className={styles.catalog__drawer_overlay} role="dialog" aria-modal="true">
-      <div className={styles.catalog__drawer}>
-        <div className={styles.catalog__drawer_top}>
+    <div className={styles["catalog-drawer-overlay"]} role="dialog" aria-modal="true">
+      <div className={styles["catalog-drawer"]}>
+        <div className={styles["catalog-drawer-top"]}>
           <button
             type="button"
-            className={styles.catalog__drawer_close_btn}
+            className={styles["catalog-drawer-close-btn"]}
             onClick={onClose}
             aria-label="Закрити меню"
           >
@@ -75,7 +75,7 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
 
           <Link
             to="/"
-            className={styles.catalog__drawer_brand}
+            className={styles["catalog-drawer-brand"]}
             aria-label="На головну"
             onClick={onClose}
           >
@@ -84,7 +84,7 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
 
           <button
             type="button"
-            className={styles.catalog__drawer_search_btn}
+            className={styles["catalog-drawer-search-btn"]}
             onClick={onSearchClick}
             aria-label="Відкрити пошук"
           >
@@ -92,16 +92,16 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
           </button>
         </div>
 
-        <div className={styles.catalog__drawer_body}>
+        <div className={styles["catalog-drawer-body"]}>
           {!activeCategory && (
             <>
-              <h2 className={styles.catalog__drawer_section_title}>КАТАЛОГ</h2>
-              <ul className={styles.catalog__drawer_list}>
+              <h2 className={styles["catalog-drawer-section-title"]}>КАТАЛОГ</h2>
+              <ul className={styles["catalog-drawer-list"]}>
                 {catalogData.map((category) => (
                   <li key={category.id}>
                     <button
                       type="button"
-                      className={styles.catalog__drawer_item}
+                      className={styles["catalog-drawer-item"]}
                       onClick={() => setActiveCategoryId(category.id)}
                     >
                       <span>{category.title}</span>
@@ -111,23 +111,23 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                 ))}
               </ul>
 
-              <section className={styles.catalog__drawer_section}>
-                <h3 className={styles.catalog__drawer_section_subtitle}>ПРОФІЛЬ</h3>
-                <ul className={styles.catalog__drawer_meta_list}>
+              <section className={styles["catalog-drawer-section"]}>
+                <h3 className={styles["catalog-drawer-section-subtitle"]}>ПРОФІЛЬ</h3>
+                <ul className={styles["catalog-drawer-meta-list"]}>
                   {profileMenuItems.map((item) => (
                     <li key={item.id}>
                       <a
                         href="#"
-                        className={`${styles.catalog__drawer_meta_link} ${item.muted ? styles.catalog__drawer_meta_link_muted : ""}`.trim()}
+                        className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
                       >
                         <span>{item.label}</span>
-                        <span className={styles.catalog__drawer_meta_right}>
+                        <span className={styles["catalog-drawer-meta-right"]}>
                           {item.hasDot && (
-                            <span className={styles.catalog__drawer_meta_dot} aria-hidden="true" />
+                            <span className={styles["catalog-drawer-meta-dot"]} aria-hidden="true" />
                           )}
                           {item.badge && (
                             <span
-                              className={`${styles.catalog__drawer_meta_badge} ${item.badgeTone === "muted" ? styles.catalog__drawer_meta_badge_muted : ""}`.trim()}
+                              className={`${styles["catalog-drawer-meta-badge"]} ${item.badgeTone === "muted" ? styles["catalog-drawer-meta-badge-muted"] : ""}`.trim()}
                             >
                               {item.badge}
                             </span>
@@ -139,9 +139,9 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                 </ul>
               </section>
 
-              <section className={styles.catalog__drawer_section}>
-                <h3 className={styles.catalog__drawer_section_subtitle}>Urbanfood КЛУБ</h3>
-                <ul className={styles.catalog__drawer_club_list}>
+              <section className={styles["catalog-drawer-section"]}>
+                <h3 className={styles["catalog-drawer-section-subtitle"]}>Urbanfood КЛУБ</h3>
+                <ul className={styles["catalog-drawer-club-list"]}>
                   {clubMenuItems.map((item) => (
                     <li key={item.id}>
                       <a href={item.href}>{item.label}</a>
@@ -150,8 +150,8 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                 </ul>
               </section>
 
-              <div className={styles.catalog__drawer_phone}>
-                <a href="tel:+38000490999" className={styles.catalog__drawer_phone_link}>
+              <div className={styles["catalog-drawer-phone"]}>
+                <a href="tel:+38000490999" className={styles["catalog-drawer-phone-link"]}>
                   <MdPhoneInTalk aria-hidden="true" />
                   <span>+38 (000) 49-09-99</span>
                 </a>
@@ -162,19 +162,19 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
 
           {activeCategory && (
             <>
-              <div className={styles.catalog__drawer_subheader}>
+              <div className={styles["catalog-drawer-subheader"]}>
                 <button
                   type="button"
-                  className={styles.catalog__drawer_back_btn}
+                  className={styles["catalog-drawer-back-btn"]}
                   onClick={() => setActiveCategoryId(null)}
                   aria-label="Назад до категорій"
                 >
                   <IoChevronBackOutline />
                 </button>
-                <h3 className={styles.catalog__drawer_subtitle}>{activeCategory.title}</h3>
+                <h3 className={styles["catalog-drawer-subtitle"]}>{activeCategory.title}</h3>
               </div>
 
-              <ul className={styles.catalog__drawer_sub_list}>
+              <ul className={styles["catalog-drawer-sub-list"]}>
                 {activeCategory.items.map((name) => (
                   <li key={name}>
                     <a href="#" onClick={onClose}>

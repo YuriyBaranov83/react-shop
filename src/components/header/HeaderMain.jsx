@@ -178,19 +178,19 @@ const HeaderMain = () => {
   };
 
   return (
-    <div className={styles.header__main}>
+    <div className={styles["header-main"]}>
       <Container className="flex-between">
         <div className={clsx("flex-center", styles.left)}>
           <Link to="/" className={styles.logo} aria-label="My Shop">
             <img src={logo} alt="Logo" />
           </Link>
-          <div className={styles.catalog__wrap} ref={catalogWrapRef}>
+          <div className={styles["catalog-wrap"]} ref={catalogWrapRef}>
             <button
               type="button"
               className={clsx(
                 "flex-center",
                 styles.catalog,
-                isCatalogOpen && styles.catalog__active
+                isCatalogOpen && styles["catalog-active"]
               )}
               onClick={toggleCatalog}
               aria-expanded={isCatalogOpen}
@@ -207,16 +207,16 @@ const HeaderMain = () => {
             ref={searchWrapRef}
             className={clsx(
               styles.search,
-              isMobileCatalog && styles.search_mobile,
-              isMobileSearchOpen && styles.search_mobile_open
+              isMobileCatalog && styles["search-mobile"],
+              isMobileSearchOpen && styles["search-mobile-open"]
             )}
             role="search"
             onSubmit={(e) => e.preventDefault()}
           >
-            <IoSearch className={styles.search__icon} />
+            <IoSearch className={styles["search-icon"]} />
             <button
               type="button"
-              className={styles.search__toggle}
+              className={styles["search-toggle"]}
               onClick={toggleMobileSearch}
               aria-label={isMobileSearchOpen ? "Закрити пошук" : "Відкрити пошук"}
               aria-expanded={isMobileSearchOpen}
@@ -242,7 +242,7 @@ const HeaderMain = () => {
 
           <div
             ref={profileWrapRef}
-            className={styles.profile__wrap}
+            className={styles["profile-wrap"]}
             onMouseEnter={handleProfileMouseEnter}
             onMouseLeave={handleProfileMouseLeave}
           >
@@ -268,7 +268,7 @@ const HeaderMain = () => {
 
           <button type="button" className={styles.basket} aria-label="Кошик">
             <FaBasketShopping />
-            <span className={styles.baske__text}>Кошик</span>
+            <span className={styles["basket-text"]}>Кошик</span>
           </button>
         </div>
       </Container>

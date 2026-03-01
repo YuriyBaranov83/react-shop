@@ -33,7 +33,7 @@ const CartActionControl = ({
 
   if (quantity > 0) {
     return (
-      <div className={clsx(styles.cartAction, className)}>
+      <div className={clsx(styles["cart-action"], className)}>
         <div className={styles.counter}>
           <button type="button" aria-label={ariaLabelDecrease} onClick={decreaseCount}>
             -
@@ -48,8 +48,8 @@ const CartActionControl = ({
   }
 
   return (
-    <div className={clsx(styles.cartAction, className)}>
-      <button type="button" className={styles.actionButton} onClick={addToCart} aria-label={ariaLabelAdd}>
+    <div className={clsx(styles["cart-action"], className)}>
+      <button type="button" className={styles["action-button"]} onClick={addToCart} aria-label={ariaLabelAdd}>
         {label}
       </button>
     </div>

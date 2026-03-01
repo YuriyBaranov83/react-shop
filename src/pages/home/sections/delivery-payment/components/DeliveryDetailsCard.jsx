@@ -34,10 +34,10 @@ const deliveryRules = [
 
 const DeliveryDetailsCard = () => {
   return (
-    <div className={styles.deliveryPayment__top}>
-      <div className={styles.deliveryPayment__details}>
+    <div className={styles["delivery-payment-top"]}>
+      <div className={styles["delivery-payment-details"]}>
         {deliveryRules.map((rule) => (
-          <div key={rule.title} className={styles.deliveryPayment__rule}>
+          <div key={rule.title} className={styles["delivery-payment-rule"]}>
             <h3>{rule.title}</h3>
             {rule.lines.map((line) => (
               <p key={line}>{line}</p>
@@ -45,14 +45,14 @@ const DeliveryDetailsCard = () => {
           </div>
         ))}
 
-        <p className={styles.deliveryPayment__note}>
+        <p className={styles["delivery-payment-note"]}>
           Зображення продуктів можуть відрізнятися від продуктів у замовленні.
         </p>
       </div>
 
-      <div className={styles.deliveryPayment__mapWrap}>
-        <h3 className={styles.deliveryPayment__mapTitle}>Карта доставки</h3>
-        <div className={styles.deliveryPayment__map}>
+      <div className={styles["delivery-payment-map-wrap"]}>
+        <h3 className={styles["delivery-payment-map-title"]}>Карта доставки</h3>
+        <div className={styles["delivery-payment-map"]}>
           <img src={deliveryMapZoneImage} alt="Карта зони доставки" loading="lazy" />
         </div>
       </div>

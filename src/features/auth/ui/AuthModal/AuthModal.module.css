@@ -1,4 +1,4 @@
-.auth__backdrop {
+.auth-backdrop {
   position: fixed;
   top:0;
   inset: 0;
@@ -9,7 +9,7 @@
   z-index: 20;
 }
 
-.auth__dialog {
+.auth-dialog {
   width: min(420px, 92vw);
   background: #fff;
   border-radius: 16px;
@@ -18,7 +18,7 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
 }
 
-.auth__close {
+.auth-close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -28,56 +28,56 @@
   cursor: pointer;
 }
 
-.auth__step {
+.auth-step {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.auth__title {
+.auth-title {
   font-size: 20px;
   font-weight: 600;
 }
 
-.auth__subtitle {
+.auth-subtitle {
   color: #4d4d4d;
   font-size: 14px;
 }
 
-.auth__benefits {
+.auth-benefits {
   margin: 0;
   padding-left: 18px;
   color: #4d4d4d;
 }
 
-.auth__benefit {
+.auth-benefit {
   margin-bottom: 6px;
 }
 
-.auth__primary_btn {
+.auth-primary-btn {
   width: 100%;
 }
 
-.auth__input {
+.auth-input {
   padding: 10px 12px;
   border: 1px solid #d8d8d8;
   border-radius: 10px;
   font-size: 16px;
 }
 
-.auth__check {
+.auth-check {
   display: flex;
   gap: 8px;
   font-size: 13px;
   color: #5a5a5a;
 }
 
-.auth__otp {
+.auth-otp {
   display: flex;
   gap: 10px;
 }
 
-.auth__otp_input {
+.auth-otp-input {
   width: 48px;
   height: 52px;
   text-align: center;

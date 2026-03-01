@@ -5,13 +5,13 @@ import styles from "../DeliveryPaymentSection.module.css";
 
 const DeliveryReviewCard = () => {
   return (
-    <div className={styles.deliveryPayment__review}>
-      <div className={styles.deliveryPayment__reviewContent}>
+    <div className={styles["delivery-payment-review"]}>
+      <div className={styles["delivery-payment-review-content"]}>
         <h3>ОЦІНІТЬ МАГАЗИН</h3>
         <p>Поділіться враженнями про замовлення і допоможіть зробити нас краще</p>
 
-        <div className={styles.deliveryPayment__reviewActions}>
-          <div className={styles.deliveryPayment__stars} aria-label="Рейтинг 4 з 5">
+        <div className={styles["delivery-payment-review-actions"]}>
+          <div className={styles["delivery-payment-stars"]} aria-label="Рейтинг 4 з 5">
             <IoStar />
             <IoStar />
             <IoStar />
@@ -19,14 +19,14 @@ const DeliveryReviewCard = () => {
             <IoStarOutline />
           </div>
 
-          <a href="#" className={styles.deliveryPayment__reviewButton}>
+          <a href="#" className={styles["delivery-payment-review-button"]}>
             Залишити відгук
           </a>
         </div>
       </div>
 
       <img
-        className={styles.deliveryPayment__reviewDecor}
+        className={styles["delivery-payment-review-decor"]}
         src={deliveryAvocadoDecorImage}
         alt=""
         aria-hidden="true"
