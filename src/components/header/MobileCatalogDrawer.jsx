@@ -1,17 +1,24 @@
-import { useMemo, useState } from "react";
-import { IoCloseOutline, IoChevronBackOutline, IoChevronForwardOutline, IoSearch } from "react-icons/io5";
+﻿import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  IoCloseOutline,
+  IoChevronBackOutline,
+  IoChevronForwardOutline,
+  IoSearch,
+} from "react-icons/io5";
 import { MdPhoneInTalk } from "react-icons/md";
+
 import { catalogData } from "@/data/catalogData";
 import { footerClientLinks } from "@/data/footerData";
 import { logo } from "@assets/images";
 import styles from "./header.module.css";
 
-const clubMenuItems = footerClientLinks.filter((item) => item.id !== "promo");
+const clubMenuItems = footerClientLinks;
 
 const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const isAuthed = false;
-  const userName = "Імʼя Фамілія";
+  const userName = "Ім'я Прізвище";
   const hasCartItems = false;
   const bonusCount = 0;
   const favoritesCount = 0;
@@ -34,7 +41,7 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
       ];
     }
 
-    const items = [
+    return [
       { id: "user", label: userName },
       ...(hasCartItems ? [{ id: "orders", label: "Замовлення", hasDot: true }] : []),
       {
@@ -51,16 +58,10 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
       },
       { id: "logout", label: "Вихід", muted: true },
     ];
-
-    return items;
   }, [isAuthed, userName, hasCartItems, bonusCount, favoritesCount]);
 
   return (
-    <div
-      className={styles.catalog__drawer_overlay}
-      role="dialog"
-      aria-modal="true"
-    >
+    <div className={styles.catalog__drawer_overlay} role="dialog" aria-modal="true">
       <div className={styles.catalog__drawer}>
         <div className={styles.catalog__drawer_top}>
           <button
@@ -72,14 +73,14 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
             <IoCloseOutline />
           </button>
 
-          <a
-            href="/"
+          <Link
+            to="/"
             className={styles.catalog__drawer_brand}
             aria-label="На головну"
             onClick={onClose}
           >
             <img src={logo} alt="Urbanfood" />
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -121,7 +122,9 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                       >
                         <span>{item.label}</span>
                         <span className={styles.catalog__drawer_meta_right}>
-                          {item.hasDot && <span className={styles.catalog__drawer_meta_dot} aria-hidden="true" />}
+                          {item.hasDot && (
+                            <span className={styles.catalog__drawer_meta_dot} aria-hidden="true" />
+                          )}
                           {item.badge && (
                             <span
                               className={`${styles.catalog__drawer_meta_badge} ${item.badgeTone === "muted" ? styles.catalog__drawer_meta_badge_muted : ""}`.trim()}
@@ -137,7 +140,7 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
               </section>
 
               <section className={styles.catalog__drawer_section}>
-                <h3 className={styles.catalog__drawer_section_subtitle}>ЗДОРОВА ЇЖА КЛУБ</h3>
+                <h3 className={styles.catalog__drawer_section_subtitle}>Urbanfood КЛУБ</h3>
                 <ul className={styles.catalog__drawer_club_list}>
                   {clubMenuItems.map((item) => (
                     <li key={item.id}>

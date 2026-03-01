@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import Container from "../layout/Container";
 import clsx from "clsx";
@@ -180,9 +181,9 @@ const HeaderMain = () => {
     <div className={styles.header__main}>
       <Container className="flex-between">
         <div className={clsx("flex-center", styles.left)}>
-          <a href="/" className={styles.logo} aria-label="My Shop">
+          <Link to="/" className={styles.logo} aria-label="My Shop">
             <img src={logo} alt="Logo" />
-          </a>
+          </Link>
           <div className={styles.catalog__wrap} ref={catalogWrapRef}>
             <button
               type="button"

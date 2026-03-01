@@ -72,7 +72,7 @@ const Footer = () => {
       <Container>
         <div className={styles.footer__top}>
           <div className={`${styles.footer__column} ${styles.footer__column_club}`}>
-            <h3 className={styles.footer__title}>Здорова їжа клуб</h3>
+            <h3 className={styles.footer__title}>Urbanfood клуб</h3>
             <ul className={styles.footer__links}>
               {footerClubLinks.map((item) => (
                 <li key={item.id}>
@@ -195,7 +195,7 @@ const Footer = () => {
 
         <div className={styles.footer__bottom}>
           <p className={styles.footer__copy}>
-            © {currentYear} Здорова їжа клуб і онлайн - доставка товарів і продуктів
+            © {currentYear} Urbanfood клуб і онлайн - доставка товарів і продуктів
             додому
           </p>
           <p className={styles.footer__disclaimer}>Інформація на сайті не є публічною офертою</p>
