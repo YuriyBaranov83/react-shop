@@ -1,0 +1,93 @@
+.notFoundPage {
+    min-height: 100vh;
+    padding: clamp(28px, 6vw, 72px) 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #f5f5f5 0%, #efefef 100%);
+}
+
+.notFoundCard {
+    width: min(100%, 720px);
+    border-radius: 24px;
+    padding: clamp(20px, 4vw, 42px);
+    background: var(--white-color);
+    box-shadow: 0 16px 44px rgb(0 0 0 / 9%);
+    text-align: center;
+}
+
+.notFoundLabel {
+    color: #b0b0b0;
+    font-size: clamp(34px, 5.2vw, 56px);
+    font-weight: 700;
+    line-height: 1;
+    text-transform: lowercase;
+}
+
+.notFoundCode {
+    margin-top: clamp(8px, 1.8vw, 14px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #b0b0b0;
+    font-size: clamp(90px, 16vw, 168px);
+    font-weight: 700;
+    line-height: .86;
+}
+
+.notFoundImageWrap {
+    width: clamp(92px, 9vw, 138px);
+    aspect-ratio: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notFoundImageWrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.notFoundDescription {
+    margin: clamp(14px, 2.5vw, 24px) auto 0;
+    max-width: 500px;
+    color: #6f6f6f;
+    font-size: clamp(14px, 1.7vw, 20px);
+    line-height: 1.45;
+}
+
+.notFoundHomeLink {
+    margin-top: clamp(18px, 2.5vw, 28px);
+    min-height: 44px;
+    padding: 0 22px;
+    border-radius: 999px;
+    border: 1px solid var(--first-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--first-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.notFoundHomeLink:hover {
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.notFoundHomeLink:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .notFoundPage {
+        padding: 24px 12px;
+    }
+
+    .notFoundCard {
+        border-radius: 18px;
+    }
+}
