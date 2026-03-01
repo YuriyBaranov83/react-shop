@@ -10,9 +10,9 @@
 
 .deliveryPayment__top {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(340px, 520px);
+    grid-template-columns: minmax(0, 1fr) clamp(300px, 46vw, 460px);
     gap: 34px;
-    align-items: start;
+    align-items: stretch;
 }
 
 .deliveryPayment__details {
@@ -42,6 +42,9 @@
 
 .deliveryPayment__mapWrap {
     min-width: 0;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
 }
 
 .deliveryPayment__mapTitle {
@@ -53,6 +56,8 @@
 }
 
 .deliveryPayment__map {
+    flex: 1;
+    min-height: 260px;
     border-radius: 22px;
     overflow: hidden;
     border: 1px solid #f1ded7;
@@ -60,6 +65,8 @@
 
 .deliveryPayment__map img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
@@ -284,6 +291,9 @@
     .deliveryPayment__reviewDecor {
         width: clamp(140px, 25vw, 240px);
         min-width: 120px;
+    }
+    .deliveryPayment__map{
+        max-height: 400px;
     }
 }
 
