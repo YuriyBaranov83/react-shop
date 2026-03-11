@@ -1,5 +1,4 @@
 ﻿import clsx from "clsx";
-import { Link } from "react-router-dom";
 import {
   MdAcUnit,
   MdCategory,
@@ -38,13 +37,13 @@ const HeaderNav = () => {
               item.emphasized && styles["header-nav-button-emphasized"]
             );
 
-            if (item.href.startsWith("/")) {
+            if (item.href.includes("#")) {
               return (
                 <li key={item.id} className={styles["header-nav-item"]}>
-                  <Link to={item.href} className={linkClassName}>
+                  <a href={item.href} className={linkClassName}>
                     <item.Icon aria-hidden="true" />
                     <span>{item.label}</span>
-                  </Link>
+                  </a>
                 </li>
               );
             }
