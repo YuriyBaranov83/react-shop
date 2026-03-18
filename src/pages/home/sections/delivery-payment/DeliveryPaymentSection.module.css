@@ -144,18 +144,23 @@
 
 .delivery-payment-review {
     margin-top: 24px;
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(210px, 19vw, 286px);
     align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 18px 22px 18px 24px;
+    column-gap: clamp(14px, 1.8vw, 28px);
+    padding: 18px 24px;
     border-radius: 20px;
     border: 1px solid var(--light-beige-border-color);
     background: var(--light-beige-bg-color);
 }
 
 .delivery-payment-review-content {
+    width: 100%;
     min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(16px, 2.2vw, 40px);
 }
 
 .delivery-payment-review-content h3 {
@@ -167,17 +172,18 @@
 
 .delivery-payment-review-content p {
     margin-top: 8px;
-    max-width: 580px;
+    max-width: 520px;
     font-size: clamp(17px, .95vw, 21px);
     line-height: 1.35;
     color: #2f1212;
 }
 
 .delivery-payment-review-actions {
-    margin-top: 14px;
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    flex-shrink: 0;
 }
 
 .delivery-payment-stars {
@@ -202,7 +208,7 @@
     border-radius: 999px;
     border: 2px solid var(--coral-color);
     color: var(--coral-color);
-    font-size: 30px;
+    font-size: clamp(23px, 1.55vw, 32px);
     font-weight: 500;
     line-height: 1;
 }
@@ -215,10 +221,22 @@
     outline: 2px solid var(--coral-color);
     outline-offset: 3px;
 }
+.delivery-payment-review-text{
+    min-width: 0;
+}
+
 
 .delivery-payment-review-decor {
-    width: clamp(190px, 18vw, 292px);
-    min-width: 170px;
+    justify-self: end;
+    align-self: end;
+    width: 100%;
+    margin: -34px -8px -28px 0;
+    pointer-events: none;
+}
+
+.delivery-payment-review-decor img {
+    display: block;
+    width: 100%;
 }
 
 @media (max-width: 1200px) {
@@ -237,10 +255,24 @@
         font-size: 20px;
     }
 
+    .delivery-payment-review {
+        grid-template-columns: minmax(0, 1fr) clamp(176px, 20vw, 240px);
+        padding: 16px 18px 14px;
+        column-gap: 16px;
+    }
+
+    .delivery-payment-review-content {
+        gap: 18px;
+    }
+
     .delivery-payment-review-button {
         min-height: 48px;
         min-width: 186px;
         font-size: 23px;
+    }
+
+    .delivery-payment-review-decor {
+        margin: -24px -6px -18px 0;
     }
 }
 
@@ -280,18 +312,30 @@
 
     .delivery-payment-review {
         margin-top: 16px;
+        grid-template-columns: 1fr;
+        row-gap: 10px;
         padding: 16px;
     }
 
+    .delivery-payment-review-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
     .delivery-payment-review-actions {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
         flex-wrap: wrap;
         gap: 12px;
     }
 
     .delivery-payment-review-decor {
-        width: clamp(140px, 25vw, 240px);
-        min-width: 120px;
+        width: clamp(140px, 26vw, 220px);
+        margin: -16px 0 -10px auto;
     }
+
     .delivery-payment-map{
         max-height: 400px;
     }
@@ -310,9 +354,8 @@
     }
 
     .delivery-payment-review {
-        position: relative;
         align-items: flex-start;
-        padding-bottom: 84px;
+        padding: 14px 14px 10px;
     }
 
     .delivery-payment-review-content h3 {
@@ -337,10 +380,7 @@
     }
 
     .delivery-payment-review-decor {
-        position: absolute;
-        right: 10px;
-        bottom: 6px;
         width: 120px;
-        min-width: 120px;
+        margin: -8px -4px -6px auto;
     }
 }

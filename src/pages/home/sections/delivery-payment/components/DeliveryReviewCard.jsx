@@ -7,11 +7,17 @@ const DeliveryReviewCard = () => {
   return (
     <div className={styles["delivery-payment-review"]}>
       <div className={styles["delivery-payment-review-content"]}>
-        <h3>ОЦІНІТЬ МАГАЗИН</h3>
-        <p>Поділіться враженнями про замовлення і допоможіть зробити нас краще</p>
-
+        <div className={styles["delivery-payment-review-text"]}>
+          <h3>ОЦІНІТЬ МАГАЗИН</h3>
+          <p>
+            Поділіться враженнями про замовлення і допоможіть зробити нас краще
+          </p>
+        </div>
         <div className={styles["delivery-payment-review-actions"]}>
-          <div className={styles["delivery-payment-stars"]} aria-label="Рейтинг 4 з 5">
+          <div
+            className={styles["delivery-payment-stars"]}
+            aria-label="Рейтинг 4 з 5"
+          >
             <IoStar />
             <IoStar />
             <IoStar />
@@ -24,14 +30,12 @@ const DeliveryReviewCard = () => {
           </a>
         </div>
       </div>
-
-      <img
+      <div
         className={styles["delivery-payment-review-decor"]}
-        src={deliveryAvocadoDecorImage}
-        alt=""
         aria-hidden="true"
-        loading="lazy"
-      />
+      >
+        <img src={deliveryAvocadoDecorImage} alt="" loading="lazy" />
+      </div>
     </div>
   );
 };
