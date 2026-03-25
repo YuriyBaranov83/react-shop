@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import Container from "../layout/Container";
@@ -12,170 +11,33 @@ import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { logo } from "@assets/images";
-
-const MOBILE_CATALOG_MEDIA = "(max-width: 900px)";
+import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
 
 const HeaderMain = () => {
-  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
-  const [isMobileCatalog, setIsMobileCatalog] = useState(() =>
-    window.matchMedia(MOBILE_CATALOG_MEDIA).matches
-  );
-  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
-  
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [authModalSession, setAuthModalSession] = useState(0);
-
-  const [isDesktopHover, setIsDesktopHover] = useState(false);
-
-  const catalogWrapRef = useRef(null);
-  const searchWrapRef = useRef(null);
-  const mobileSearchInputRef = useRef(null);
-  
-  const profileWrapRef = useRef(null);
-
-  const toggleCatalog = () => {
-    if (isMobileCatalog) setIsMobileSearchOpen(false);
-    setIsCatalogOpen((v) => !v);
-  };
-  const closeCatalog = () => setIsCatalogOpen(false);
-
-  const toggleProfile = () => setIsProfileOpen((v) => !v);
-  const openProfile = () => setIsProfileOpen(true);
-  const closeProfile = () => setIsProfileOpen(false);
-
-  const openAuth = () => {
-    setAuthModalSession((prev) => prev + 1);
-    setIsAuthOpen(true);
-  };
-  const closeAuth = () => setIsAuthOpen(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setIsDesktopHover(mq.matches);
-
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const mq = window.matchMedia(MOBILE_CATALOG_MEDIA);
-    const onChange = (event) => {
-      setIsMobileCatalog(event.matches);
-      setIsCatalogOpen(false);
-      setIsMobileSearchOpen(false);
-    };
-
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
-
- 
-  useEffect(() => {
-    if (!isCatalogOpen || isMobileCatalog) return;
-
-    const onDown = (e) => {
-      if (!catalogWrapRef.current) return;
-      if (!catalogWrapRef.current.contains(e.target)) closeCatalog();
-    };
-
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [isCatalogOpen, isMobileCatalog]);
-
-  useEffect(() => {
-    if (!isCatalogOpen || !isMobileCatalog) return;
-
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-    };
-  }, [isCatalogOpen, isMobileCatalog]);
-
-  useEffect(() => {
-    if (!isMobileCatalog || !isMobileSearchOpen) return;
-
-    mobileSearchInputRef.current?.focus();
-  }, [isMobileCatalog, isMobileSearchOpen]);
-
-  useEffect(() => {
-    if (!isMobileCatalog || !isMobileSearchOpen) return;
-
-    const onDown = (e) => {
-      if (!searchWrapRef.current) return;
-      if (!searchWrapRef.current.contains(e.target)) {
-        setIsMobileSearchOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [isMobileCatalog, isMobileSearchOpen]);
-
-
-  useEffect(() => {
-    if (!isProfileOpen) return;
-
-    const onDown = (e) => {
-      if (!profileWrapRef.current) return;
-      if (!profileWrapRef.current.contains(e.target)) closeProfile();
-    };
-
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [isProfileOpen]);
-
-  
-  useEffect(() => {
-    if (!isCatalogOpen && !isProfileOpen && !isAuthOpen && !isMobileSearchOpen) return;
-
-    const onKey = (e) => {
-      if (e.key !== "Escape") return;
-      closeCatalog();
-      closeProfile();
-      closeAuth();
-      setIsMobileSearchOpen(false);
-    };
-
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isCatalogOpen, isProfileOpen, isAuthOpen, isMobileSearchOpen]);
-
-  
-  const handleProfileMouseEnter = () => {
-    if (!isDesktopHover) return;
-    openProfile();
-  };
-
-  const handleProfileMouseLeave = () => {
-    if (!isDesktopHover) return;
-    closeProfile();
-  };
-
-  const handleProfileClick = () => {
-    if (isDesktopHover) return;
-    toggleProfile();
-  };
-
-  const handleLoginClick = () => {
-    openAuth();
-    closeProfile();
-  };
-
-  const toggleMobileSearch = () => {
-    if (!isMobileCatalog) return;
-    if (isCatalogOpen) closeCatalog();
-    setIsMobileSearchOpen((prev) => !prev);
-  };
-
-  const openMobileSearchFromDrawer = () => {
-    setIsCatalogOpen(false);
-    setIsMobileSearchOpen(true);
-  };
+  const {
+    authModalSession,
+    catalogWrapRef,
+    closeAuth,
+    closeCatalog,
+    closeProfile,
+    handleLoginClick,
+    handleProfileClick,
+    handleProfileMouseEnter,
+    handleProfileMouseLeave,
+    handleSearchSubmit,
+    isAuthOpen,
+    isCatalogOpen,
+    isDesktopHover,
+    isMobileCatalog,
+    isMobileSearchOpen,
+    isProfileOpen,
+    mobileSearchInputRef,
+    openMobileSearchFromDrawer,
+    profileWrapRef,
+    searchWrapRef,
+    toggleCatalog,
+    toggleMobileSearch,
+  } = useHeaderMainLogic();
 
   return (
     <div className={styles["header-main"]}>
@@ -211,7 +73,7 @@ const HeaderMain = () => {
               isMobileSearchOpen && styles["search-mobile-open"]
             )}
             role="search"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSearchSubmit}
           >
             <IoSearch className={styles["search-icon"]} />
             <button
