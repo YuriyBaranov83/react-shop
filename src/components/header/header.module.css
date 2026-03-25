@@ -223,6 +223,19 @@
     color: var(--first-color);
 }
 
+.right .favorite-active {
+    border-color: var(--first-color);
+    background: var(--white-color);
+}
+
+.right .favorite-active svg {
+    color: var(--first-color);
+}
+
+.right .favorite-active:hover {
+    background: var(--white-color);
+}
+
 .right .basket:hover {
     border-color: rgb(255 255 255 / 70%);
     opacity: 0.92;

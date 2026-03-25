@@ -11,10 +11,13 @@ import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { logo } from "@assets/images";
+import useFavorites from "@/features/favorites/model/useFavorites";
 import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
 
 const HeaderMain = () => {
   const navigate = useNavigate();
+  const { favoritesCount } = useFavorites();
+  const hasFavorites = favoritesCount > 0;
 
   const {
     catalog: { catalogWrapRef, closeCatalog, isCatalogOpen, isMobileCatalog, toggleCatalog },
@@ -102,8 +105,9 @@ const HeaderMain = () => {
         <div className={clsx("flex-center", styles.right)}>
           <button
             type="button"
-            className={styles.favorite}
+            className={clsx(styles.favorite, hasFavorites && styles["favorite-active"])}
             aria-label="Обране"
+            aria-pressed={hasFavorites}
             onClick={() => navigate("/favorites")}
           >
             <FaHeart />
