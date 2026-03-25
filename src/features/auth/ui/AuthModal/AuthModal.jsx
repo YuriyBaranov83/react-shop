@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
 import styles from "./AuthModal.module.css";
 
@@ -104,7 +105,7 @@ const AuthModal = ({ isOpen, onClose }) => {
           onClick={onClose}
           aria-label="Закрити"
         >
-          ?
+          <IoMdClose />
         </button>
 
         {step === "start" && (
