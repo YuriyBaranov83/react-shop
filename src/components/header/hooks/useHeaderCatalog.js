@@ -11,7 +11,9 @@ const useHeaderCatalog = ({ isMobileCatalog }) => {
     setIsCatalogOpen((value) => !value);
   }, []);
 
-  useClickOutside(catalogWrapRef, closeCatalog, isCatalogOpen && !isMobileCatalog);
+  useClickOutside(catalogWrapRef, closeCatalog, {
+    enabled: isCatalogOpen && !isMobileCatalog,
+  });
   useBodyScrollLock(isCatalogOpen && isMobileCatalog);
 
   return {

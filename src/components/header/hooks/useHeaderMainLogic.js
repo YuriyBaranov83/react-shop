@@ -18,15 +18,21 @@ const useHeaderMainLogic = () => {
   });
   const isDesktopHover = useMediaQuery(DESKTOP_HOVER_MEDIA);
 
+  const catalogState = useHeaderCatalog({
+    isMobileCatalog,
+  });
   const {
     catalogWrapRef,
     closeCatalog,
     isCatalogOpen,
     toggleCatalogInternal,
-  } = useHeaderCatalog({
+  } = catalogState;
+
+  const searchState = useHeaderSearch({
+    closeCatalog,
+    isCatalogOpen,
     isMobileCatalog,
   });
-
   const {
     closeMobileSearch,
     handleSearchSubmit,
@@ -35,12 +41,11 @@ const useHeaderMainLogic = () => {
     openMobileSearchFromDrawer,
     searchWrapRef,
     toggleMobileSearch,
-  } = useHeaderSearch({
-    closeCatalog,
-    isCatalogOpen,
-    isMobileCatalog,
-  });
+  } = searchState;
 
+  const profileAuthState = useHeaderProfileAuth({
+    isDesktopHover,
+  });
   const {
     authModalSession,
     closeAuth,
@@ -52,9 +57,7 @@ const useHeaderMainLogic = () => {
     isAuthOpen,
     isProfileOpen,
     profileWrapRef,
-  } = useHeaderProfileAuth({
-    isDesktopHover,
-  });
+  } = profileAuthState;
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -79,10 +82,9 @@ const useHeaderMainLogic = () => {
     closeMobileSearch();
   }, [closeAuth, closeCatalog, closeMobileSearch, closeProfile]);
 
-  useEscapeKey(
-    closeOverlaysOnEscape,
-    isCatalogOpen || isProfileOpen || isAuthOpen || isMobileSearchOpen
-  );
+  useEscapeKey(closeOverlaysOnEscape, {
+    enabled: isCatalogOpen || isProfileOpen || isAuthOpen || isMobileSearchOpen,
+  });
 
   const toggleCatalog = useCallback(() => {
     if (!isMobileCatalog) {
@@ -94,30 +96,38 @@ const useHeaderMainLogic = () => {
     toggleCatalogInternal();
   }, [closeMobileSearch, isMobileCatalog, toggleCatalogInternal]);
 
-  return {
-    authModalSession,
+  const catalog = {
     catalogWrapRef,
-    closeAuth,
     closeCatalog,
+    isCatalogOpen,
+    isMobileCatalog,
+    toggleCatalog,
+  };
+
+  const search = {
+    handleSearchSubmit,
+    isMobileSearchOpen,
+    mobileSearchInputRef,
+    openMobileSearchFromDrawer,
+    searchWrapRef,
+    toggleMobileSearch,
+  };
+
+  const profileAuth = {
+    authModalSession,
+    closeAuth,
     closeProfile,
     handleLoginClick,
     handleProfileClick,
     handleProfileMouseEnter,
     handleProfileMouseLeave,
-    handleSearchSubmit,
     isAuthOpen,
-    isCatalogOpen,
     isDesktopHover,
-    isMobileCatalog,
-    isMobileSearchOpen,
     isProfileOpen,
-    mobileSearchInputRef,
-    openMobileSearchFromDrawer,
     profileWrapRef,
-    searchWrapRef,
-    toggleCatalog,
-    toggleMobileSearch,
   };
+
+  return { catalog, profileAuth, search };
 };
 
 export default useHeaderMainLogic;

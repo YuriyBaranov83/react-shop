@@ -50,7 +50,9 @@ const useHeaderProfileAuth = ({ isDesktopHover }) => {
     closeProfile();
   }, [closeProfile, openAuth]);
 
-  useClickOutside(profileWrapRef, closeProfile, isProfileOpen);
+  useClickOutside(profileWrapRef, closeProfile, {
+    enabled: isProfileOpen,
+  });
 
   return {
     authModalSession,

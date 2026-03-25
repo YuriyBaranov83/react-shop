@@ -40,7 +40,9 @@ const useHeaderSearch = ({ closeCatalog, isCatalogOpen, isMobileCatalog }) => {
     mobileSearchInputRef.current?.focus();
   }, [isMobileCatalog, isMobileSearchOpen]);
 
-  useClickOutside(searchWrapRef, closeMobileSearch, isMobileCatalog && isMobileSearchOpen);
+  useClickOutside(searchWrapRef, closeMobileSearch, {
+    enabled: isMobileCatalog && isMobileSearchOpen,
+  });
 
   return {
     closeMobileSearch,

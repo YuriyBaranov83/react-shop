@@ -1,13 +1,17 @@
 import { useEffect } from "react";
 
-const useEscapeKey = (onEscape, enabled = true) => {
+const DEFAULT_KEYS = ["Escape"];
+
+const useEscapeKey = (onEscape, options = {}) => {
+  const { enabled = true, keys = DEFAULT_KEYS } = options;
+
   useEffect(() => {
     if (!enabled) {
       return undefined;
     }
 
     const handleKeyDown = (event) => {
-      if (event.key !== "Escape") {
+      if (!keys.includes(event.key)) {
         return;
       }
 
@@ -16,7 +20,7 @@ const useEscapeKey = (onEscape, enabled = true) => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [enabled, onEscape]);
+  }, [enabled, keys, onEscape]);
 };
 
 export default useEscapeKey;
