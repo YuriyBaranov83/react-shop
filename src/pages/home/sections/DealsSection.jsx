@@ -1,5 +1,4 @@
 ﻿import clsx from "clsx";
-import { useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,6 +7,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import CartActionControl from "@/components/ui/CartActionControl";
 import Container from "@/components/layout/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
+import useFavorites from "@/features/favorites/model/useFavorites";
 import { homeDealsData } from "@/data/homeDealsData";
 import styles from "./DealsSection.module.css";
 
@@ -28,17 +28,7 @@ const getDiscountBadge = (deal) => {
 };
 
 const DealsSection = () => {
-  const [deals, setDeals] = useState(() =>
-    homeDealsData.map((item) => ({ ...item, isFavorite: Boolean(item.isFavorite) }))
-  );
-
-  const toggleFavorite = (id) => {
-    setDeals((prevDeals) =>
-      prevDeals.map((deal) =>
-        deal.id === id ? { ...deal, isFavorite: !deal.isFavorite } : deal
-      )
-    );
-  };
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   return (
     <section className={styles.deals}>
@@ -100,8 +90,9 @@ const DealsSection = () => {
           }}
           className={styles["deals-swiper"]}
         >
-          {deals.map((item) => {
+          {homeDealsData.map((item) => {
             const discountBadge = getDiscountBadge(item);
+            const isCurrentFavorite = isFavorite(item.id);
 
             return (
               <SwiperSlide key={item.id}>
@@ -113,11 +104,11 @@ const DealsSection = () => {
                   <button
                     type="button"
                     className={styles["deals-favorite"]}
-                    aria-label={item.isFavorite ? "РџСЂРёР±СЂР°С‚Рё Р· РѕР±СЂР°РЅРѕРіРѕ" : "Р”РѕРґР°С‚Рё РІ РѕР±СЂР°РЅРµ"}
-                    aria-pressed={item.isFavorite}
+                    aria-label={isCurrentFavorite ? "Прибрати з обраного" : "Додати в обране"}
+                    aria-pressed={isCurrentFavorite}
                     onClick={() => toggleFavorite(item.id)}
                   >
-                    {item.isFavorite ? <IoHeart /> : <IoHeartOutline />}
+                    {isCurrentFavorite ? <IoHeart /> : <IoHeartOutline />}
                   </button>
 
                   <div className={styles["deals-image-wrap"]}>

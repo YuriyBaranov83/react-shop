@@ -1,7 +1,8 @@
-import { ContactsPage, HomePage, NotFoundPage } from "@/pages";
+import { ContactsPage, FavoritesPage, HomePage, NotFoundPage } from "@/pages";
 import MainLayout from "@/components/layout/MainLayout";
 import homeStyles from "@/pages/home/HomePage.module.css";
 import contactsStyles from "@/pages/contacts/ContactsPage.module.css";
+import favoritesStyles from "@/pages/favorites/FavoritesPage.module.css";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -20,6 +21,17 @@ function App() {
         }
       >
         <Route path="/contacts" element={<ContactsPage />} />
+      </Route>
+
+      <Route
+        element={
+          <MainLayout
+            mainClassName={favoritesStyles["favorites-main"]}
+            mainId="favorites-page"
+          />
+        }
+      >
+        <Route path="/favorites" element={<FavoritesPage />} />
       </Route>
 
       <Route path="/404" element={<NotFoundPage />} />

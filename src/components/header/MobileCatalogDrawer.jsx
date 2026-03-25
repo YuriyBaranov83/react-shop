@@ -10,18 +10,19 @@ import { MdPhoneInTalk } from "react-icons/md";
 
 import { catalogData } from "@/data/catalogData";
 import { footerClientLinks } from "@/data/footerData";
+import useFavorites from "@/features/favorites/model/useFavorites";
 import { logo } from "@assets/images";
 import styles from "./header.module.css";
 
 const clubMenuItems = footerClientLinks;
 
 const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
+  const { favoritesCount } = useFavorites();
   const [activeCategoryId, setActiveCategoryId] = useState(null);
   const isAuthed = false;
   const userName = "Ім'я Прізвище";
   const hasCartItems = false;
   const bonusCount = 0;
-  const favoritesCount = 0;
 
   const activeCategory = useMemo(
     () => catalogData.find((item) => item.id === activeCategoryId),
@@ -116,24 +117,46 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                 <ul className={styles["catalog-drawer-meta-list"]}>
                   {profileMenuItems.map((item) => (
                     <li key={item.id}>
-                      <a
-                        href="#"
-                        className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
-                      >
-                        <span>{item.label}</span>
-                        <span className={styles["catalog-drawer-meta-right"]}>
-                          {item.hasDot && (
-                            <span className={styles["catalog-drawer-meta-dot"]} aria-hidden="true" />
-                          )}
-                          {item.badge && (
-                            <span
-                              className={`${styles["catalog-drawer-meta-badge"]} ${item.badgeTone === "muted" ? styles["catalog-drawer-meta-badge-muted"] : ""}`.trim()}
-                            >
-                              {item.badge}
-                            </span>
-                          )}
-                        </span>
-                      </a>
+                      {item.id === "favorites" ? (
+                        <Link
+                          to="/favorites"
+                          className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
+                          onClick={onClose}
+                        >
+                          <span>{item.label}</span>
+                          <span className={styles["catalog-drawer-meta-right"]}>
+                            {item.hasDot && (
+                              <span className={styles["catalog-drawer-meta-dot"]} aria-hidden="true" />
+                            )}
+                            {item.badge && (
+                              <span
+                                className={`${styles["catalog-drawer-meta-badge"]} ${item.badgeTone === "muted" ? styles["catalog-drawer-meta-badge-muted"] : ""}`.trim()}
+                              >
+                                {item.badge}
+                              </span>
+                            )}
+                          </span>
+                        </Link>
+                      ) : (
+                        <a
+                          href="#"
+                          className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
+                        >
+                          <span>{item.label}</span>
+                          <span className={styles["catalog-drawer-meta-right"]}>
+                            {item.hasDot && (
+                              <span className={styles["catalog-drawer-meta-dot"]} aria-hidden="true" />
+                            )}
+                            {item.badge && (
+                              <span
+                                className={`${styles["catalog-drawer-meta-badge"]} ${item.badgeTone === "muted" ? styles["catalog-drawer-meta-badge-muted"] : ""}`.trim()}
+                              >
+                                {item.badge}
+                              </span>
+                            )}
+                          </span>
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

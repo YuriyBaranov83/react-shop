@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./header.module.css";
 import Container from "../layout/Container";
 import clsx from "clsx";
@@ -14,6 +14,8 @@ import { logo } from "@assets/images";
 import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
 
 const HeaderMain = () => {
+  const navigate = useNavigate();
+
   const {
     catalog: { catalogWrapRef, closeCatalog, isCatalogOpen, isMobileCatalog, toggleCatalog },
     profileAuth: {
@@ -98,7 +100,12 @@ const HeaderMain = () => {
         </div>
 
         <div className={clsx("flex-center", styles.right)}>
-          <button type="button" className={styles.favorite} aria-label="Обране">
+          <button
+            type="button"
+            className={styles.favorite}
+            aria-label="Обране"
+            onClick={() => navigate("/favorites")}
+          >
             <FaHeart />
           </button>
 
