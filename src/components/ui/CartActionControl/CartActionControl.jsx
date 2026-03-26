@@ -5,19 +5,41 @@ import styles from "./CartActionControl.module.css";
 const CartActionControl = ({
   className,
   label = "В кошик",
+  quantity,
   initialQuantity = 0,
+  onAdd,
+  onDecrease,
+  onIncrease,
   onQuantityChange,
   ariaLabelAdd = "Додати в кошик",
   ariaLabelDecrease = "Зменшити кількість",
   ariaLabelIncrease = "Збільшити кількість",
 }) => {
-  const [quantity, setQuantity] = useState(() => Math.max(0, Number(initialQuantity) || 0));
+  const isControlled = typeof quantity === "number";
+  const [innerQuantity, setInnerQuantity] = useState(() =>
+    Math.max(0, Number(initialQuantity) || 0)
+  );
+  const currentQuantity = isControlled
+    ? Math.max(0, Number(quantity) || 0)
+    : innerQuantity;
 
   const updateQuantity = (nextValue) => {
-    setQuantity((prevQuantity) => {
+    if (isControlled) {
       const nextQuantity =
-        typeof nextValue === "function" ? nextValue(prevQuantity) : nextValue;
+        typeof nextValue === "function" ? nextValue(currentQuantity) : nextValue;
       const safeQuantity = Math.max(0, Number(nextQuantity) || 0);
+
+      if (safeQuantity !== currentQuantity) {
+        onQuantityChange?.(safeQuantity);
+      }
+
+      return;
+    }
+
+    setInnerQuantity((prevQuantity) => {
+      const resolvedValue =
+        typeof nextValue === "function" ? nextValue(prevQuantity) : nextValue;
+      const safeQuantity = Math.max(0, Number(resolvedValue) || 0);
 
       if (safeQuantity !== prevQuantity) {
         onQuantityChange?.(safeQuantity);
@@ -27,18 +49,41 @@ const CartActionControl = ({
     });
   };
 
-  const addToCart = () => updateQuantity((prevQuantity) => Math.max(1, prevQuantity));
-  const decreaseCount = () => updateQuantity((prevQuantity) => prevQuantity - 1);
-  const increaseCount = () => updateQuantity((prevQuantity) => prevQuantity + 1);
+  const addToCart = () => {
+    if (isControlled && onAdd) {
+      onAdd();
+      return;
+    }
 
-  if (quantity > 0) {
+    updateQuantity((prevQuantity) => Math.max(1, prevQuantity));
+  };
+
+  const decreaseCount = () => {
+    if (isControlled && onDecrease) {
+      onDecrease();
+      return;
+    }
+
+    updateQuantity((prevQuantity) => prevQuantity - 1);
+  };
+
+  const increaseCount = () => {
+    if (isControlled && onIncrease) {
+      onIncrease();
+      return;
+    }
+
+    updateQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  if (currentQuantity > 0) {
     return (
       <div className={clsx(styles["cart-action"], className)}>
         <div className={styles.counter}>
           <button type="button" aria-label={ariaLabelDecrease} onClick={decreaseCount}>
             -
           </button>
-          <span>{quantity}</span>
+          <span>{currentQuantity}</span>
           <button type="button" aria-label={ariaLabelIncrease} onClick={increaseCount}>
             +
           </button>

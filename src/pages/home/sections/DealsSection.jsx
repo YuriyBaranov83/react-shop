@@ -7,6 +7,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import CartActionControl from "@/components/ui/CartActionControl";
 import Container from "@/components/layout/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
+import useCart from "@/features/cart/model/useCart";
 import useFavorites from "@/features/favorites/model/useFavorites";
 import { homeDealsData } from "@/data/homeDealsData";
 import styles from "./DealsSection.module.css";
@@ -28,6 +29,7 @@ const getDiscountBadge = (deal) => {
 };
 
 const DealsSection = () => {
+  const { getItemQuantity, setItemQuantity } = useCart();
   const { isFavorite, toggleFavorite } = useFavorites();
 
   return (
@@ -93,6 +95,7 @@ const DealsSection = () => {
           {homeDealsData.map((item) => {
             const discountBadge = getDiscountBadge(item);
             const isCurrentFavorite = isFavorite(item.id);
+            const quantityInCart = getItemQuantity(item.id);
 
             return (
               <SwiperSlide key={item.id}>
@@ -140,6 +143,10 @@ const DealsSection = () => {
                     <CartActionControl
                       className={styles["deals-action-control"]}
                       label={item.action.label}
+                      quantity={quantityInCart}
+                      onQuantityChange={(nextQuantity) =>
+                        setItemQuantity(item.id, nextQuantity)
+                      }
                     />
                   </div>
                 </article>

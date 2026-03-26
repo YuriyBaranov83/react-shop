@@ -11,11 +11,13 @@ import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { logo } from "@assets/images";
+import useCart from "@/features/cart/model/useCart";
 import useFavorites from "@/features/favorites/model/useFavorites";
 import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
 
 const HeaderMain = () => {
   const navigate = useNavigate();
+  const { cartCount } = useCart();
   const { favoritesCount } = useFavorites();
   const hasFavorites = favoritesCount > 0;
 
@@ -139,9 +141,16 @@ const HeaderMain = () => {
             />
           </div>
 
-          <button type="button" className={styles.basket} aria-label="Кошик">
+          <button
+            type="button"
+            className={styles.basket}
+            aria-label="Кошик"
+            onClick={() => navigate("/cart")}
+          >
             <FaBasketShopping />
-            <span className={styles["basket-text"]}>Кошик</span>
+            <span className={styles["basket-text"]}>
+              {cartCount > 0 ? `Кошик (${cartCount})` : "Кошик"}
+            </span>
           </button>
         </div>
       </Container>

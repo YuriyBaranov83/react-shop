@@ -4,11 +4,13 @@ import { IoHeart, IoHeartOutline } from "react-icons/io5";
 
 import Container from "@/components/layout/Container";
 import CartActionControl from "@/components/ui/CartActionControl";
+import useCart from "@/features/cart/model/useCart";
 import useFavorites from "@/features/favorites/model/useFavorites";
 import { homeDealsData } from "@/data/homeDealsData";
 import styles from "./FavoritesPage.module.css";
 
 const FavoritesPage = () => {
+  const { getItemQuantity, setItemQuantity } = useCart();
   const { favoriteIds, toggleFavorite } = useFavorites();
 
   const visibleFavorites = useMemo(
@@ -94,6 +96,10 @@ const FavoritesPage = () => {
                   <CartActionControl
                     className={styles["favorite-action-control"]}
                     label={item.action.label}
+                    quantity={getItemQuantity(item.id)}
+                    onQuantityChange={(nextQuantity) =>
+                      setItemQuantity(item.id, nextQuantity)
+                    }
                   />
                 </div>
               </article>
