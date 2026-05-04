@@ -38,8 +38,8 @@ const ScrollToTopButton = ({ showAfter = 320 }) => {
   return (
     <button
       type="button"
-      aria-label="Back to top"
-      title="Back to top"
+      aria-label="Повернутися догори"
+      title="Повернутися догори"
       onClick={scrollToTop}
       tabIndex={isVisible ? 0 : -1}
       className={clsx(styles["scroll-top-button"], isVisible && styles["scroll-top-button-visible"])}

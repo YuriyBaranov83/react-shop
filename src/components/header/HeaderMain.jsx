@@ -50,8 +50,8 @@ const HeaderMain = () => {
     <div className={styles["header-main"]}>
       <Container className="flex-between">
         <div className={clsx("flex-center", styles.left)}>
-          <Link to="/" className={styles.logo} aria-label="My Shop">
-            <img src={logo} alt="Logo" />
+          <Link to="/" className={styles.logo} aria-label="Urbanfood - на головну">
+            <img src={logo} alt="Логотип Urbanfood" />
           </Link>
           <div className={styles["catalog-wrap"]} ref={catalogWrapRef}>
             <button
