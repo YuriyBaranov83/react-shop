@@ -87,7 +87,13 @@ const Footer = () => {
             <ul className={styles["footer-links"]}>
               {footerClientLinks.map((item) => (
                 <li key={item.id}>
-                  <a href={item.href}>{item.label}</a>
+                  {item.href ? (
+                    <a href={item.href}>{item.label}</a>
+                  ) : (
+                    <a aria-disabled="true" tabIndex={-1}>
+                      {item.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -104,19 +110,19 @@ const Footer = () => {
 
             <ul className={styles["footer-contacts"]}>
               <li>
-                <a href="#">
+                <a href="/contacts">
                   <MdLocationOn aria-hidden="true" />
                   <span>Адреси магазинів</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a aria-disabled="true" tabIndex={-1}>
                   <MdPublic aria-hidden="true" />
                   <span>Стежте за нами</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="mailto:feedback@urbanfood.ua">
                   <MdMailOutline aria-hidden="true" />
                   <span>Зворотний зв&apos;язок</span>
                 </a>

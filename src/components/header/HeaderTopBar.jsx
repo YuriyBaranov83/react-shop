@@ -8,9 +8,11 @@ const HeaderTopBar = () => {
       <Container>
         <div className={clsx("flex-center", styles["header-topbar-inner"])}>
           <div className={styles["header-topbar-left"]}>
-            Харчуйтеся різноманітно і накопичуйте <a href="">знижку</a> до 10%
+            Харчуйтеся різноманітно і накопичуйте <a href="/#delivery-payment">знижку</a> до 10%
           </div>
-          <button>Отримати знижку</button>
+          <button type="button" onClick={() => window.location.assign("/#delivery-payment")}>
+            Отримати знижку
+          </button>
         </div>
       </Container>
     </div>

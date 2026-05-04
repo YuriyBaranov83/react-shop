@@ -62,6 +62,13 @@
     color: var(--fourth-color);
 }
 
+.footer-links a[aria-disabled="true"],
+.footer-contacts a[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+}
+
 .footer-phone-wrap {
     display: flex;
     align-items: center;

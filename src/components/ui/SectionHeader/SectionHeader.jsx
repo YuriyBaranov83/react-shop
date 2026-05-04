@@ -4,7 +4,7 @@ import styles from "./SectionHeader.module.css";
 const SectionHeader = ({
   title,
   linkLabel = "Дивитися все",
-  linkHref = "#",
+  linkHref = null,
   actions = null,
   className,
 }) => {
@@ -12,7 +12,7 @@ const SectionHeader = ({
     <div className={clsx(styles["section-header"], className)}>
       <div className={styles["section-header-left"]}>
         <h2>{title}</h2>
-        {linkLabel ? <a href={linkHref}>{linkLabel}</a> : null}
+        {linkLabel && linkHref ? <a href={linkHref}>{linkLabel}</a> : null}
       </div>
 
       {actions ? <div className={styles["section-header-actions"]}>{actions}</div> : null}

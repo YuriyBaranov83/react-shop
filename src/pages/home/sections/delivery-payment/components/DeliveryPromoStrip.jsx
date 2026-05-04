@@ -9,9 +9,14 @@ const DeliveryPromoStrip = () => {
         <span>на замовлення кулінарії</span>
       </div>
 
-      <a href="#" className={styles["delivery-payment-promo-button"]}>
+      <button
+        type="button"
+        className={styles["delivery-payment-promo-button"]}
+        aria-disabled="true"
+        disabled
+      >
         Отримати промокод
-      </a>
+      </button>
     </div>
   );
 };

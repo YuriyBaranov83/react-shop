@@ -9,26 +9,35 @@ const CategoryTilesSection = ({
   items,
   sectionId,
   className,
-  linkHref = "#",
+  linkHref = null,
   linkLabel = "Дивитися все",
 }) => {
+  const sectionLinkHref = linkHref ?? (sectionId ? `/#${sectionId}` : null);
+
   return (
     <section id={sectionId} className={clsx(styles.section, className)}>
       <Container>
         <SectionHeader
           title={title}
-          linkHref={linkHref}
+          linkHref={sectionLinkHref}
           linkLabel={linkLabel}
           className={styles.head}
         />
 
         <div className={styles.grid}>
-          {items.map((item) => (
-            <a key={item.id} href={item.href ?? "#"} className={styles.card}>
-              <span className={styles.title}>{item.title}</span>
-              <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
-            </a>
-          ))}
+          {items.map((item) =>
+            item.href ? (
+              <a key={item.id} href={item.href} className={styles.card}>
+                <span className={styles.title}>{item.title}</span>
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+              </a>
+            ) : (
+              <div key={item.id} className={styles.card} aria-disabled="true">
+                <span className={styles.title}>{item.title}</span>
+                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+              </div>
+            )
+          )}
         </div>
       </Container>
     </section>

@@ -41,7 +41,9 @@ const CatalogDropdown = () => {
         <ul className={clsx("flex-column", styles["sub-list"])}>
           {active?.items?.map((name) => (
             <li key={name}>
-              <a href="#">{name}</a>
+              <button type="button" className={styles["catalog-subitem"]} aria-disabled="true">
+                {name}
+              </button>
             </li>
           ))}
         </ul>

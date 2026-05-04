@@ -25,9 +25,14 @@ const DeliveryReviewCard = () => {
             <IoStarOutline />
           </div>
 
-          <a href="#" className={styles["delivery-payment-review-button"]}>
+          <button
+            type="button"
+            className={styles["delivery-payment-review-button"]}
+            aria-disabled="true"
+            disabled
+          >
             Залишити відгук
-          </a>
+          </button>
         </div>
       </div>
       <div

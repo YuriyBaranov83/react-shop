@@ -138,9 +138,11 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                           </span>
                         </Link>
                       ) : (
-                        <a
-                          href="#"
+                        <button
+                          type="button"
                           className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
+                          aria-disabled="true"
+                          disabled
                         >
                           <span>{item.label}</span>
                           <span className={styles["catalog-drawer-meta-right"]}>
@@ -155,7 +157,7 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                               </span>
                             )}
                           </span>
-                        </a>
+                        </button>
                       )}
                     </li>
                   ))}
@@ -167,7 +169,13 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                 <ul className={styles["catalog-drawer-club-list"]}>
                   {clubMenuItems.map((item) => (
                     <li key={item.id}>
-                      <a href={item.href}>{item.label}</a>
+                      {item.href ? (
+                        <a href={item.href}>{item.label}</a>
+                      ) : (
+                        <a aria-disabled="true" tabIndex={-1}>
+                          {item.label}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -200,9 +208,13 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
               <ul className={styles["catalog-drawer-sub-list"]}>
                 {activeCategory.items.map((name) => (
                   <li key={name}>
-                    <a href="#" onClick={onClose}>
+                    <button
+                      type="button"
+                      className={styles["catalog-drawer-sub-item"]}
+                      onClick={onClose}
+                    >
                       {name}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>

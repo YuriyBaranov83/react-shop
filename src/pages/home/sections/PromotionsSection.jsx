@@ -76,12 +76,12 @@ const PromotionsSection = () => {
         >
           {homePromotionsData.map((promo) => (
             <SwiperSlide key={promo.id} className={styles["promotions-slide"]}>
-              <a
-                href="#"
+              <article
                 className={clsx(
                   styles["promotions-card"],
                   styles[`promotions-card-${promo.variant}`]
                 )}
+                aria-disabled="true"
               >
                 <div
                   className={clsx(
@@ -105,7 +105,7 @@ const PromotionsSection = () => {
                   loading="lazy"
                   decoding="async"
                 />
-              </a>
+              </article>
             </SwiperSlide>
           ))}
         </Swiper>
