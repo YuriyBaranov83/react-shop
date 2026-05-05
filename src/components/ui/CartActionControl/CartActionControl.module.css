@@ -1,6 +1,7 @@
 .cart-action {
     --cart-action-height: 36px;
     --cart-action-font-size: 14px;
+    --cart-action-button-size: 22px;
     width: 100%;
 }
 
@@ -31,17 +32,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: clamp(8px, 0.8vw, 14px);
+    padding: 0 clamp(8px, 1vw, 16px);
     color: var(--third-color);
     font-size: var(--cart-action-font-size);
     font-weight: 600;
 }
 
 .counter button {
-    width: 22px;
-    height: 22px;
+    width: var(--cart-action-button-size);
+    height: var(--cart-action-button-size);
     border-radius: 999px;
     color: var(--third-color);
+    font-size: clamp(14px, 1em, 24px);
+    line-height: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;

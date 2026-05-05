@@ -2,11 +2,11 @@ import { deliveryMapZoneImage } from "@/assets/images/home/delivery";
 import styles from "../DeliveryPaymentSection.module.css";
 
 const deliveryRules = [
-  {
+    {
     title: "Зони доставки",
     lines: [
-      "Доставка здійснюється в районі ЖК «Іллінські Луги»",
-      "(вул. Заповідна) і ЖК «Нова Рига» (вул. Рубльовське Предмістя).",
+      "Доставка здійснюється в районі ЖК «Варшавський Плюс»",
+      "(просп. Європейського Союзу) і ЖК «Файна Таун» (вул. Салютна).",
     ],
   },
   {

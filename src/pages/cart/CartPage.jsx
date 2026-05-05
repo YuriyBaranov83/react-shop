@@ -177,10 +177,17 @@ const CartPage = () => {
                     <h2>{item.title}</h2>
 
                     <div className={styles["cart-card-prices"]}>
-                      <span className={styles["cart-card-price"]}>{item.price}</span>
-                      {item.oldPrice && (
-                        <span className={styles["cart-card-old-price"]}>{item.oldPrice}</span>
-                      )}
+                      <div className={styles["cart-card-unit-prices"]}>
+                        <span className={styles["cart-card-price"]}>{item.price}</span>
+                        {item.oldPrice && (
+                          <span className={styles["cart-card-old-price"]}>{item.oldPrice}</span>
+                        )}
+                      </div>
+
+                      <div className={styles["cart-card-subtotal"]}>
+                        <strong>{formatPrice(item.subtotal)}</strong>
+                        <span>{item.quantity} {"шт"}</span>
+                      </div>
                     </div>
 
                     <div className={styles["cart-card-actions"]}>
@@ -200,10 +207,6 @@ const CartPage = () => {
                     </div>
                   </div>
 
-                  <div className={styles["cart-card-subtotal"]}>
-                    <strong>{formatPrice(item.subtotal)}</strong>
-                    <span>{item.quantity} шт</span>
-                  </div>
                 </article>
               ))}
             </div>
@@ -215,7 +218,7 @@ const CartPage = () => {
               </div>
 
               <p className={styles["cart-summary-address"]}>
-                вул. Нова, д. 13, селище Ільїнське-Усово, міський округ Красногорськ
+                {"вул. Хрещатик, 22, м. Київ"}
               </p>
 
               <form
