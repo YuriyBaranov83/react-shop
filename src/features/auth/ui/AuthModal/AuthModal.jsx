@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+﻿import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import clsx from "clsx";
+import RoundCheckbox from "@/components/ui/RoundCheckbox";
 import styles from "./AuthModal.module.css";
 
 const OTP_LENGTH = 4;
@@ -8,9 +9,15 @@ const OTP_LENGTH = 4;
 const AuthModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState("start"); // "start" | "phone" | "otp"
   const [phone, setPhone] = useState("");
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+  const [isPolicyAccepted, setIsPolicyAccepted] = useState(false);
   const [otp, setOtp] = useState(() =>
     Array.from({ length: OTP_LENGTH }, () => "")
   );
+
+  const checkboxIdBase = useId();
+  const termsCheckboxId = `${checkboxIdBase}-terms`;
+  const policyCheckboxId = `${checkboxIdBase}-policy`;
 
   const dialogRef = useRef(null);
   const otpRefs = useRef([]);
@@ -147,12 +154,28 @@ const AuthModal = ({ isOpen, onClose }) => {
               autoFocus
             />
 
-            <label className={styles["auth-check"]}>
-              <input type="checkbox" /> Я погоджуюсь з умовами користування
+            <label className={styles["auth-check"]} htmlFor={termsCheckboxId}>
+              <RoundCheckbox
+                id={termsCheckboxId}
+                name="authTermsAccepted"
+                checked={isTermsAccepted}
+                onChange={(event) => setIsTermsAccepted(event.target.checked)}
+                className={styles["auth-check-control"]}
+                ariaLabel="Я погоджуюсь з умовами користування"
+              />
+              <span>Я погоджуюсь з умовами користування</span>
             </label>
 
-            <label className={styles["auth-check"]}>
-              <input type="checkbox" /> Я даю згоду на обробку персональних даних
+            <label className={styles["auth-check"]} htmlFor={policyCheckboxId}>
+              <RoundCheckbox
+                id={policyCheckboxId}
+                name="authPolicyAccepted"
+                checked={isPolicyAccepted}
+                onChange={(event) => setIsPolicyAccepted(event.target.checked)}
+                className={styles["auth-check-control"]}
+                ariaLabel="Я даю згоду на обробку персональних даних"
+              />
+              <span>Я даю згоду на обробку персональних даних</span>
             </label>
 
             <button

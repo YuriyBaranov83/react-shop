@@ -71,6 +71,12 @@
   gap: 8px;
   font-size: 13px;
   color: #5a5a5a;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.auth-check-control {
+  margin-top: 1px;
 }
 
 .auth-otp {
