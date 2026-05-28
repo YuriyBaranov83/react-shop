@@ -1,0 +1,30 @@
+.hero h1 {
+    color: #121212;
+    font-size: clamp(28px, 2.3vw, 34px);
+    line-height: 1;
+    font-weight: 700;
+}
+
+.breadcrumbs {
+    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #8f8f8f;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.breadcrumbs a {
+    color: inherit;
+}
+
+.breadcrumbs a:hover {
+    color: var(--first-color);
+}
+
+@media (min-width: 761px) {
+    .breadcrumbs {
+        display: none;
+    }
+}

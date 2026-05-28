@@ -10,6 +10,6 @@ export const footerClientLinks = [
   { id: "delivery", label: "Доставка та оплата", href: "/#delivery-payment" },
   { id: "loyalty", label: "Програма лояльності", href: null },
   { id: "policy", label: "Політика конфіденційності", href: null },
-  { id: "vacancy", label: "Вакансії", href: null },
+  { id: "vacancy", label: "Вакансії", href: "/vacancies" },
   { id: "contacts", label: "Контакти", href: "/contacts" },
 ];

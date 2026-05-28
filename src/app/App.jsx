@@ -1,9 +1,10 @@
-import { CartPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage } from "@/pages";
+import { CartPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage, VacanciesPage } from "@/pages";
 import MainLayout from "@/components/layout/MainLayout";
 import homeStyles from "@/pages/home/HomePage.module.css";
 import cartStyles from "@/pages/cart/CartPage.module.css";
 import contactsStyles from "@/pages/contacts/ContactsPage.module.css";
 import favoritesStyles from "@/pages/favorites/FavoritesPage.module.css";
+import vacanciesStyles from "@/pages/vacancies/VacanciesPage.module.css";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -44,6 +45,17 @@ function App() {
         }
       >
         <Route path="/cart" element={<CartPage />} />
+      </Route>
+
+      <Route
+        element={
+          <MainLayout
+            mainClassName={vacanciesStyles["vacancies-main"]}
+            mainId="vacancies-page"
+          />
+        }
+      >
+        <Route path="/vacancies" element={<VacanciesPage />} />
       </Route>
 
       <Route path="/404" element={<NotFoundPage />} />

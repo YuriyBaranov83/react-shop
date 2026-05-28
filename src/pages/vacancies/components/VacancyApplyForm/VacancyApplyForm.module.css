@@ -1,0 +1,177 @@
+.form {
+    display: grid;
+    gap: 10px;
+}
+
+.form input,
+.form select {
+    width: 100%;
+    min-height: 44px;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    color: #1f1f1f;
+    font-size: 15px;
+    line-height: 1.25;
+    padding: 0 12px;
+}
+
+.form input::placeholder {
+    color: #9f9f9f;
+}
+
+.dateWrap {
+    position: relative;
+    display: block;
+}
+
+.dateWrap::after,
+.selectWrap::after {
+    content: "";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #1f1f1f;
+    border-bottom: 2px solid #1f1f1f;
+    transform: translateY(-62%) rotate(45deg);
+    pointer-events: none;
+}
+
+.dateInput {
+    cursor: pointer;
+    padding-right: 36px !important;
+}
+
+.selectWrap {
+    position: relative;
+    display: block;
+}
+
+.selectWrap select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 36px !important;
+}
+
+.policy {
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #3c3c3c;
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+.policyCheckbox {
+    margin-top: 1px;
+}
+
+.submit {
+    margin-top: 4px;
+    justify-self: start;
+    min-width: 142px;
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 0 22px;
+    background: var(--first-color);
+    color: #fff;
+    font-size: 21px;
+    line-height: 1;
+    font-weight: 600;
+    transition: filter .2s ease, transform .2s ease, opacity .2s ease;
+}
+
+.submit:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.submit:not(:disabled):hover {
+    filter: brightness(1.03);
+    transform: translateY(-1px);
+}
+
+.submit:focus-visible,
+.form input:focus-visible,
+.form select:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+:global(.air-datepicker) {
+    --adp-accent-color: var(--first-color);
+    --adp-color-current-date: var(--first-color);
+    --adp-color-background-selected: var(--first-color);
+    --adp-color-text-selected: #fff;
+    --adp-color-background-hover: var(--fourth-color);
+    --adp-color-text-primary: #1f1f1f;
+    --adp-color-text-secondary: #717171;
+    --adp-border-color: #e8d7b8;
+    --adp-border-radius: 12px;
+    --adp-cell-border-radius: 8px;
+    font-family: var(--font-base);
+    border: 1px solid var(--adp-border-color);
+    box-shadow: 0 10px 24px rgb(0 0 0 / 12%);
+    z-index: 180;
+}
+
+:global(.air-datepicker-nav),
+:global(.air-datepicker-body--day-names) {
+    border-bottom: 1px solid #f1e5cc;
+}
+
+:global(.air-datepicker-cell.-selected-),
+:global(.air-datepicker-cell.-selected-.-focus-) {
+    background: var(--first-color);
+    color: #fff;
+}
+
+:global(.air-datepicker-cell.-focus-) {
+    background: var(--fourth-color);
+}
+
+:global(.air-datepicker-cell.-current-) {
+    color: var(--first-color);
+}
+
+:global(.air-datepicker-cell.-disabled-) {
+    color: #b9b9b9;
+}
+
+:global(.air-datepicker--pointer) {
+    display: none;
+}
+
+@media (max-width: 760px) {
+    .form {
+        gap: 8px;
+    }
+
+    .form input,
+    .form select {
+        min-height: 42px;
+        font-size: 14px;
+    }
+
+    .submit {
+        min-width: 164px;
+        min-height: 42px;
+        font-size: 32px;
+    }
+}
