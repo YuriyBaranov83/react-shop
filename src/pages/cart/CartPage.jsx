@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Container from "@/components/layout/Container";
 import CartActionControl from "@/components/ui/CartActionControl";
 import useCart from "@/features/cart/model/useCart";
-import { homeDealsData } from "@/data/homeDealsData";
+import { allProductsData } from "@/data/allProductsData";
 import styles from "./CartPage.module.css";
 
 const parsePrice = (price = "") => {
@@ -26,7 +26,7 @@ const PROMO_CODES = {
 
 const normalizePromoCode = (value = "") => value.trim().toUpperCase();
 
-const productsById = new Map(homeDealsData.map((item) => [item.id, item]));
+const productsById = new Map(allProductsData.map((item) => [item.id, item]));
 
 const CartPage = () => {
   const { cartItems, clearCart, setItemQuantity } = useCart();

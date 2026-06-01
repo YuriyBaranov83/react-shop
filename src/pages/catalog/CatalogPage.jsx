@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
 
 import Container from "@/components/layout/Container";
+import { getCatalogProductsByCategoryId } from "@/data/catalogProductsData";
 import { buildCatalogSectionHref } from "@/data/catalogRouting";
 import {
   catalogFilterOptions,
@@ -11,6 +12,7 @@ import {
 } from "@/data/catalogSectionsData";
 import CatalogCategoryGrid from "./components/CatalogCategoryGrid/CatalogCategoryGrid";
 import CatalogFilterBar from "./components/CatalogFilterBar/CatalogFilterBar";
+import CatalogProductsGrid from "./components/CatalogProductsGrid/CatalogProductsGrid";
 import CatalogSidebar from "./components/CatalogSidebar/CatalogSidebar";
 import styles from "./CatalogPage.module.css";
 
@@ -28,16 +30,21 @@ const CatalogPage = () => {
   const requestedFilterId = searchParams.get("filter") || "all";
   const activeFilterId = hasCatalogFilter(requestedFilterId) ? requestedFilterId : "all";
   const activeCategoryId = searchParams.get("category") || "";
+  const selectedCategory =
+    activeSection.items.find((item) => item.id === activeCategoryId) || null;
 
   const visibleItems =
     activeFilterId === "all"
       ? activeSection.items
       : activeSection.items.filter((item) => item.tags.includes(activeFilterId));
 
-  const visibleCategoryIdSet = new Set(visibleItems.map((item) => item.id));
-  const displayedActiveCategoryId = visibleCategoryIdSet.has(activeCategoryId)
-    ? activeCategoryId
-    : "";
+  const categoryProducts = selectedCategory
+    ? getCatalogProductsByCategoryId(selectedCategory.id)
+    : [];
+  const visibleProducts =
+    activeFilterId === "all"
+      ? categoryProducts
+      : categoryProducts.filter((item) => item.tags.includes(activeFilterId));
 
   const handleFilterChange = (nextFilterId) => {
     const nextSearchParams = new URLSearchParams(searchParams);
@@ -46,18 +53,6 @@ const CatalogPage = () => {
       nextSearchParams.delete("filter");
     } else {
       nextSearchParams.set("filter", nextFilterId);
-    }
-
-    if (activeCategoryId) {
-      const categoryRemainsVisible = activeSection.items.some(
-        (item) =>
-          item.id === activeCategoryId &&
-          (nextFilterId === "all" || item.tags.includes(nextFilterId))
-      );
-
-      if (!categoryRemainsVisible) {
-        nextSearchParams.delete("category");
-      }
     }
 
     setSearchParams(nextSearchParams, { replace: false });
@@ -119,7 +114,7 @@ const CatalogPage = () => {
           <CatalogSidebar
             sections={catalogSectionsData}
             activeSectionId={activeSection.id}
-            activeCategoryId={displayedActiveCategoryId}
+            activeCategoryId={selectedCategory?.id || ""}
             getSectionHref={getSectionHref}
             getCategoryHref={getCategoryHref}
           />
@@ -131,12 +126,19 @@ const CatalogPage = () => {
               onFilterChange={handleFilterChange}
             />
 
-            <CatalogCategoryGrid
-              items={visibleItems}
-              sectionTone={activeSection.backgroundTone}
-              activeCategoryId={displayedActiveCategoryId}
-              getCategoryHref={(categoryId) => getCategoryHref(activeSection.id, categoryId)}
-            />
+            {selectedCategory ? (
+              <CatalogProductsGrid
+                products={visibleProducts}
+                categoryTitle={selectedCategory.title}
+              />
+            ) : (
+              <CatalogCategoryGrid
+                items={visibleItems}
+                sectionTone={activeSection.backgroundTone}
+                activeCategoryId=""
+                getCategoryHref={(categoryId) => getCategoryHref(activeSection.id, categoryId)}
+              />
+            )}
           </div>
         </div>
       </Container>

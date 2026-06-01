@@ -6,7 +6,7 @@ import Container from "@/components/layout/Container";
 import CartActionControl from "@/components/ui/CartActionControl";
 import useCart from "@/features/cart/model/useCart";
 import useFavorites from "@/features/favorites/model/useFavorites";
-import { homeDealsData } from "@/data/homeDealsData";
+import { allProductsData } from "@/data/allProductsData";
 import styles from "./FavoritesPage.module.css";
 
 const FavoritesPage = () => {
@@ -14,7 +14,7 @@ const FavoritesPage = () => {
   const { favoriteIds, toggleFavorite } = useFavorites();
 
   const visibleFavorites = useMemo(
-    () => homeDealsData.filter((item) => favoriteIds.includes(item.id)),
+    () => allProductsData.filter((item) => favoriteIds.includes(item.id)),
     [favoriteIds]
   );
 
