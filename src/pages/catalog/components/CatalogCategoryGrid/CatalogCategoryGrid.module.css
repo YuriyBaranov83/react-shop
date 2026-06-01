@@ -59,7 +59,7 @@
     border-color: var(--light-cyan-border-color);
 }
 
-.emptyState {
+.empty-state {
     min-height: 180px;
     border-radius: 14px;
     border: 1px dashed rgb(84 8 99 / 24%);
@@ -68,7 +68,7 @@
     padding: 16px;
 }
 
-.emptyState p {
+.empty-state p {
     color: #5f5f5f;
     font-size: 16px;
     line-height: 1.35;

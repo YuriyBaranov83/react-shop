@@ -101,13 +101,13 @@ const CatalogPage = () => {
           <p>Обирайте підкатегорію або перейдіть в інший розділ через ліве меню.</p>
         </header>
 
-        <div className={styles.sectionTabs} aria-label="Розділи каталогу">
+        <div className={styles["section-tabs"]} aria-label="Розділи каталогу">
           {catalogSectionsData.map((sectionItem) => (
             <Link
               key={sectionItem.id}
               to={getSectionHref(sectionItem.id)}
-              className={`${styles.sectionTab} ${
-                sectionItem.id === activeSection.id ? styles["sectionTab-active"] : ""
+              className={`${styles["section-tab"]} ${
+                sectionItem.id === activeSection.id ? styles["section-tab-active"] : ""
               }`.trim()}
             >
               {sectionItem.sidebarLabel}

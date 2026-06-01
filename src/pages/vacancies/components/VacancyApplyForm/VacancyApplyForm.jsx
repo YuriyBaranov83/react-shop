@@ -49,20 +49,20 @@ const VacancyApplyForm = ({
     <form className={clsx(styles.form, className)} onSubmit={handleSubmit}>
       <input type="text" name="fullName" placeholder="Ф.І.О." autoComplete="name" />
       <input type="tel" name="phone" placeholder="Телефон" autoComplete="tel" />
-      <label className={styles.dateWrap}>
+      <label className={styles["date-wrap"]}>
         <span className={styles["visually-hidden"]}>Дата народження</span>
         <input
           ref={birthdayInputRef}
           type="text"
           name="birthday"
           placeholder="Дата народження"
-          className={styles.dateInput}
+          className={styles["date-input"]}
           autoComplete="bday"
           readOnly
         />
       </label>
 
-      <label className={styles.selectWrap}>
+      <label className={styles["select-wrap"]}>
         <span className={styles["visually-hidden"]}>Країна</span>
         <select name="country" defaultValue="Україна">
           {countryOptions.map((country) => (
@@ -79,7 +79,7 @@ const VacancyApplyForm = ({
           name="policyAccepted"
           checked={isPolicyAccepted}
           onChange={(event) => setIsPolicyAccepted(event.target.checked)}
-          className={styles.policyCheckbox}
+          className={styles["policy-checkbox"]}
           ariaLabel="Згода на обробку персональних даних"
         />
         <span>згоден на обробку персональних даних</span>

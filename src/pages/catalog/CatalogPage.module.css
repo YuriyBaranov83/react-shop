@@ -42,14 +42,14 @@
     line-height: 1.35;
 }
 
-.sectionTabs {
+.section-tabs {
     margin-top: 16px;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.sectionTab {
+.section-tab {
     min-height: 36px;
     border-radius: 999px;
     border: 1px solid rgb(84 8 99 / 20%);
@@ -63,12 +63,12 @@
     background: #fff;
 }
 
-.sectionTab:hover {
+.section-tab:hover {
     border-color: var(--first-color);
     color: var(--first-color);
 }
 
-.sectionTab-active {
+.section-tab-active {
     border-color: var(--first-color);
     background: #fdf1f7;
     color: var(--third-color);
@@ -103,14 +103,14 @@
         padding: 14px 0 44px;
     }
 
-    .sectionTabs {
+    .section-tabs {
         flex-wrap: nowrap;
         overflow-x: auto;
         padding-bottom: 2px;
         scrollbar-width: none;
     }
 
-    .sectionTabs::-webkit-scrollbar {
+    .section-tabs::-webkit-scrollbar {
         display: none;
     }
 

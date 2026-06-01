@@ -58,7 +58,7 @@ const VacancyModal = ({ vacancy, onClose }) => {
         <div className={styles.body}>
           <div className={styles.content}>
             <header className={styles.head}>
-              <div className={styles.iconWrap} aria-hidden="true">
+              <div className={styles["icon-wrap"]} aria-hidden="true">
                 {src ? <img src={src} alt="" loading="lazy" decoding="async" /> : <FallbackIcon />}
               </div>
 
@@ -74,7 +74,7 @@ const VacancyModal = ({ vacancy, onClose }) => {
             <VacancyDetailsGroup title="Ми гарантуємо" items={vacancy.conditions} />
           </div>
 
-          <aside className={styles.formWrap}>
+          <aside className={styles["form-wrap"]}>
             <VacancyApplyForm submitLabel="Відгукнутися" onSubmitStub={handleFormSubmitStub} />
           </aside>
         </div>

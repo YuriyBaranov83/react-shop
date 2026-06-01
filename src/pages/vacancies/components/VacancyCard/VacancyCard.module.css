@@ -22,7 +22,7 @@
     font-weight: 700;
 }
 
-.salaryLabel {
+.salary-label {
     margin-top: 10px;
     color: #222;
     font-size: clamp(12px, 1.2vw, 16px);
@@ -30,8 +30,8 @@
     max-width: 270px;
 }
 
-.salaryPrefix,
-.salaryAmount {
+.salary-prefix,
+.salary-amount {
     display: block;
 }
 
@@ -56,7 +56,7 @@
     outline-offset: 2px;
 }
 
-.iconWrap {
+.icon-wrap {
     width: 100%;
     height: clamp(42px, 4vw, 58px);
     display: inline-flex;
@@ -68,7 +68,7 @@
     align-self: start;
 }
 
-.iconWrap img {
+.icon-wrap img {
     width: auto;
     height: 100%;
     max-width: 100%;
@@ -118,7 +118,7 @@
         padding: 16px 14px;
     }
 
-    .iconWrap {
+    .icon-wrap {
         height: clamp(50px, 12vw, 68px);
         font-size: clamp(38px, 10vw, 54px);
     }

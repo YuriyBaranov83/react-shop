@@ -26,9 +26,9 @@ const VacancyCard = ({ vacancy, onOpenDetails }) => {
     <article className={`${styles.card} ${styles[`card-${vacancy.cardTone}`] || ""}`.trim()}>
       <div className={styles.content}>
         <h2>{vacancy.title}</h2>
-        <p className={styles.salaryLabel}>
-          <span className={styles.salaryPrefix}>{prefix}</span>
-          {amount ? <span className={styles.salaryAmount}>{amount}</span> : null}
+        <p className={styles["salary-label"]}>
+          <span className={styles["salary-prefix"]}>{prefix}</span>
+          {amount ? <span className={styles["salary-amount"]}>{amount}</span> : null}
         </p>
 
         <button
@@ -40,7 +40,7 @@ const VacancyCard = ({ vacancy, onOpenDetails }) => {
         </button>
       </div>
 
-      <div className={styles.iconWrap} aria-hidden="true">
+      <div className={styles["icon-wrap"]} aria-hidden="true">
         {src ? (
           <img src={src} alt="" loading="lazy" decoding="async" />
         ) : (

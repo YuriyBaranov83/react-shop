@@ -11,8 +11,8 @@ const CatalogFilterBar = ({ filters, activeFilterId, onFilterChange }) => {
           role="tab"
           aria-selected={filter.id === activeFilterId}
           className={clsx(
-            styles.filterButton,
-            filter.id === activeFilterId && styles["filterButton-active"]
+            styles["filter-button"],
+            filter.id === activeFilterId && styles["filter-button-active"]
           )}
           onClick={() => onFilterChange(filter.id)}
         >

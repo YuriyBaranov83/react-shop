@@ -4,7 +4,7 @@
     gap: 8px;
 }
 
-.filterButton {
+.filter-button {
     min-height: 34px;
     border-radius: 999px;
     border: 1px solid rgb(84 8 99 / 20%);
@@ -16,13 +16,13 @@
     font-weight: 500;
 }
 
-.filterButton:hover {
+.filter-button:hover {
     border-color: var(--first-color);
     background: var(--first-color);
     color: #fff;
 }
 
-.filterButton-active {
+.filter-button-active {
     border-color: var(--first-color);
     background: var(--first-color);
     color: #fff;

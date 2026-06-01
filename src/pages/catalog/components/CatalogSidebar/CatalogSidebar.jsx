@@ -22,22 +22,22 @@ const CatalogSidebar = ({
               <Link
                 to={getSectionHref(section.id)}
                 className={clsx(
-                  styles.sectionLink,
-                  isActiveSection && styles["sectionLink-active"]
+                  styles["section-link"],
+                  isActiveSection && styles["section-link-active"]
                 )}
               >
                 {section.sidebarLabel}
               </Link>
 
               {isActiveSection ? (
-                <ul className={styles.subList}>
+                <ul className={styles["sub-list"]}>
                   {section.items.map((category) => (
                     <li key={category.id}>
                       <Link
                         to={getCategoryHref(section.id, category.id)}
                         className={clsx(
-                          styles.subLink,
-                          activeCategoryId === category.id && styles["subLink-active"]
+                          styles["sub-link"],
+                          activeCategoryId === category.id && styles["sub-link-active"]
                         )}
                       >
                         {category.title}

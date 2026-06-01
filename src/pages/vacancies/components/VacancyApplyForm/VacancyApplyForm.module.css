@@ -20,13 +20,13 @@
     color: #9f9f9f;
 }
 
-.dateWrap {
+.date-wrap {
     position: relative;
     display: block;
 }
 
-.dateWrap::after,
-.selectWrap::after {
+.date-wrap::after,
+.select-wrap::after {
     content: "";
     position: absolute;
     right: 14px;
@@ -39,17 +39,17 @@
     pointer-events: none;
 }
 
-.dateInput {
+.date-input {
     cursor: pointer;
     padding-right: 36px !important;
 }
 
-.selectWrap {
+.select-wrap {
     position: relative;
     display: block;
 }
 
-.selectWrap select {
+.select-wrap select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -66,7 +66,7 @@
     line-height: 1.2;
 }
 
-.policyCheckbox {
+.policy-checkbox {
     margin-top: 1px;
 }
 

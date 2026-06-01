@@ -10,7 +10,7 @@ const CatalogCategoryGrid = ({
 }) => {
   if (!items.length) {
     return (
-      <div className={styles.emptyState}>
+      <div className={styles["empty-state"]}>
         <p>За обраними фільтрами категорій поки немає.</p>
       </div>
     );
