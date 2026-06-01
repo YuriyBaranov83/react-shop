@@ -18,7 +18,8 @@
 
 .filterButton:hover {
     border-color: var(--first-color);
-    color: var(--first-color);
+    background: var(--first-color);
+    color: #fff;
 }
 
 .filterButton-active {
