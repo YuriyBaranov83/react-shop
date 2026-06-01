@@ -49,24 +49,36 @@
 }
 
 .footer-links a,
+.footer-links button,
 .footer-contacts a,
+.footer-contacts button,
 .footer-phone-link {
     color: var(--white-color);
     opacity: 0.9;
 }
 
 .footer-links a:hover,
+.footer-links button:not(:disabled):hover,
 .footer-contacts a:hover,
+.footer-contacts button:not(:disabled):hover,
 .footer-phone-link:hover {
     opacity: 1;
     color: var(--fourth-color);
 }
 
-.footer-links a[aria-disabled="true"],
-.footer-contacts a[aria-disabled="true"] {
+.footer-links button,
+.footer-contacts button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+}
+
+.footer-links button:disabled,
+.footer-contacts button:disabled {
     opacity: 0.6;
     cursor: default;
-    pointer-events: none;
 }
 
 .footer-phone-wrap {
@@ -118,7 +130,17 @@
     font-weight: 500;
 }
 
-.footer-contacts a>svg {
+.footer-contacts button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--normal-font-size);
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.footer-contacts a>svg,
+.footer-contacts button>svg {
     font-size: var(--normal-font-size);
     color: var(--fourth-color);
     flex-shrink: 0;
@@ -362,7 +384,8 @@
         font-size: 19px;
     }
 
-    .footer-contacts a>svg {
+    .footer-contacts a>svg,
+    .footer-contacts button>svg {
         font-size: 24px;
     }
 
@@ -404,7 +427,8 @@
         gap: 8px;
     }
 
-    .footer-links a {
+    .footer-links a,
+    .footer-links button {
         font-size: 14px;
     }
 

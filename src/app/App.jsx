@@ -1,5 +1,8 @@
-import { CartPage, CatalogPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage, ProductPage, VacanciesPage } from "@/pages";
+import { lazy, Suspense } from "react";
 import MainLayout from "@/components/layout/MainLayout";
+import HomePage from "@/pages/home";
+import CatalogPage from "@/pages/catalog";
+import ProductPage from "@/pages/product";
 import homeStyles from "@/pages/home/HomePage.module.css";
 import cartStyles from "@/pages/cart/CartPage.module.css";
 import catalogStyles from "@/pages/catalog/CatalogPage.module.css";
@@ -8,73 +11,81 @@ import favoritesStyles from "@/pages/favorites/FavoritesPage.module.css";
 import vacanciesStyles from "@/pages/vacancies/VacanciesPage.module.css";
 import { Route, Routes } from "react-router-dom";
 
+const CartPage = lazy(() => import("@/pages/cart"));
+const ContactsPage = lazy(() => import("@/pages/contacts"));
+const FavoritesPage = lazy(() => import("@/pages/favorites"));
+const VacanciesPage = lazy(() => import("@/pages/vacancies"));
+const NotFoundPage = lazy(() => import("@/pages/not-found"));
+
 function App() {
   return (
-    <Routes>
-      <Route element={<MainLayout mainClassName={homeStyles["home-page-main"]} mainId="home-page" />}>
-        <Route path="/" element={<HomePage />} />
-      </Route>
+    <Suspense fallback={<p aria-live="polite">Завантаження сторінки...</p>}>
+      <Routes>
+        <Route element={<MainLayout mainClassName={homeStyles["home-page-main"]} mainId="home-page" />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
 
-      <Route
-        element={
-          <MainLayout
-            mainClassName={contactsStyles["contacts-main"]}
-            mainId="contacts-page"
-          />
-        }
-      >
-        <Route path="/contacts" element={<ContactsPage />} />
-      </Route>
+        <Route
+          element={
+            <MainLayout
+              mainClassName={contactsStyles["contacts-main"]}
+              mainId="contacts-page"
+            />
+          }
+        >
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Route>
 
-      <Route
-        element={
-          <MainLayout
-            mainClassName={favoritesStyles["favorites-main"]}
-            mainId="favorites-page"
-          />
-        }
-      >
-        <Route path="/favorites" element={<FavoritesPage />} />
-      </Route>
+        <Route
+          element={
+            <MainLayout
+              mainClassName={favoritesStyles["favorites-main"]}
+              mainId="favorites-page"
+            />
+          }
+        >
+          <Route path="/favorites" element={<FavoritesPage />} />
+        </Route>
 
-      <Route
-        element={
-          <MainLayout
-            mainClassName={cartStyles["cart-main"]}
-            mainId="cart-page"
-          />
-        }
-      >
-        <Route path="/cart" element={<CartPage />} />
-      </Route>
+        <Route
+          element={
+            <MainLayout
+              mainClassName={cartStyles["cart-main"]}
+              mainId="cart-page"
+            />
+          }
+        >
+          <Route path="/cart" element={<CartPage />} />
+        </Route>
 
-      <Route
-        element={
-          <MainLayout
-            mainClassName={catalogStyles["catalog-main"]}
-            mainId="catalog-page"
-          />
-        }
-      >
-        <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/catalog/:sectionId" element={<CatalogPage />} />
-        <Route path="/product/:productId" element={<ProductPage />} />
-      </Route>
+        <Route
+          element={
+            <MainLayout
+              mainClassName={catalogStyles["catalog-main"]}
+              mainId="catalog-page"
+            />
+          }
+        >
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/catalog/:sectionId" element={<CatalogPage />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
+        </Route>
 
-      <Route
-        element={
-          <MainLayout
-            mainClassName={vacanciesStyles["vacancies-main"]}
-            mainId="vacancies-page"
-          />
-        }
-      >
-        <Route path="/vacancies" element={<VacanciesPage />} />
-      </Route>
+        <Route
+          element={
+            <MainLayout
+              mainClassName={vacanciesStyles["vacancies-main"]}
+              mainId="vacancies-page"
+            />
+          }
+        >
+          <Route path="/vacancies" element={<VacanciesPage />} />
+        </Route>
 
-      <Route path="/404" element={<NotFoundPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        <Route path="/404" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 }
 

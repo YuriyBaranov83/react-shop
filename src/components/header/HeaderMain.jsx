@@ -53,6 +53,7 @@ const HeaderMain = () => {
       searchCategoryResults,
       searchProductResults,
       searchQuery,
+      searchSubmitFeedback,
       searchWrapRef,
       toggleMobileSearch,
     },
@@ -94,7 +95,7 @@ const HeaderMain = () => {
             role="search"
             onSubmit={handleSearchSubmit}
           >
-            <IoSearch className={styles["search-icon"]} />
+            <IoSearch className={styles["search-icon"]} aria-hidden="true" />
             <button
               type="button"
               className={styles["search-toggle"]}
@@ -103,7 +104,7 @@ const HeaderMain = () => {
               aria-expanded={isMobileSearchOpen}
               aria-controls="header-search-input"
             >
-              <IoSearch />
+              <IoSearch aria-hidden="true" />
             </button>
             <input
               id="header-search-input"
@@ -127,6 +128,11 @@ const HeaderMain = () => {
                 onCategorySelect={handleSearchCategorySelect}
                 onShowAllResults={handleSearchShowAllResults}
               />
+            ) : null}
+            {searchSubmitFeedback ? (
+              <p className={styles["search-feedback"]} role="status" aria-live="polite">
+                {searchSubmitFeedback}
+              </p>
             ) : null}
           </form>
         </div>

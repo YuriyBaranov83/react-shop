@@ -16,6 +16,10 @@ const CatalogSearchDropdown = ({
 
   return (
     <div className={styles["search-dropdown"]} role="region" aria-label="Пошукові підказки">
+      <p className={styles["search-demo-note"]}>
+        Пошук працює в демо-режимі за товарами каталогу.
+      </p>
+
       {hasQuery && !canSearch ? (
         <p className={styles["search-note"]}>Введіть щонайменше 2 символи.</p>
       ) : null}

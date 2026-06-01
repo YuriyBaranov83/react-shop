@@ -8,9 +8,7 @@
   z-index: 10;
   padding-top: 10px;
 }
-.profile-popover-hover {
 
-}
 .profile-guest {
   border-radius: 12px;
   box-shadow: var(--box-shadow);
@@ -61,8 +59,9 @@
   border: 1px solid var(--first-color);
 }
 .profile-guest .profile-login-btn:hover {
-  background-color: ;
-} 
+  background-color: var(--first-color);
+  filter: brightness(0.92);
+}
 .profile-name {
   font-weight: 600;
 }

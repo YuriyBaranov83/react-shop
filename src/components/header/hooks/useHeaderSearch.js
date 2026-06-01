@@ -16,6 +16,7 @@ const useHeaderSearch = ({ closeCatalog, isCatalogOpen, isMobileCatalog }) => {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isDesktopSearchOpen, setIsDesktopSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchSubmitFeedback, setSearchSubmitFeedback] = useState("");
 
   const searchWrapRef = useRef(null);
   const mobileSearchInputRef = useRef(null);
@@ -92,15 +93,40 @@ const useHeaderSearch = ({ closeCatalog, isCatalogOpen, isMobileCatalog }) => {
     [closeCatalog, closeSearchDropdown, navigate]
   );
 
-  const handleSearchSubmit = useCallback((event) => {
-    event.preventDefault();
+  const handleSearchSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
 
-    navigateToSearchResults(searchQuery, "all");
-  }, [navigateToSearchResults, searchQuery]);
+      const queryValue = searchQuery.trim();
+
+      if (!queryValue) {
+        setSearchSubmitFeedback("Введіть запит для пошуку.");
+        if (!isMobileCatalog) {
+          setIsDesktopSearchOpen(true);
+        }
+        return;
+      }
+
+      if (queryValue.length < MIN_CATALOG_SEARCH_QUERY_LENGTH) {
+        setSearchSubmitFeedback(
+          `Пошук працює в демо-режимі. Введіть щонайменше ${MIN_CATALOG_SEARCH_QUERY_LENGTH} символи.`
+        );
+        if (!isMobileCatalog) {
+          setIsDesktopSearchOpen(true);
+        }
+        return;
+      }
+
+      setSearchSubmitFeedback("Пошук працює в демо-режимі за товарами каталогу.");
+      navigateToSearchResults(queryValue, "all");
+    },
+    [isMobileCatalog, navigateToSearchResults, searchQuery]
+  );
 
   const handleSearchInputChange = useCallback(
     (event) => {
       setSearchQuery(event.target.value);
+      setSearchSubmitFeedback("");
 
       if (!isMobileCatalog) {
         setIsDesktopSearchOpen(true);
@@ -138,6 +164,18 @@ const useHeaderSearch = ({ closeCatalog, isCatalogOpen, isMobileCatalog }) => {
   }, [navigateToSearchResults, searchQuery]);
 
   const isSearchDropdownVisible = isMobileCatalog ? isMobileSearchOpen : isDesktopSearchOpen;
+
+  useEffect(() => {
+    if (!searchSubmitFeedback) {
+      return undefined;
+    }
+
+    const timerId = window.setTimeout(() => {
+      setSearchSubmitFeedback("");
+    }, 4000);
+
+    return () => window.clearTimeout(timerId);
+  }, [searchSubmitFeedback]);
 
   useEffect(() => {
     if (!isMobileCatalog || !isMobileSearchOpen) {
@@ -183,6 +221,7 @@ const useHeaderSearch = ({ closeCatalog, isCatalogOpen, isMobileCatalog }) => {
     searchCategoryResults,
     searchProductResults,
     searchQuery,
+    searchSubmitFeedback,
     searchWrapRef,
     toggleMobileSearch,
   };

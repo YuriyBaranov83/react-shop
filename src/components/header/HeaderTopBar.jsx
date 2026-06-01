@@ -10,9 +10,9 @@ const HeaderTopBar = () => {
           <div className={styles["header-topbar-left"]}>
             Харчуйтеся різноманітно і накопичуйте <a href="/#delivery-payment">знижку</a> до 10%
           </div>
-          <button type="button" onClick={() => window.location.assign("/#delivery-payment")}>
+          <a href="/#delivery-payment" className={styles["header-topbar-cta"]}>
             Отримати знижку
-          </button>
+          </a>
         </div>
       </Container>
     </div>

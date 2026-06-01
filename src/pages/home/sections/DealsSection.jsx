@@ -43,14 +43,14 @@ const DealsSection = () => {
               <button
                 type="button"
                 className={clsx(styles["deals-nav"], "slider-nav-button", "deals-nav-prev")}
-                aria-label="РџРѕРїРµСЂРµРґРЅС– С‚РѕРІР°СЂРё"
+                aria-label="Попередні товари"
               >
                 <MdChevronLeft />
               </button>
               <button
                 type="button"
                 className={clsx(styles["deals-nav"], "slider-nav-button", "deals-nav-next")}
-                aria-label="РќР°СЃС‚СѓРїРЅС– С‚РѕРІР°СЂРё"
+                aria-label="Наступні товари"
               >
                 <MdChevronRight />
               </button>

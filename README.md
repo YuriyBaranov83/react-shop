@@ -1,16 +1,53 @@
-# React + Vite
+# Urbanfood / underfood
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pet-проєкт інтернет-магазину з фокусом на UI/UX, адаптивність та сценарії e-commerce без backend.
 
-Currently, two official plugins are available:
+## Демо
+- Netlify: https://react-shop-yuribaranov.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Стек
+- React 19
+- Vite
+- React Router DOM
+- CSS Modules
+- Swiper
+- React Icons
+- Context API (кошик, обране)
 
-## React Compiler
+## Реалізовані сторінки
+- `/` — головна
+- `/catalog` та `/catalog/:sectionId` — каталог
+- `/product/:productId` — сторінка товару (на мок-даних)
+- `/contacts` — контакти
+- `/favorites` — обране
+- `/cart` — кошик
+- `/vacancies` — вакансії
+- `/404` і `*` — сторінка 404
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Що працює в демо-режимі
+- Авторизація в модалці (без реальної SMS/API)
+- Пошук по локальних даних каталогу
+- Кошик, промокоди та бонуси на мок-логіці
 
-## Expanding the ESLint configuration
+## Локальний запуск
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Перевірка якості
+```bash
+npm run lint
+npm run build
+```
+
+## Продакшн-перевірка локально
+```bash
+npm run preview
+```
+
+## Відомі обмеження
+- Немає backend/API інтеграції.
+- Checkout не підключений до платіжного процесу.
+- Дані товарів і вакансій зберігаються у локальних data-файлах.
+- Частина UX-сценаріїв позначена як тимчасово недоступна або demo.

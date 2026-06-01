@@ -90,9 +90,9 @@ const Footer = () => {
                   {item.href ? (
                     <a href={item.href}>{item.label}</a>
                   ) : (
-                    <a aria-disabled="true" tabIndex={-1}>
+                    <button type="button" aria-disabled="true" disabled>
                       {item.label}
-                    </a>
+                    </button>
                   )}
                 </li>
               ))}
@@ -116,10 +116,10 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a aria-disabled="true" tabIndex={-1}>
+                <button type="button" aria-disabled="true" disabled>
                   <MdPublic aria-hidden="true" />
                   <span>Стежте за нами</span>
-                </a>
+                </button>
               </li>
               <li>
                 <a href="mailto:feedback@urbanfood.ua">

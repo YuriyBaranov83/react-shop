@@ -100,17 +100,16 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
               <ul className={styles["catalog-drawer-list"]}>
                 {catalogData.map((category) => (
                   <li key={category.id}>
-                    <Link
-                      to={category.href || "#"}
+                    <button
+                      type="button"
                       className={styles["catalog-drawer-item"]}
-                      onClick={(event) => {
-                        event.preventDefault();
+                      onClick={() => {
                         setActiveCategoryId(category.id);
                       }}
                     >
                       <span>{category.title}</span>
                       <IoChevronForwardOutline />
-                    </Link>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -173,11 +172,22 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                   {clubMenuItems.map((item) => (
                     <li key={item.id}>
                       {item.href ? (
-                        <a href={item.href}>{item.label}</a>
-                      ) : (
-                        <a aria-disabled="true" tabIndex={-1}>
+                        <a
+                          href={item.href}
+                          className={styles["catalog-drawer-club-link"]}
+                          onClick={onClose}
+                        >
                           {item.label}
                         </a>
+                      ) : (
+                        <button
+                          type="button"
+                          className={styles["catalog-drawer-club-link"]}
+                          aria-disabled="true"
+                          disabled
+                        >
+                          {item.label}
+                        </button>
                       )}
                     </li>
                   ))}
@@ -223,7 +233,8 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
                       <button
                         type="button"
                         className={styles["catalog-drawer-sub-item"]}
-                        onClick={onClose}
+                        aria-disabled="true"
+                        disabled
                       >
                         {item.label}
                       </button>

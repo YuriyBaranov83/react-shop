@@ -51,6 +51,7 @@ const useHeaderMainLogic = () => {
     searchCategoryResults,
     searchProductResults,
     searchQuery,
+    searchSubmitFeedback,
     searchWrapRef,
     toggleMobileSearch,
   } = searchState;
@@ -132,6 +133,7 @@ const useHeaderMainLogic = () => {
     searchCategoryResults,
     searchProductResults,
     searchQuery,
+    searchSubmitFeedback,
     searchWrapRef,
     toggleMobileSearch,
   };

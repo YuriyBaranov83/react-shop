@@ -31,6 +31,7 @@ const FavoritesPage = () => {
             type="button"
             role="tab"
             aria-selected="false"
+            aria-disabled="true"
             disabled
             className={styles["favorites-tab"]}
           >
@@ -40,6 +41,7 @@ const FavoritesPage = () => {
             type="button"
             role="tab"
             aria-selected="false"
+            aria-disabled="true"
             disabled
             className={styles["favorites-tab"]}
           >
@@ -49,11 +51,16 @@ const FavoritesPage = () => {
             type="button"
             role="tab"
             aria-selected="true"
+            aria-disabled="true"
+            disabled
             className={`${styles["favorites-tab"]} ${styles["favorites-tab-active"]}`.trim()}
           >
             Обране
           </button>
         </div>
+        <p className={styles["favorites-tabs-note"]}>
+          Розділи кабінету тимчасово недоступні, зараз працює лише список обраного.
+        </p>
 
         {visibleFavorites.length > 0 ? (
           <div className={styles["favorites-grid"]}>
@@ -110,8 +117,8 @@ const FavoritesPage = () => {
             <span className={styles["favorites-empty-icon"]} aria-hidden="true">
               <IoHeartOutline />
             </span>
-            <p>У вас поки немає товарів в обраному.</p>
-            <Link to="/">Перейти до покупок</Link>
+            <p>У вас поки немає товарів в обраному. Додайте позиції з каталогу.</p>
+            <Link to="/#supermarket">Продовжити покупки</Link>
           </div>
         )}
       </Container>

@@ -38,12 +38,25 @@
 
 .favorites-tab:disabled {
     cursor: not-allowed;
-    opacity: 0.9;
+    opacity: 1;
+    color: #8a8a8a;
 }
 
 .favorites-tab-active {
     color: var(--third-color);
     border-bottom-color: var(--first-color);
+}
+
+.favorites-tab-active:disabled {
+    color: var(--third-color);
+    border-bottom-color: var(--first-color);
+}
+
+.favorites-tabs-note {
+    margin-top: 8px;
+    color: #5c5c5c;
+    font-size: 13px;
+    line-height: 1.3;
 }
 
 .favorites-grid {

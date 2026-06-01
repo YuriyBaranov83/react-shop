@@ -245,6 +245,8 @@ const CartPage = () => {
                       ? styles["cart-summary-promo-feedback-error"]
                       : styles["cart-summary-promo-feedback-success"]
                   }`}
+                  role={promoFeedback.type === "error" ? "alert" : "status"}
+                  aria-live={promoFeedback.type === "error" ? "assertive" : "polite"}
                 >
                   {promoFeedback.text}
                 </p>
@@ -307,9 +309,21 @@ const CartPage = () => {
                 <strong>{formatPrice(payableAmount)}</strong>
               </div>
 
-              <button type="button" className={styles["cart-summary-submit"]}>
+              <button
+                type="button"
+                className={styles["cart-summary-submit"]}
+                disabled
+                aria-disabled="true"
+                aria-describedby="cart-checkout-unavailable"
+              >
                 Оформити замовлення
               </button>
+              <p
+                id="cart-checkout-unavailable"
+                className={styles["cart-summary-submit-note"]}
+              >
+                Оформлення замовлення тимчасово недоступне.
+              </p>
 
               <button
                 type="button"
@@ -322,8 +336,8 @@ const CartPage = () => {
           </div>
         ) : (
           <div className={styles["cart-empty"]}>
-            <p>Ваш кошик порожній. Додайте товари з розділу акцій.</p>
-            <Link to="/">Перейти до акцій</Link>
+            <p>Ваш кошик порожній. Додайте товари, щоб продовжити покупки.</p>
+            <Link to="/#supermarket">Продовжити покупки</Link>
           </div>
         )}
       </Container>
