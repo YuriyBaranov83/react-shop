@@ -100,14 +100,17 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
               <ul className={styles["catalog-drawer-list"]}>
                 {catalogData.map((category) => (
                   <li key={category.id}>
-                    <button
-                      type="button"
+                    <Link
+                      to={category.href || "#"}
                       className={styles["catalog-drawer-item"]}
-                      onClick={() => setActiveCategoryId(category.id)}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setActiveCategoryId(category.id);
+                      }}
                     >
                       <span>{category.title}</span>
                       <IoChevronForwardOutline />
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -206,15 +209,25 @@ const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
               </div>
 
               <ul className={styles["catalog-drawer-sub-list"]}>
-                {activeCategory.items.map((name) => (
-                  <li key={name}>
-                    <button
-                      type="button"
-                      className={styles["catalog-drawer-sub-item"]}
-                      onClick={onClose}
-                    >
-                      {name}
-                    </button>
+                {activeCategory.items.map((item) => (
+                  <li key={item.id || item.label}>
+                    {item.href ? (
+                      <Link
+                        to={item.href}
+                        className={styles["catalog-drawer-sub-item"]}
+                        onClick={onClose}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        className={styles["catalog-drawer-sub-item"]}
+                        onClick={onClose}
+                      >
+                        {item.label}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>

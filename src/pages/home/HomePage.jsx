@@ -2,6 +2,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import CategoryTilesSection from "@/components/ui/CategoryTilesSection";
+import { buildCatalogSectionHref } from "@/data/catalogRouting";
 import {
   homeCulinaryTiles,
   homeFrozenTiles,
@@ -24,6 +25,7 @@ const HomePage = () => {
         sectionId="supermarket"
         title="СУПЕРМАРКЕТ"
         items={homeSupermarketTiles}
+        linkHref={buildCatalogSectionHref("supermarket")}
         className={sectionStyles["supermarket-section"]}
       />
 
@@ -31,6 +33,7 @@ const HomePage = () => {
         sectionId="culinary"
         title="КУЛІНАРІЯ"
         items={homeCulinaryTiles}
+        linkHref={buildCatalogSectionHref("culinary")}
         className={sectionStyles["culinary-section"]}
       />
 
@@ -38,6 +41,7 @@ const HomePage = () => {
         sectionId="frozen"
         title="ЗАМОРОЗКА"
         items={homeFrozenTiles}
+        linkHref={buildCatalogSectionHref("frozen")}
         className={sectionStyles["frozen-section"]}
       />
 
@@ -45,6 +49,7 @@ const HomePage = () => {
         sectionId="other"
         title="ІНШЕ"
         items={homeOtherTiles}
+        linkHref={buildCatalogSectionHref("other")}
         className={sectionStyles["other-section"]}
       />
 

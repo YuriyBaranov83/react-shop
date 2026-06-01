@@ -1,7 +1,8 @@
-import { CartPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage, VacanciesPage } from "@/pages";
+import { CartPage, CatalogPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage, VacanciesPage } from "@/pages";
 import MainLayout from "@/components/layout/MainLayout";
 import homeStyles from "@/pages/home/HomePage.module.css";
 import cartStyles from "@/pages/cart/CartPage.module.css";
+import catalogStyles from "@/pages/catalog/CatalogPage.module.css";
 import contactsStyles from "@/pages/contacts/ContactsPage.module.css";
 import favoritesStyles from "@/pages/favorites/FavoritesPage.module.css";
 import vacanciesStyles from "@/pages/vacancies/VacanciesPage.module.css";
@@ -45,6 +46,18 @@ function App() {
         }
       >
         <Route path="/cart" element={<CartPage />} />
+      </Route>
+
+      <Route
+        element={
+          <MainLayout
+            mainClassName={catalogStyles["catalog-main"]}
+            mainId="catalog-page"
+          />
+        }
+      >
+        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/catalog/:sectionId" element={<CatalogPage />} />
       </Route>
 
       <Route

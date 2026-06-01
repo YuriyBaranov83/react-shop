@@ -1,0 +1,28 @@
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filterButton {
+    min-height: 34px;
+    border-radius: 999px;
+    border: 1px solid rgb(84 8 99 / 20%);
+    padding: 0 14px;
+    color: #4f4f4f;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 500;
+}
+
+.filterButton:hover {
+    border-color: var(--first-color);
+    color: var(--first-color);
+}
+
+.filterButton-active {
+    border-color: var(--first-color);
+    background: var(--first-color);
+    color: #fff;
+}

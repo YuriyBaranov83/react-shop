@@ -1,0 +1,125 @@
+.catalog-main {
+    padding: clamp(20px, 2.2vw, 34px) 0 66px;
+    background: #f5f5f7;
+}
+
+.section {
+    position: relative;
+}
+
+.breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #8f8f8f;
+    font-size: 12px;
+    line-height: 1.2;
+}
+
+.breadcrumbs a {
+    color: inherit;
+}
+
+.breadcrumbs a:hover {
+    color: var(--first-color);
+}
+
+.header {
+    margin-top: 10px;
+}
+
+.header h1 {
+    color: #171717;
+    font-size: clamp(32px, 2.35vw, 40px);
+    line-height: 1.05;
+    font-weight: 700;
+}
+
+.header p {
+    margin-top: 8px;
+    color: #4f4f4f;
+    font-size: clamp(14px, 1vw, 16px);
+    line-height: 1.35;
+}
+
+.sectionTabs {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.sectionTab {
+    min-height: 36px;
+    border-radius: 999px;
+    border: 1px solid rgb(84 8 99 / 20%);
+    padding: 0 14px;
+    display: inline-flex;
+    align-items: center;
+    color: #494949;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 600;
+    background: #fff;
+}
+
+.sectionTab:hover {
+    border-color: var(--first-color);
+    color: var(--first-color);
+}
+
+.sectionTab-active {
+    border-color: var(--first-color);
+    background: #fdf1f7;
+    color: var(--third-color);
+}
+
+.layout {
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: minmax(240px, 290px) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+}
+
+.content {
+    min-width: 0;
+    border-radius: 14px;
+    border: 1px solid rgb(84 8 99 / 10%);
+    background: #fff;
+    padding: 14px;
+    display: grid;
+    gap: 12px;
+}
+
+@media (max-width: 980px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .catalog-main {
+        padding: 14px 0 44px;
+    }
+
+    .sectionTabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+    }
+
+    .sectionTabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .header h1 {
+        font-size: clamp(26px, 8vw, 34px);
+    }
+
+    .content {
+        padding: 10px;
+        border-radius: 12px;
+    }
+}

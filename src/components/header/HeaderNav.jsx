@@ -1,4 +1,5 @@
-﻿import clsx from "clsx";
+import clsx from "clsx";
+import { Link } from "react-router-dom";
 import {
   MdAcUnit,
   MdCategory,
@@ -12,10 +13,30 @@ import Container from "../layout/Container";
 import styles from "./header.module.css";
 
 const navItems = [
-  { id: "supermarket", label: "Супермаркет", Icon: MdLocalGroceryStore, href: "/#supermarket" },
-  { id: "culinary", label: "Кулінарія", Icon: MdLocalPizza, href: "/#culinary" },
-  { id: "frozen", label: "Заморозка", Icon: MdAcUnit, href: "/#frozen" },
-  { id: "other", label: "Інше", Icon: MdCategory, href: "/#other" },
+  {
+    id: "supermarket",
+    label: "Супермаркет",
+    Icon: MdLocalGroceryStore,
+    href: "/#supermarket",
+  },
+  {
+    id: "culinary",
+    label: "Кулінарія",
+    Icon: MdLocalPizza,
+    href: "/#culinary",
+  },
+  {
+    id: "frozen",
+    label: "Заморозка",
+    Icon: MdAcUnit,
+    href: "/#frozen",
+  },
+  {
+    id: "other",
+    label: "Інше",
+    Icon: MdCategory,
+    href: "/#other",
+  },
   {
     id: "promotions",
     label: "Акції",
@@ -50,10 +71,10 @@ const HeaderNav = () => {
 
             return (
               <li key={item.id} className={styles["header-nav-item"]}>
-                <a href={item.href} className={linkClassName}>
+                <Link to={item.href} className={linkClassName}>
                   <item.Icon aria-hidden="true" />
                   <span>{item.label}</span>
-                </a>
+                </Link>
               </li>
             );
           })}

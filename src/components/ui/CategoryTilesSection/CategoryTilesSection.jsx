@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 import Container from "@/components/layout/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -14,6 +15,9 @@ const CategoryTilesSection = ({
 }) => {
   const sectionLinkHref = linkHref ?? (sectionId ? `/#${sectionId}` : null);
 
+  const isRouteLink = (href) =>
+    typeof href === "string" && href.startsWith("/") && !href.startsWith("/#");
+
   return (
     <section id={sectionId} className={clsx(styles.section, className)}>
       <Container>
@@ -27,10 +31,17 @@ const CategoryTilesSection = ({
         <div className={styles.grid}>
           {items.map((item) =>
             item.href ? (
-              <a key={item.id} href={item.href} className={styles.card}>
-                <span className={styles.title}>{item.title}</span>
-                <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
-              </a>
+              isRouteLink(item.href) ? (
+                <Link key={item.id} to={item.href} className={styles.card}>
+                  <span className={styles.title}>{item.title}</span>
+                  <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+                </Link>
+              ) : (
+                <a key={item.id} href={item.href} className={styles.card}>
+                  <span className={styles.title}>{item.title}</span>
+                  <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+                </a>
+              )
             ) : (
               <div key={item.id} className={styles.card} aria-disabled="true">
                 <span className={styles.title}>{item.title}</span>
