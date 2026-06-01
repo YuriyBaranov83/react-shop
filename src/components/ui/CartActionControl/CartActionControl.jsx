@@ -1,4 +1,4 @@
-import clsx from "clsx";
+﻿import clsx from "clsx";
 import { useState } from "react";
 import styles from "./CartActionControl.module.css";
 
@@ -7,6 +7,7 @@ const CartActionControl = ({
   label = "В кошик",
   quantity,
   initialQuantity = 0,
+  tone = "default",
   onAdd,
   onDecrease,
   onIncrease,
@@ -79,7 +80,12 @@ const CartActionControl = ({
   if (currentQuantity > 0) {
     return (
       <div className={clsx(styles["cart-action"], className)}>
-        <div className={styles.counter}>
+        <div
+          className={clsx(
+            styles.counter,
+            tone === "filled" && styles["counter-filled"]
+          )}
+        >
           <button type="button" aria-label={ariaLabelDecrease} onClick={decreaseCount}>
             -
           </button>
@@ -94,7 +100,15 @@ const CartActionControl = ({
 
   return (
     <div className={clsx(styles["cart-action"], className)}>
-      <button type="button" className={styles["action-button"]} onClick={addToCart} aria-label={ariaLabelAdd}>
+      <button
+        type="button"
+        className={clsx(
+          styles["action-button"],
+          tone === "filled" && styles["action-button-filled"]
+        )}
+        onClick={addToCart}
+        aria-label={ariaLabelAdd}
+      >
         {label}
       </button>
     </div>

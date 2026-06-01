@@ -1,4 +1,4 @@
-import { CartPage, CatalogPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage, VacanciesPage } from "@/pages";
+import { CartPage, CatalogPage, ContactsPage, FavoritesPage, HomePage, NotFoundPage, ProductPage, VacanciesPage } from "@/pages";
 import MainLayout from "@/components/layout/MainLayout";
 import homeStyles from "@/pages/home/HomePage.module.css";
 import cartStyles from "@/pages/cart/CartPage.module.css";
@@ -58,6 +58,7 @@ function App() {
       >
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/catalog/:sectionId" element={<CatalogPage />} />
+        <Route path="/product/:productId" element={<ProductPage />} />
       </Route>
 
       <Route

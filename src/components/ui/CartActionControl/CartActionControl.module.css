@@ -16,11 +16,23 @@
     transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
 }
 
+.action-button-filled {
+    border-color: var(--first-color);
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
 .action-button:hover {
     background: var(--first-color);
     border-color: var(--first-color);
     color: var(--white-color);
     transform: translateY(-1px);
+}
+
+.action-button-filled:hover {
+    border-color: var(--third-color);
+    background: var(--third-color);
+    color: var(--white-color);
 }
 
 .counter {
@@ -39,6 +51,12 @@
     font-weight: 600;
 }
 
+.counter-filled {
+    border-color: var(--first-color);
+    background: var(--fourth-color);
+    color: var(--third-color);
+}
+
 .counter button {
     width: var(--cart-action-button-size);
     height: var(--cart-action-button-size);
@@ -53,6 +71,15 @@
 }
 
 .counter button:hover {
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.counter-filled button {
+    color: var(--first-color);
+}
+
+.counter-filled button:hover {
     background: var(--first-color);
     color: var(--white-color);
 }
