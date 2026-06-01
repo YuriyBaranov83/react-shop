@@ -7,6 +7,7 @@ import { IoSearch, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import { FaHeart, FaUser, FaBasketShopping } from "react-icons/fa6";
 
 import CatalogDropdown from "./CatalogDropdown";
+import CatalogSearchDropdown from "./CatalogSearchDropdown";
 import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
@@ -37,10 +38,21 @@ const HeaderMain = () => {
       profileWrapRef,
     },
     search: {
+      handleSearchCategorySelect,
+      handleSearchInputChange,
+      handleSearchInputFocus,
+      handleSearchProductSelect,
+      handleSearchShowAllResults,
       handleSearchSubmit,
+      isSearchDropdownVisible,
       isMobileSearchOpen,
+      minSearchQueryLength,
       mobileSearchInputRef,
       openMobileSearchFromDrawer,
+      popularProducts,
+      searchCategoryResults,
+      searchProductResults,
+      searchQuery,
       searchWrapRef,
       toggleMobileSearch,
     },
@@ -98,9 +110,24 @@ const HeaderMain = () => {
               ref={mobileSearchInputRef}
               type="search"
               name="search"
+              value={searchQuery}
               placeholder="Почати пошук"
               autoComplete="off"
+              onFocus={handleSearchInputFocus}
+              onChange={handleSearchInputChange}
             />
+            {isSearchDropdownVisible ? (
+              <CatalogSearchDropdown
+                query={searchQuery}
+                minLength={minSearchQueryLength}
+                popularProducts={popularProducts}
+                productResults={searchProductResults}
+                categoryResults={searchCategoryResults}
+                onProductSelect={handleSearchProductSelect}
+                onCategorySelect={handleSearchCategorySelect}
+                onShowAllResults={handleSearchShowAllResults}
+              />
+            ) : null}
           </form>
         </div>
 

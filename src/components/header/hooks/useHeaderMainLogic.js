@@ -34,11 +34,23 @@ const useHeaderMainLogic = () => {
     isMobileCatalog,
   });
   const {
+    closeSearchDropdown,
+    handleSearchCategorySelect,
+    handleSearchInputChange,
+    handleSearchInputFocus,
+    handleSearchProductSelect,
+    handleSearchShowAllResults,
     closeMobileSearch,
     handleSearchSubmit,
+    isSearchDropdownVisible,
     isMobileSearchOpen,
+    minSearchQueryLength,
     mobileSearchInputRef,
     openMobileSearchFromDrawer,
+    popularProducts,
+    searchCategoryResults,
+    searchProductResults,
+    searchQuery,
     searchWrapRef,
     toggleMobileSearch,
   } = searchState;
@@ -68,22 +80,22 @@ const useHeaderMainLogic = () => {
     const handleChange = (event) => {
       setIsMobileCatalog(event.matches);
       closeCatalog();
-      closeMobileSearch();
+      closeSearchDropdown();
     };
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [closeCatalog, closeMobileSearch]);
+  }, [closeCatalog, closeSearchDropdown]);
 
   const closeOverlaysOnEscape = useCallback(() => {
     closeCatalog();
     closeProfile();
     closeAuth();
-    closeMobileSearch();
-  }, [closeAuth, closeCatalog, closeMobileSearch, closeProfile]);
+    closeSearchDropdown();
+  }, [closeAuth, closeCatalog, closeProfile, closeSearchDropdown]);
 
   useEscapeKey(closeOverlaysOnEscape, {
-    enabled: isCatalogOpen || isProfileOpen || isAuthOpen || isMobileSearchOpen,
+    enabled: isCatalogOpen || isProfileOpen || isAuthOpen || isSearchDropdownVisible,
   });
 
   const toggleCatalog = useCallback(() => {
@@ -105,10 +117,21 @@ const useHeaderMainLogic = () => {
   };
 
   const search = {
+    handleSearchCategorySelect,
+    handleSearchInputChange,
+    handleSearchInputFocus,
+    handleSearchProductSelect,
+    handleSearchShowAllResults,
     handleSearchSubmit,
+    isSearchDropdownVisible,
     isMobileSearchOpen,
+    minSearchQueryLength,
     mobileSearchInputRef,
     openMobileSearchFromDrawer,
+    popularProducts,
+    searchCategoryResults,
+    searchProductResults,
+    searchQuery,
     searchWrapRef,
     toggleMobileSearch,
   };

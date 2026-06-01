@@ -1,0 +1,96 @@
+.search-block {
+    display: grid;
+    gap: 8px;
+}
+
+.search-form {
+    position: relative;
+}
+
+.search-form input {
+    width: 100%;
+    min-height: 40px;
+    border-radius: 12px;
+    border: 1px solid rgb(84 8 99 / 20%);
+    background: var(--white-color);
+    padding: 0 42px 0 38px;
+    color: var(--third-color);
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.search-form input::placeholder {
+    color: rgb(84 8 99 / 46%);
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: rgb(84 8 99 / 56%);
+}
+
+.clear-button {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(84 8 99 / 54%);
+}
+
+.clear-button > svg {
+    font-size: 22px;
+}
+
+.clear-button:hover {
+    background: rgb(84 8 99 / 8%);
+    color: var(--first-color);
+}
+
+.scope-switch {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.scope-button {
+    min-height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgb(84 8 99 / 20%);
+    padding: 0 12px;
+    color: #4f4f4f;
+    background: var(--white-color);
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 500;
+}
+
+.scope-button:hover {
+    border-color: var(--first-color);
+    color: var(--first-color);
+}
+
+.scope-button-active {
+    border-color: var(--first-color);
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.scope-button-active:hover {
+    color: var(--white-color);
+}
+
+.search-form input:focus-visible,
+.clear-button:focus-visible,
+.scope-button:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}
