@@ -21,6 +21,7 @@ const HeaderMain = () => {
   const { cartCount } = useCart();
   const { favoritesCount } = useFavorites();
   const hasFavorites = favoritesCount > 0;
+  const hasCartItems = cartCount > 0;
 
   const {
     catalog: { catalogWrapRef, closeCatalog, isCatalogOpen, isMobileCatalog, toggleCatalog },
@@ -141,11 +142,14 @@ const HeaderMain = () => {
           <button
             type="button"
             className={clsx(styles.favorite, hasFavorites && styles["favorite-active"])}
-            aria-label="Обране"
+            aria-label={hasFavorites ? `Обране, ${favoritesCount} товарів` : "Обране"}
             aria-pressed={hasFavorites}
             onClick={() => navigate("/favorites")}
           >
-            <FaHeart />
+            <FaHeart aria-hidden="true" />
+            {hasFavorites ? (
+              <span className={styles["header-action-badge"]}>{favoritesCount}</span>
+            ) : null}
           </button>
 
           <div
@@ -177,13 +181,14 @@ const HeaderMain = () => {
           <button
             type="button"
             className={styles.basket}
-            aria-label="Кошик"
+            aria-label={hasCartItems ? `Кошик, ${cartCount} товарів` : "Кошик"}
             onClick={() => navigate("/cart")}
           >
-            <FaBasketShopping />
-            <span className={styles["basket-text"]}>
-              {cartCount > 0 ? `Кошик (${cartCount})` : "Кошик"}
-            </span>
+            <FaBasketShopping aria-hidden="true" />
+            {hasCartItems ? (
+              <span className={styles["header-action-badge"]}>{cartCount}</span>
+            ) : null}
+            <span className={styles["basket-text"]}>Кошик</span>
           </button>
         </div>
       </Container>
