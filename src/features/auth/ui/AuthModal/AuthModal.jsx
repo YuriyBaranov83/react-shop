@@ -1,6 +1,7 @@
 ﻿import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import clsx from "clsx";
+import Modal from "@/components/ui/Modal/Modal";
+import Button from "@/components/ui/Button/Button";
 import RoundCheckbox from "@/components/ui/RoundCheckbox";
 import styles from "./AuthModal.module.css";
 
@@ -32,20 +33,9 @@ const formatPhoneForDisplay = (value = "") => {
   return value.trim() || "+38 ...";
 };
 
-const getFocusableElements = (container) => {
-  if (!container) {
-    return [];
-  }
-
-  return Array.from(
-    container.querySelectorAll(
-      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )
-  );
-};
-
 const AuthModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState("start"); // "start" | "phone" | "otp"
+  const [otpError, setOtpError] = useState("");
   const [phone, setPhone] = useState("");
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
   const [isPolicyAccepted, setIsPolicyAccepted] = useState(false);
@@ -67,62 +57,11 @@ const AuthModal = ({ isOpen, onClose }) => {
   );
   const titleId = `${checkboxIdBase}-title-${step}`;
 
-  const dialogRef = useRef(null);
   const otpRefs = useRef([]);
-  const lastActiveElementRef = useRef(null);
 
   const handleClose = useCallback(() => {
     onClose?.();
   }, [onClose]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      return undefined;
-    }
-
-    lastActiveElementRef.current =
-      document.activeElement instanceof HTMLElement ? document.activeElement : null;
-
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        handleClose();
-        return;
-      }
-
-      if (event.key !== "Tab") {
-        return;
-      }
-
-      const focusable = getFocusableElements(dialogRef.current);
-
-      if (!focusable.length) {
-        event.preventDefault();
-        return;
-      }
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const isShiftPressed = event.shiftKey;
-
-      if (isShiftPressed && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      }
-
-      if (!isShiftPressed && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      lastActiveElementRef.current?.focus?.();
-    };
-  }, [handleClose, isOpen]);
 
   useEffect(() => {
     if (isOpen && step === "otp") {
@@ -138,22 +77,7 @@ const AuthModal = ({ isOpen, onClose }) => {
       ? "Введіть коректний номер телефону у форматі +380XXXXXXXXX."
       : "";
 
-  const agreementsError =
-    isPhoneStepTouched && (!isTermsAccepted || !isPolicyAccepted)
-      ? "Підтвердіть обидві згоди, щоб продовжити."
-      : "";
-
   const isPhoneStepReady = isPhoneValid && isTermsAccepted && isPolicyAccepted;
-
-  const handleBackdropMouseDown = (event) => {
-    if (!dialogRef.current) {
-      return;
-    }
-
-    if (event.target === event.currentTarget) {
-      handleClose();
-    }
-  };
 
   const handleOtpChange = (index, value) => {
     const digit = value.replace(/\D/g, "").slice(-1);
@@ -234,14 +158,8 @@ const AuthModal = ({ isOpen, onClose }) => {
   }
 
   return (
-    <div className={styles["auth-backdrop"]} onMouseDown={handleBackdropMouseDown}>
-      <div
-        className={styles["auth-dialog"]}
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-      >
+    <Modal onClose={handleClose} labelledBy={titleId}
+      overlayClassName={styles["auth-backdrop"]} className={styles["auth-dialog"]}>
         <button
           type="button"
           className={styles["auth-close"]}
@@ -253,38 +171,42 @@ const AuthModal = ({ isOpen, onClose }) => {
 
         {step === "start" && (
           <div className={styles["auth-step"]}>
-            <div id={titleId} className={styles["auth-title"]}>
+            <h2 id={titleId} className={styles["auth-title"]}>
               Вітаємо!
-            </div>
+            </h2>
             <p className={styles["auth-demo-note"]}>{DEMO_AUTH_MESSAGE}</p>
 
             <ul className={styles["auth-benefits"]}>
-              <li className={styles["auth-benefit"]}>Отримуйте персональні пропозиції</li>
-              <li className={styles["auth-benefit"]}>Зберігайте улюблені товари та адреси</li>
-              <li className={styles["auth-benefit"]}>Відстежуйте бонуси та знижки</li>
+              <li className={styles["auth-benefit"]}>Переглядайте каталог і пропозиції</li>
+              <li className={styles["auth-benefit"]}>Зберігайте товари в обраному</li>
+              <li className={styles["auth-benefit"]}>Знайомтеся з умовами доставки</li>
             </ul>
 
-            <button
+            <Button
               type="button"
-              className={clsx("btn__primary", styles["auth-primary-btn"])}
+              className={styles["auth-primary-btn"]}
               onClick={() => {
                 setIsPhoneStepTouched(false);
                 setStep("phone");
               }}
             >
               Увійти за номером телефону
-            </button>
+            </Button>
           </div>
         )}
 
         {step === "phone" && (
           <form className={styles["auth-step"]} onSubmit={handlePhoneSubmit} noValidate>
-            <div id={titleId} className={styles["auth-title"]}>
+            <h2 id={titleId} className={styles["auth-title"]}>
               Введіть номер телефону
-            </div>
+            </h2>
             <p className={styles["auth-demo-note"]}>{DEMO_AUTH_MESSAGE}</p>
 
+            <label htmlFor={`${checkboxIdBase}-phone`}>Номер телефону</label>
             <input
+              id={`${checkboxIdBase}-phone`}
+              type="tel"
+              autoComplete="tel"
               className={styles["auth-input"]}
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
@@ -296,15 +218,13 @@ const AuthModal = ({ isOpen, onClose }) => {
               aria-describedby={phoneError ? `${checkboxIdBase}-phone-error` : undefined}
             />
 
-            {phoneError ? (
               <p
                 id={`${checkboxIdBase}-phone-error`}
                 className={styles["auth-error"]}
-                role="alert"
+                aria-live="polite"
               >
-                {phoneError}
+                {phoneError || "\u00a0"}
               </p>
-            ) : null}
 
             <label className={styles["auth-check"]} htmlFor={termsCheckboxId}>
               <RoundCheckbox
@@ -330,19 +250,18 @@ const AuthModal = ({ isOpen, onClose }) => {
               <span>Я даю згоду на обробку персональних даних</span>
             </label>
 
-            {agreementsError ? (
-              <p className={styles["auth-error"]} role="alert">
-                {agreementsError}
-              </p>
-            ) : null}
+            <p id={`${checkboxIdBase}-agreements-hint`} className={styles["auth-demo-note"]}>
+              Позначте обидва пункти, щоб продовжити демонстрацію.
+            </p>
 
-            <button
+            <Button
               type="submit"
-              className={clsx("btn__primary", styles["auth-primary-btn"])}
+              className={styles["auth-primary-btn"]}
               disabled={!isPhoneStepReady}
+              aria-describedby={`${checkboxIdBase}-agreements-hint`}
             >
               Отримати код (демо)
-            </button>
+            </Button>
           </form>
         )}
 
@@ -356,17 +275,22 @@ const AuthModal = ({ isOpen, onClose }) => {
                 return;
               }
 
-              handleClose();
+              if (otpValue !== "1234") {
+                setOtpError("Введіть демо-код 1234.");
+                return;
+              }
+              setStep("done");
             }}
           >
-            <div id={titleId} className={styles["auth-title"]}>
+            <h2 id={titleId} className={styles["auth-title"]}>
               Введіть код
-            </div>
+            </h2>
             <p className={styles["auth-demo-note"]}>{DEMO_AUTH_MESSAGE}</p>
             <div className={styles["auth-subtitle"]}>
-              Ми показуємо демо-код для номера <b>{formatPhoneForDisplay(phone)}</b>
+              Демо-код: <b>1234</b>. Номер: <b>{formatPhoneForDisplay(phone)}</b>
             </div>
 
+            {otpError && <p className={styles["auth-error"]} role="alert">{otpError}</p>}
             <div className={styles["auth-otp"]} onPaste={handleOtpPaste}>
               {otpFieldIds.map((fieldId, index) => (
                 <input
@@ -377,7 +301,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                   }}
                   className={styles["auth-otp-input"]}
                   value={otp[index]}
-                  onChange={(event) => handleOtpChange(index, event.target.value)}
+                  onChange={(event) => { setOtpError(""); handleOtpChange(index, event.target.value); }}
                   onKeyDown={(event) => handleOtpKeyDown(index, event)}
                   inputMode="numeric"
                   autoComplete="one-time-code"
@@ -386,17 +310,21 @@ const AuthModal = ({ isOpen, onClose }) => {
               ))}
             </div>
 
-            <button
+            <Button
               type="submit"
-              className={clsx("btn__primary", styles["auth-primary-btn"])}
+              className={styles["auth-primary-btn"]}
               disabled={otpValue.length !== OTP_LENGTH}
             >
               Підтвердити у демо-режимі
-            </button>
+            </Button>
           </form>
         )}
-      </div>
-    </div>
+        {step === "done" && <div className={styles["auth-step"]}>
+          <h2 id={titleId} className={styles["auth-title"]}>Демонстрацію завершено</h2>
+          <p role="status">Код перевірено локально. Обліковий запис не створено, дані не надсилаються та не зберігаються.</p>
+          <Button autoFocus onClick={handleClose}>Повернутися до покупок</Button>
+        </div>}
+    </Modal>
   );
 };
 

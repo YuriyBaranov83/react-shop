@@ -142,21 +142,19 @@ const useHeaderSearch = ({ closeCatalog, isCatalogOpen, isMobileCatalog }) => {
   }, [isMobileCatalog]);
 
   const handleSearchProductSelect = useCallback(
-    (productId) => {
-      navigate(`/product/${productId}`);
+    () => {
       closeCatalog();
       closeSearchDropdown();
     },
-    [closeCatalog, closeSearchDropdown, navigate]
+    [closeCatalog, closeSearchDropdown]
   );
 
   const handleSearchCategorySelect = useCallback(
-    (categoryHref) => {
-      navigate(categoryHref);
+    () => {
       closeCatalog();
       closeSearchDropdown();
     },
-    [closeCatalog, closeSearchDropdown, navigate]
+    [closeCatalog, closeSearchDropdown]
   );
 
   const handleSearchShowAllResults = useCallback(() => {

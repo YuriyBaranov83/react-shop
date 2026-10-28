@@ -1,41 +1,22 @@
 import clsx from "clsx";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { A11y, Navigation, Pagination } from "swiper/modules";
+import useMediaQuery from "@/components/header/hooks/useMediaQuery";
+import { sliderA11y } from "@/data/sliderA11y";
 
 import Container from "@/components/layout/Container";
 import { homeHeroBanners, homeHeroSlides } from "@/data/homeHeroData";
 import styles from "./HeroSection.module.css";
 
 const HeroSection = () => {
-  const lcpSlideImage = homeHeroSlides[0]?.image;
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-
-  useEffect(() => {
-    if (!lcpSlideImage) return;
-
-    let preloadLink = document.querySelector('link[data-hero-lcp-preload="true"]');
-
-    if (!preloadLink) {
-      preloadLink = document.createElement("link");
-      preloadLink.setAttribute("data-hero-lcp-preload", "true");
-      preloadLink.rel = "preload";
-      preloadLink.as = "image";
-      preloadLink.media = "(max-width: 900px)";
-      preloadLink.setAttribute("fetchpriority", "high");
-      preloadLink.href = lcpSlideImage;
-      document.head.appendChild(preloadLink);
-      return;
-    }
-
-    preloadLink.href = lcpSlideImage;
-  }, [lcpSlideImage]);
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
   return (
     <section className={styles.hero}>
       <Container>
+        <h1 className="visually-hidden">Urbanfood — онлайн-супермаркет</h1>
         <div className={styles["hero-grid"]}>
           <div className={styles["hero-slider-wrap"]}>
             <button
@@ -48,18 +29,19 @@ const HeroSection = () => {
               )}
               aria-label="Попередній слайд"
             >
-              <MdChevronLeft />
+              <MdChevronLeft aria-hidden="true" />
             </button>
 
             <Swiper
-              modules={[Navigation, Pagination]}
+              modules={[A11y, Navigation, Pagination]}
+              a11y={sliderA11y}
               slidesPerView={1}
               loop={false}
               autoplay={false}
               observer
               observeParents
               resizeObserver
-              speed={650}
+              speed={reducedMotion ? 0 : 650}
               navigation={{
                 prevEl: ".hero-nav-prev",
                 nextEl: ".hero-nav-next",
@@ -68,8 +50,6 @@ const HeroSection = () => {
                 el: ".hero-pagination",
                 clickable: true,
               }}
-              onInit={(swiper) => setActiveSlideIndex(swiper.realIndex)}
-              onSlideChange={(swiper) => setActiveSlideIndex(swiper.realIndex)}
               className={styles["hero-swiper"]}
             >
               {homeHeroSlides.map((slide, index) => (
@@ -77,7 +57,7 @@ const HeroSection = () => {
                   <article className={styles["hero-slide"]}>
                     <img
                       src={slide.image}
-                      alt={slide.title}
+                      alt=""
                       loading={index === 0 ? "eager" : "lazy"}
                       fetchPriority={index === 0 ? "high" : "auto"}
                       decoding="async"
@@ -85,12 +65,8 @@ const HeroSection = () => {
                     <span className={styles["hero-slide-overlay"]} aria-hidden="true" />
 
                     <div className={styles["hero-slide-content"]}>
-                      {index === activeSlideIndex ? (
-                        <h1 className={styles["hero-slide-title"]}>{slide.title}</h1>
-                      ) : (
-                        <p className={styles["hero-slide-title"]}>{slide.title}</p>
-                      )}
-                      <a href={slide.href}>{slide.buttonText}</a>
+                      <h2 className={styles["hero-slide-title"]}>{slide.title}</h2>
+                      <Link to={slide.href}>{slide.buttonText}</Link>
                     </div>
                   </article>
                 </SwiperSlide>
@@ -107,7 +83,7 @@ const HeroSection = () => {
               )}
               aria-label="Наступний слайд"
             >
-              <MdChevronRight />
+              <MdChevronRight aria-hidden="true" />
             </button>
 
             <div

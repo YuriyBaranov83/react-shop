@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
+import { shopInfo } from "@/data/shopInfoData";
+import FormStatus from "@/components/ui/FormStatus/FormStatus";
 import { useState } from "react";
 import Container from "../layout/Container";
 import styles from "./footer.module.css";
 import { footerClientLinks, footerClubLinks } from "@/data/footerData";
 import RoundCheckbox from "@/components/ui/RoundCheckbox";
-import { MdPhoneInTalk, MdLocationOn, MdPublic, MdMailOutline } from "react-icons/md";
+import { MdPhoneInTalk, MdLocationOn, MdMailOutline } from "react-icons/md";
 import { FaCcMastercard, FaCcVisa } from "react-icons/fa6";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -14,6 +17,7 @@ const FOOTER_SUBSCRIBE_FORM_ID = "footer-subscribe-form";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [email, setEmail] = useState("");
   const [isPolicyAccepted, setIsPolicyAccepted] = useState(false);
   const [emailError, setEmailError] = useState("");
@@ -30,6 +34,7 @@ const Footer = () => {
 
   const handleEmailChange = (e) => {
     const nextEmail = e.target.value;
+    setIsSubmitted(false);
     setEmail(nextEmail);
 
     if (emailError) {
@@ -43,6 +48,7 @@ const Footer = () => {
 
   const handlePolicyChange = (e) => {
     const checked = e.target.checked;
+    setIsSubmitted(false);
     setIsPolicyAccepted(checked);
 
     if (checked) {
@@ -63,8 +69,7 @@ const Footer = () => {
 
     if (nextEmailError || nextPolicyError) return;
 
-    setEmail("");
-    setIsPolicyAccepted(false);
+    setIsSubmitted(true);
   };
 
   return (
@@ -76,7 +81,7 @@ const Footer = () => {
             <ul className={styles["footer-links"]}>
               {footerClubLinks.map((item) => (
                 <li key={item.id}>
-                  <a href={item.href}>{item.label}</a>
+                  <Link to={item.href}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -88,11 +93,9 @@ const Footer = () => {
               {footerClientLinks.map((item) => (
                 <li key={item.id}>
                   {item.href ? (
-                    <a href={item.href}>{item.label}</a>
+                    <Link to={item.href}>{item.label}</Link>
                   ) : (
-                    <button type="button" aria-disabled="true" disabled>
-                      {item.label}
-                    </button>
+                    <span>{item.label}</span>
                   )}
                 </li>
               ))}
@@ -101,40 +104,35 @@ const Footer = () => {
 
           <div className={`${styles["footer-column"]} ${styles["footer-column-phone"]}`}>
             <div className={styles["footer-phone-wrap"]}>
-              <a className={styles["footer-phone-link"]} href="tel:+38000490999">
+              <Link className={styles["footer-phone-link"]} to="/contacts">
                 <MdPhoneInTalk aria-hidden="true" />
-                <span className={styles["footer-phone"]}>+38 (000) 49-09-99</span>
-              </a>
+                <span className={styles["footer-phone"]}>Контакти магазину</span>
+              </Link>
             </div>
-            <p className={styles["footer-work-time"]}>Щодня з 09:00 до 21:00</p>
+            <p className={styles["footer-work-time"]}>{shopInfo.supportHours} (демо)</p>
 
             <ul className={styles["footer-contacts"]}>
               <li>
-                <a href="/contacts">
+                <Link to="/contacts">
                   <MdLocationOn aria-hidden="true" />
-                  <span>Адреси магазинів</span>
-                </a>
+                  <span>Адреси магазинів (демо)</span>
+                </Link>
               </li>
               <li>
-                <button type="button" aria-disabled="true" disabled>
-                  <MdPublic aria-hidden="true" />
-                  <span>Стежте за нами</span>
-                </button>
-              </li>
-              <li>
-                <a href="mailto:feedback@urbanfood.ua">
+                <Link to="/contacts">
                   <MdMailOutline aria-hidden="true" />
                   <span>Зворотний зв&apos;язок</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
           <div className={`${styles["footer-column"]} ${styles["footer-column-subscribe"]}`}>
             <h3 className={styles["footer-title"]}>
-              Підпишіться на смачні та корисні новини
+              Спробуйте демо-підписку на новини
             </h3>
 
+            <p className={styles["footer-demo-note"]}>Дані не надсилаються. Підписка не створюється.</p>
             <form
               id={FOOTER_SUBSCRIBE_FORM_ID}
               className={styles["footer-subscribe"]}
@@ -142,6 +140,7 @@ const Footer = () => {
               noValidate
             >
               <div className={styles["footer-subscribe-field"]}>
+                <label htmlFor={FOOTER_EMAIL_INPUT_ID} className="visually-hidden">Ваш e-mail</label>
                 <input
                   id={FOOTER_EMAIL_INPUT_ID}
                   name="subscribeEmail"
@@ -157,7 +156,7 @@ const Footer = () => {
                 {emailError && (
                   <span
                     id="footer-email-error"
-                    className={`${styles["footer-error"]} ${styles["footer-error-email"]}`}
+                    className={styles["footer-error"]}
                     role="alert"
                   >
                     {emailError}
@@ -181,7 +180,7 @@ const Footer = () => {
 
               {policyError && (
                 <p
-                  className={`${styles["footer-error"]} ${styles["footer-error-policy"]}`}
+                  className={styles["footer-error"]}
                   role="alert"
                 >
                   {policyError}
@@ -194,8 +193,9 @@ const Footer = () => {
               form={FOOTER_SUBSCRIBE_FORM_ID}
               className={styles["footer-subscribe-submit"]}
             >
-              Підписатися
+              Перевірити підписку
             </button>
+            {isSubmitted && <FormStatus className={styles["footer-status"]}>Форму заповнено коректно. Це демонстрація: підписку не створено.</FormStatus>}
           </div>
         </div>
 

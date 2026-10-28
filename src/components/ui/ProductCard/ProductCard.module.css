@@ -1,0 +1,52 @@
+.product-card {
+    position: relative;
+    min-width: 0;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background: var(--surface);
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+.product-discount {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    border-radius: .375rem;
+    background: var(--first-color);
+    color: var(--white-color);
+    padding: .125rem var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    z-index: 1;
+}
+.product-favorite {
+    position: absolute;
+    top: var(--space-1);
+    right: var(--space-1);
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-pill);
+    background: var(--surface);
+    color: var(--first-color);
+    display: grid;
+    place-items: center;
+    z-index: 1;
+}
+.product-favorite svg { font-size: 1.375rem; }
+.product-image-wrap { display: flex; align-items: center; justify-content: center; height: 9rem; margin-top: var(--space-5); overflow: hidden; }
+.product-image-wrap img { width: 100%; height: 100%; object-fit: contain; }
+.product-preview { align-self: flex-start; display: inline-flex; align-items: center; gap: var(--space-1); min-height: 2.5rem; color: var(--third-color); font-size: var(--text-sm); }
+.product-availability { color: var(--text-muted); font-size: var(--text-xs); }
+.product-card h3 { margin-bottom: var(--space-2); color: var(--third-color); font-size: var(--text-lg); line-height: 1.35; font-weight: 500; overflow-wrap: anywhere; }
+.product-card h3 a:hover { text-decoration: underline; }
+.product-price-row { margin-top: auto; }
+.product-action { margin-top: var(--space-2); }
+.product-card-compact { height: auto; }
+@media (max-width: 560px) {
+    .product-card-compact { padding: var(--space-2); }
+    .product-card-compact .product-image-wrap { height: 6rem; }
+    .product-card-compact h3 { font-size: var(--text-sm); }
+    .product-card-compact .product-price-row { --price-size: 1.25rem; }
+}

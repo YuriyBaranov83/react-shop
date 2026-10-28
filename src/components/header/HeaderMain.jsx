@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import Container from "../layout/Container";
 import clsx from "clsx";
@@ -17,7 +17,6 @@ import useFavorites from "@/features/favorites/model/useFavorites";
 import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
 
 const HeaderMain = () => {
-  const navigate = useNavigate();
   const { cartCount } = useCart();
   const { favoritesCount } = useFavorites();
   const hasFavorites = favoritesCount > 0;
@@ -76,10 +75,11 @@ const HeaderMain = () => {
                 isCatalogOpen && styles["catalog-active"]
               )}
               onClick={toggleCatalog}
+              aria-label="Каталог"
               aria-expanded={isCatalogOpen}
-              aria-haspopup="menu"
+              aria-haspopup={isMobileCatalog ? "dialog" : undefined}
             >
-              {isCatalogOpen ? <IoCloseOutline /> : <IoMenuOutline />}
+              {isCatalogOpen ? <IoCloseOutline aria-hidden="true" /> : <IoMenuOutline aria-hidden="true" />}
               <span>Каталог</span>
             </button>
 
@@ -114,6 +114,7 @@ const HeaderMain = () => {
               name="search"
               value={searchQuery}
               placeholder="Почати пошук"
+              aria-label="Пошук товарів у каталозі"
               autoComplete="off"
               onFocus={handleSearchInputFocus}
               onChange={handleSearchInputChange}
@@ -139,18 +140,16 @@ const HeaderMain = () => {
         </div>
 
         <div className={clsx("flex-center", styles.right)}>
-          <button
-            type="button"
+          <Link
+            to="/favorites"
             className={clsx(styles.favorite, hasFavorites && styles["favorite-active"])}
             aria-label={hasFavorites ? `Обране, ${favoritesCount} товарів` : "Обране"}
-            aria-pressed={hasFavorites}
-            onClick={() => navigate("/favorites")}
           >
             <FaHeart aria-hidden="true" />
             {hasFavorites ? (
               <span className={styles["header-action-badge"]}>{favoritesCount}</span>
             ) : null}
-          </button>
+          </Link>
 
           <div
             ref={profileWrapRef}
@@ -160,13 +159,12 @@ const HeaderMain = () => {
           >
             <button
               type="button"
-              className={styles.profile}
               aria-label="Профіль"
               aria-expanded={isProfileOpen}
-              aria-haspopup="menu"
+              aria-controls={isProfileOpen ? "header-profile-popover" : undefined}
               onClick={handleProfileClick}
             >
-              <FaUser />
+              <FaUser aria-hidden="true" />
             </button>
 
             <ProfilePopover
@@ -178,18 +176,17 @@ const HeaderMain = () => {
             />
           </div>
 
-          <button
-            type="button"
+          <Link
+            to="/cart"
             className={styles.basket}
             aria-label={hasCartItems ? `Кошик, ${cartCount} товарів` : "Кошик"}
-            onClick={() => navigate("/cart")}
           >
             <FaBasketShopping aria-hidden="true" />
             {hasCartItems ? (
               <span className={styles["header-action-badge"]}>{cartCount}</span>
             ) : null}
             <span className={styles["basket-text"]}>Кошик</span>
-          </button>
+          </Link>
         </div>
       </Container>
 
@@ -203,6 +200,7 @@ const HeaderMain = () => {
         <MobileCatalogDrawer
           onClose={closeCatalog}
           onSearchClick={openMobileSearchFromDrawer}
+          onLoginClick={() => { closeCatalog(); handleLoginClick(); }}
         />
       )}
     </div>

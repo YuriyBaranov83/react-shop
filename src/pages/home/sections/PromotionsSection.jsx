@@ -1,6 +1,9 @@
 import clsx from "clsx";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { Navigation, Pagination } from "swiper/modules";
+import { A11y, Navigation, Pagination } from "swiper/modules";
+import { Link } from "react-router-dom";
+import { sliderA11y } from "@/data/sliderA11y";
+import useMediaQuery from "@/components/header/hooks/useMediaQuery";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import Container from "@/components/layout/Container";
@@ -9,6 +12,7 @@ import { homePromotionsData } from "@/data/homePromotionsData";
 import styles from "./PromotionsSection.module.css";
 
 const PromotionsSection = () => {
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
   return (
     <section id="promotions" className={styles.promotions}>
       <Container>
@@ -44,10 +48,11 @@ const PromotionsSection = () => {
         />
 
         <Swiper
-          modules={[Navigation, Pagination]}
+          modules={[A11y, Navigation, Pagination]}
+          a11y={sliderA11y}
           slidesPerView={4}
           spaceBetween={12}
-          speed={550}
+          speed={reducedMotion ? 0 : 550}
           loop={false}
           watchOverflow
           navigation={{
@@ -76,12 +81,12 @@ const PromotionsSection = () => {
         >
           {homePromotionsData.map((promo) => (
             <SwiperSlide key={promo.id} className={styles["promotions-slide"]}>
-              <article
+              <Link
+                to={promo.href}
                 className={clsx(
                   styles["promotions-card"],
                   styles[`promotions-card-${promo.variant}`]
                 )}
-                aria-disabled="true"
               >
                 <div
                   className={clsx(
@@ -105,7 +110,7 @@ const PromotionsSection = () => {
                   loading="lazy"
                   decoding="async"
                 />
-              </article>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

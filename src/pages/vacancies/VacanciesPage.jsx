@@ -32,7 +32,7 @@ const VacanciesPage = () => {
   }, [activeVacancyId]);
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles["vacancies-main"]} ${styles.section}`}>
       <Container>
         <VacanciesHero />
         <VacanciesList vacancies={vacanciesData} onOpenDetails={handleOpenVacancy} />

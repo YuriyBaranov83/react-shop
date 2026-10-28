@@ -1,113 +1,27 @@
-import { useMemo, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
-
-import useBodyScrollLock from "@/components/header/hooks/useBodyScrollLock";
-import useEscapeKey from "@/components/header/hooks/useEscapeKey";
-import CartActionControl from "@/components/ui/CartActionControl";
+import Modal from "@/components/ui/Modal/Modal";
+import ProductGallery from "@/components/product/ProductGallery";
+import ProductSummary from "@/components/product/ProductSummary";
 import styles from "./CatalogProductModal.module.css";
 
-const CatalogProductModal = ({
-  product,
-  quantity,
-  onQuantityChange,
-  onOpenDetails,
-  onClose,
-}) => {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-
-  useBodyScrollLock(Boolean(product));
-  useEscapeKey(onClose, { enabled: Boolean(product) });
-
-  const gallery = useMemo(() => product?.gallery || [], [product?.gallery]);
-  const previewImage = gallery[activeImageIndex] || product?.image || "";
-  const dialogTitleId = product ? `catalog-product-modal-title-${product.id}` : undefined;
-
-  if (!product) {
-    return null;
-  }
-
-  const handleOverlayMouseDown = (event) => {
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
-    onClose();
-  };
-
+const CatalogProductModal = ({ product, quantity, onQuantityChange, onClose }) => {
+  const location = useLocation();
+  if (!product) return null;
+  const titleId = `catalog-product-modal-title-${product.id}`;
   return (
-    <div className={styles.overlay} onMouseDown={handleOverlayMouseDown}>
-      <div
-        className={styles.dialog}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={dialogTitleId}
-      >
-        <button
-          type="button"
-          className={styles.close}
-          aria-label="Закрити картку товару"
-          onClick={onClose}
-        >
-          <IoMdClose />
-        </button>
-
-        <div className={styles.body}>
-          <div className={styles.media}>
-            <div className={styles["preview-image-wrap"]}>
-              <img src={previewImage} alt={product.title} loading="lazy" decoding="async" />
-            </div>
-
-            {gallery.length > 1 ? (
-              <div className={styles.gallery}>
-                {gallery.map((image, index) => (
-                  <button
-                    key={`${product.id}-gallery-${index + 1}`}
-                    type="button"
-                    className={`${styles["gallery-thumb"]} ${
-                      activeImageIndex === index ? styles["gallery-thumb-active"] : ""
-                    }`.trim()}
-                    aria-label={`Показати фото ${index + 1}`}
-                    onClick={() => setActiveImageIndex(index)}
-                  >
-                    <img src={image} alt="" loading="lazy" decoding="async" />
-                  </button>
-                ))}
-              </div>
-            ) : null}
-          </div>
-
-          <div className={styles.content}>
-            <p className={styles.availability}>{product.availability}</p>
-            <h2 id={dialogTitleId}>{product.title}</h2>
-
-            <div className={styles["price-action-row"]}>
-              <div className={styles.price}>
-                <strong>{product.price}</strong>
-                {product.oldPrice ? <span>{product.oldPrice}</span> : null}
-              </div>
-
-              <CartActionControl
-                className={styles["action-control"]}
-                quantity={quantity}
-                onQuantityChange={onQuantityChange}
-                tone="filled"
-              />
-            </div>
-
-            <div className={styles.description}>
-              {product.description.map((line) => (
-                <p key={`${product.id}-${line}`}>{line}</p>
-              ))}
-            </div>
-
-            <button type="button" className={styles.details} onClick={() => onOpenDetails?.()}>
-              {product.ctaLabel} &gt;
-            </button>
-          </div>
-        </div>
+    <Modal labelledBy={titleId} onClose={onClose} overlayClassName={styles.overlay} className={styles.dialog}>
+      <button type="button" className={styles.close} aria-label="Закрити картку товару" onClick={onClose}>
+        <IoMdClose aria-hidden="true" />
+      </button>
+      <div className={styles.body}>
+        <ProductGallery key={product.id} product={product} />
+        <ProductSummary product={product} titleId={titleId} quantity={quantity} onQuantityChange={onQuantityChange}>
+          <Link to={`/product/${product.id}`} state={{ from: `${location.pathname}${location.search}` }}
+            className={styles.details} onClick={onClose}>Детальніше про товар</Link>
+        </ProductSummary>
       </div>
-    </div>
+    </Modal>
   );
 };
-
 export default CatalogProductModal;

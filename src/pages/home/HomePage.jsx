@@ -13,11 +13,12 @@ import DealsSection from "./sections/DealsSection";
 import DeliveryPaymentSection from "./sections/delivery-payment";
 import HeroSection from "./sections/HeroSection";
 import PromotionsSection from "./sections/PromotionsSection";
+import styles from "./HomePage.module.css";
 import sectionStyles from "./sections/HomeCategorySections.module.css";
 
 const HomePage = () => {
   return (
-    <>
+    <div className={styles["home-page-main"]}>
       <HeroSection />
       <DealsSection />
 
@@ -55,7 +56,7 @@ const HomePage = () => {
 
       <PromotionsSection />
       <DeliveryPaymentSection />
-    </>
+    </div>
   );
 };
 

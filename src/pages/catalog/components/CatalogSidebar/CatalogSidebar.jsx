@@ -21,6 +21,7 @@ const CatalogSidebar = ({
             <li key={section.id} className={styles.item}>
               <Link
                 to={getSectionHref(section.id)}
+                aria-current={isActiveSection && !activeCategoryId ? "page" : undefined}
                 className={clsx(
                   styles["section-link"],
                   isActiveSection && styles["section-link-active"]
@@ -35,6 +36,7 @@ const CatalogSidebar = ({
                     <li key={category.id}>
                       <Link
                         to={getCategoryHref(section.id, category.id)}
+                        aria-current={activeCategoryId === category.id ? "page" : undefined}
                         className={clsx(
                           styles["sub-link"],
                           activeCategoryId === category.id && styles["sub-link-active"]

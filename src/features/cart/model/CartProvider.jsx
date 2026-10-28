@@ -1,55 +1,30 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import CartContext from "./CartContext";
+import { allProductsData } from "@/data/allProductsData";
+import { resolveProductId } from "@/data/productAliases";
+import { readStoredValue, writeStoredValue } from "@/utils/storage";
+import { normalizeCartItems, normalizeQuantity } from "./cartModel";
 
 const CART_STORAGE_KEY = "react-shop:cart";
 
-const normalizeCartItems = (value) => {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-
-  return value
-    .map((item) => ({
-      id: typeof item?.id === "string" ? item.id : "",
-      quantity: Math.max(0, Number(item?.quantity) || 0),
-    }))
-    .filter((item) => item.id && item.quantity > 0);
-};
-
-const readCartItems = () => {
-  if (typeof window === "undefined") {
-    return [];
-  }
-
-  try {
-    const rawValue = window.localStorage.getItem(CART_STORAGE_KEY);
-    if (!rawValue) {
-      return [];
-    }
-
-    return normalizeCartItems(JSON.parse(rawValue));
-  } catch {
-    return [];
-  }
-};
+const productsById = new Map(allProductsData.map((product) => [product.id, product]));
+const readCartItems = () => normalizeCartItems(readStoredValue(CART_STORAGE_KEY), productsById);
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(readCartItems);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+    writeStoredValue(CART_STORAGE_KEY, cartItems);
   }, [cartItems]);
 
-  const setItemQuantity = useCallback((id, nextQuantity) => {
-    if (!id) {
+  const setItemQuantity = useCallback((requestedId, nextQuantity) => {
+    const id = resolveProductId(requestedId);
+    const product = productsById.get(id);
+    if (!product) {
       return;
     }
 
-    const safeQuantity = Math.max(0, Number(nextQuantity) || 0);
+    const safeQuantity = normalizeQuantity(nextQuantity, product.stock);
 
     setCartItems((prevCartItems) => {
       const existingIndex = prevCartItems.findIndex((item) => item.id === id);
@@ -65,6 +40,8 @@ const CartProvider = ({ children }) => {
       if (existingIndex === -1) {
         return [...prevCartItems, { id, quantity: safeQuantity }];
       }
+
+      if (prevCartItems[existingIndex].quantity === safeQuantity) return prevCartItems;
 
       return prevCartItems.map((item) =>
         item.id === id ? { ...item, quantity: safeQuantity } : item
@@ -82,7 +59,7 @@ const CartProvider = ({ children }) => {
   );
 
   const getItemQuantity = useCallback(
-    (id) => cartMap.get(id) ?? 0,
+    (id) => cartMap.get(resolveProductId(id)) ?? 0,
     [cartMap]
   );
 

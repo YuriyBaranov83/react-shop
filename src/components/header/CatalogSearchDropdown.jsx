@@ -1,4 +1,6 @@
 import styles from "./CatalogSearchDropdown.module.css";
+import { Link } from "react-router-dom";
+import { formatMoney } from "@/utils/money";
 
 const CatalogSearchDropdown = ({
   query,
@@ -29,16 +31,16 @@ const CatalogSearchDropdown = ({
           <h3>Популярні товари</h3>
           <div className={styles["products-grid"]}>
             {popularProducts.map((product) => (
-              <button
+              <Link
                 key={product.id}
-                type="button"
+                to={`/product/${product.id}`}
                 className={styles["product-card"]}
                 onClick={() => onProductSelect(product.id)}
               >
                 <img src={product.image} alt={product.title} loading="lazy" decoding="async" />
                 <span className={styles["product-title"]}>{product.title}</span>
-                <span className={styles["product-price"]}>{product.price}</span>
-              </button>
+                <span className={styles["product-price"]}>{formatMoney(product.price)}</span>
+              </Link>
             ))}
           </div>
         </section>
@@ -51,16 +53,16 @@ const CatalogSearchDropdown = ({
             {productResults.length > 0 ? (
               <div className={styles["products-grid"]}>
                 {productResults.map((product) => (
-                  <button
+                  <Link
                     key={product.id}
-                    type="button"
+                    to={`/product/${product.id}`}
                     className={styles["product-card"]}
                     onClick={() => onProductSelect(product.id)}
                   >
                     <img src={product.image} alt={product.title} loading="lazy" decoding="async" />
                     <span className={styles["product-title"]}>{product.title}</span>
-                    <span className={styles["product-price"]}>{product.price}</span>
-                  </button>
+                    <span className={styles["product-price"]}>{formatMoney(product.price)}</span>
+                  </Link>
                 ))}
               </div>
             ) : (
@@ -73,15 +75,15 @@ const CatalogSearchDropdown = ({
             {categoryResults.length > 0 ? (
               <div className={styles["categories-list"]}>
                 {categoryResults.map((category) => (
-                  <button
+                  <Link
                     key={category.id}
-                    type="button"
+                    to={category.href}
                     className={styles["category-item"]}
                     onClick={() => onCategorySelect(category.href)}
                   >
                     <span>{category.title}</span>
                     <small>{category.sectionLabel}</small>
-                  </button>
+                  </Link>
                 ))}
               </div>
             ) : (

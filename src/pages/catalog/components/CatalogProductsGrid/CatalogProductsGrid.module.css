@@ -1,11 +1,13 @@
-﻿.products-wrap {
+.products-wrap {
     display: grid;
-    gap: 12px;
+    gap: var(--space-3);
 }
+
+.results-count { color: var(--text-secondary); font-size: var(--text-sm); }
 
 .products-wrap h2 {
     color: #1b1b1b;
-    font-size: clamp(24px, 2vw, 32px);
+    font-size: clamp(1.5rem, 2vw, 2rem);
     line-height: 1.08;
     font-weight: 700;
     text-transform: uppercase;
@@ -14,22 +16,7 @@
 .products-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.empty-state {
-    min-height: 180px;
-    border-radius: 14px;
-    border: 1px dashed rgb(84 8 99 / 24%);
-    display: grid;
-    place-items: center;
-    padding: 16px;
-}
-
-.empty-state p {
-    color: #5f5f5f;
-    font-size: 16px;
-    line-height: 1.35;
+    gap: var(--space-3);
 }
 
 @media (max-width: 1180px) {
@@ -40,7 +27,7 @@
 
 @media (max-width: 760px) {
     .products-wrap h2 {
-        font-size: clamp(20px, 7vw, 28px);
+        font-size: clamp(1.25rem, 7vw, 1.75rem);
     }
 }
 

@@ -2,13 +2,13 @@
 }
 
 .head {
-    margin-bottom: 18px;
+    margin-bottom: 1.125rem;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: var(--tiles-gap, 12px);
+    gap: var(--tiles-gap, 0.75rem);
     align-items: stretch;
 }
 
@@ -18,8 +18,8 @@
     flex-direction: column;
     justify-content: space-between;
     aspect-ratio: 1 / 1;
-    padding: var(--tiles-card-padding, 30px 0 0 30px);
-    border-radius: var(--tiles-card-radius, 28px);
+    padding: var(--tiles-card-padding, 1.875rem 0 0 1.875rem);
+    border-radius: var(--tiles-card-radius, 1.75rem);
     border: 1px solid var(--tiles-card-border, var(--light-green-border-color));
     background: var(--tiles-card-bg, var(--light-green-bg-color));
     overflow: hidden;
@@ -27,8 +27,8 @@
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgb(0 0 0 / 8%);
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-card);
 }
 
 .title {
@@ -37,13 +37,13 @@
     display: block;
     max-width: var(--tiles-title-max-width, 50%);
     color: var(--tiles-title-color, #3b3f69);
-    font-size: var(--tiles-title-size, 30px);
+    font-size: var(--tiles-title-size, 1.875rem);
     line-height: 1.2;
     font-weight: 500;
 }
 
 .card img {
-    width: min(100%, var(--tiles-image-max, 200px));
+    width: min(100%, var(--tiles-image-max, 12.5rem));
     object-fit: contain;
     align-self: flex-end;
 }
@@ -55,28 +55,28 @@
 
 @media (max-width: 1200px) {
     .card {
-        padding: var(--tiles-card-padding-lg, 24px 0 0 24px);
+        padding: var(--tiles-card-padding-lg, 1.5rem 0 0 1.5rem);
     }
 
     .title {
-        font-size: var(--tiles-title-size-lg, 26px);
+        font-size: var(--tiles-title-size-lg, 1.625rem);
     }
 
     .card img {
-        width: min(100%, var(--tiles-image-max-lg, 170px));
+        width: min(100%, var(--tiles-image-max-lg, 10.625rem));
     }
 }
 
 @media (max-width: 900px) {
     .head {
-        margin-bottom: 14px;
+        margin-bottom: 0.875rem;
     }
 
     .grid {
-        grid-template-columns: repeat(4, minmax(var(--tiles-mobile-min, 154px), 1fr));
+        grid-template-columns: repeat(4, minmax(var(--tiles-mobile-min, 9.625rem), 1fr));
         grid-template-rows: repeat(var(--tiles-mobile-rows, 2), minmax(0, 1fr));
         overflow-x: auto;
-        padding-bottom: 4px;
+        padding-bottom: 0.25rem;
         scrollbar-width: none;
     }
 
@@ -85,36 +85,36 @@
     }
 
     .card {
-        padding: var(--tiles-card-padding-md, 16px 0 0 16px);
-        border-radius: var(--tiles-card-radius-md, 22px);
+        padding: var(--tiles-card-padding-md, 1rem 0 0 1rem);
+        border-radius: var(--tiles-card-radius-md, 1.375rem);
     }
 
     .title {
         max-width: var(--tiles-title-max-width-md, 72%);
-        font-size: var(--tiles-title-size-md, 17px);
+        font-size: var(--tiles-title-size-md, 1.0625rem);
     }
 
     .card img {
-        width: min(100%, var(--tiles-image-max-md, 120px));
+        width: min(100%, var(--tiles-image-max-md, 7.5rem));
     }
 }
 
 @media (max-width: 499px) {
     .grid {
-        grid-template-columns: repeat(4, minmax(var(--tiles-mobile-min-xs, 142px), 1fr));
-        gap: var(--tiles-gap-xs, 10px);
+        grid-template-columns: repeat(4, minmax(var(--tiles-mobile-min-xs, 8.875rem), 1fr));
+        gap: var(--tiles-gap-xs, 0.625rem);
     }
 
     .card {
-        padding: var(--tiles-card-padding-xs, 14px 0 0 12px);
-        border-radius: var(--tiles-card-radius-xs, 20px);
+        padding: var(--tiles-card-padding-xs, 0.875rem 0 0 0.75rem);
+        border-radius: var(--tiles-card-radius-xs, 1.25rem);
     }
 
     .title {
-        font-size: var(--tiles-title-size-xs, 15px);
+        font-size: var(--tiles-title-size-xs, 0.9375rem);
     }
 
     .card img {
-        width: min(100%, var(--tiles-image-max-xs, 106px));
+        width: min(100%, var(--tiles-image-max-xs, 6.625rem));
     }
 }

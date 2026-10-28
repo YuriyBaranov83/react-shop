@@ -1,118 +1,46 @@
-﻿import clsx from "clsx";
-import { useState } from "react";
+import clsx from "clsx";
+import { useLayoutEffect, useRef } from "react";
 import styles from "./CartActionControl.module.css";
 
 const CartActionControl = ({
-  className,
-  label = "В кошик",
-  quantity,
-  initialQuantity = 0,
-  tone = "default",
-  onAdd,
-  onDecrease,
-  onIncrease,
-  onQuantityChange,
+  className, label = "В кошик", quantity = 0, maxQuantity = Infinity,
+  tone = "default", onQuantityChange,
   ariaLabelAdd = "Додати в кошик",
   ariaLabelDecrease = "Зменшити кількість",
   ariaLabelIncrease = "Збільшити кількість",
 }) => {
-  const isControlled = typeof quantity === "number";
-  const [innerQuantity, setInnerQuantity] = useState(() =>
-    Math.max(0, Number(initialQuantity) || 0)
-  );
-  const currentQuantity = isControlled
-    ? Math.max(0, Number(quantity) || 0)
-    : innerQuantity;
+  const controlRef = useRef(null);
+  const restoreFocusRef = useRef(false);
+  const currentQuantity = Number.isFinite(quantity) ? Math.max(0, Math.floor(quantity)) : 0;
 
-  const updateQuantity = (nextValue) => {
-    if (isControlled) {
-      const nextQuantity =
-        typeof nextValue === "function" ? nextValue(currentQuantity) : nextValue;
-      const safeQuantity = Math.max(0, Number(nextQuantity) || 0);
-
-      if (safeQuantity !== currentQuantity) {
-        onQuantityChange?.(safeQuantity);
-      }
-
-      return;
+  useLayoutEffect(() => {
+    if (restoreFocusRef.current) {
+      controlRef.current?.querySelector("button:not([disabled])")?.focus({ preventScroll: true });
+      restoreFocusRef.current = false;
     }
+  }, [currentQuantity]);
 
-    setInnerQuantity((prevQuantity) => {
-      const resolvedValue =
-        typeof nextValue === "function" ? nextValue(prevQuantity) : nextValue;
-      const safeQuantity = Math.max(0, Number(resolvedValue) || 0);
-
-      if (safeQuantity !== prevQuantity) {
-        onQuantityChange?.(safeQuantity);
-      }
-
-      return safeQuantity;
-    });
+  const updateQuantity = (nextQuantity) => {
+    restoreFocusRef.current = nextQuantity === 0 || currentQuantity === 0;
+    onQuantityChange?.(Math.min(maxQuantity, Math.max(0, nextQuantity)));
   };
-
-  const addToCart = () => {
-    if (isControlled && onAdd) {
-      onAdd();
-      return;
-    }
-
-    updateQuantity((prevQuantity) => Math.max(1, prevQuantity));
-  };
-
-  const decreaseCount = () => {
-    if (isControlled && onDecrease) {
-      onDecrease();
-      return;
-    }
-
-    updateQuantity((prevQuantity) => prevQuantity - 1);
-  };
-
-  const increaseCount = () => {
-    if (isControlled && onIncrease) {
-      onIncrease();
-      return;
-    }
-
-    updateQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  if (currentQuantity > 0) {
-    return (
-      <div className={clsx(styles["cart-action"], className)}>
-        <div
-          className={clsx(
-            styles.counter,
-            tone === "filled" && styles["counter-filled"]
-          )}
-        >
-          <button type="button" aria-label={ariaLabelDecrease} onClick={decreaseCount}>
-            -
-          </button>
-          <span>{currentQuantity}</span>
-          <button type="button" aria-label={ariaLabelIncrease} onClick={increaseCount}>
-            +
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <div className={clsx(styles["cart-action"], className)}>
-      <button
-        type="button"
-        className={clsx(
-          styles["action-button"],
-          tone === "filled" && styles["action-button-filled"]
-        )}
-        onClick={addToCart}
-        aria-label={ariaLabelAdd}
-      >
-        {label}
-      </button>
+    <div ref={controlRef} className={clsx(styles["cart-action"], className)}>
+      {currentQuantity > 0 ? (
+        <div className={clsx(styles.counter, tone === "filled" && styles["counter-filled"])}>
+          <button type="button" aria-label={ariaLabelDecrease} onClick={() => updateQuantity(currentQuantity - 1)}>−</button>
+          <output aria-live="polite" aria-label="Кількість">{currentQuantity}</output>
+          <button type="button" aria-label={ariaLabelIncrease} disabled={currentQuantity >= maxQuantity}
+            onClick={() => updateQuantity(currentQuantity + 1)}>+</button>
+        </div>
+      ) : (
+        <button type="button" className={clsx(styles["action-button"], tone === "filled" && styles["action-button-filled"])}
+          disabled={maxQuantity <= 0} onClick={() => updateQuantity(1)} aria-label={ariaLabelAdd}>
+          {maxQuantity <= 0 ? "Немає в наявності" : label}
+        </button>
+      )}
     </div>
   );
 };
-
 export default CartActionControl;

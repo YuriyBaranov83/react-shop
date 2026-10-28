@@ -1,11 +1,15 @@
 import { catalogProductsByCategory } from "./catalogProductsData";
 import { catalogSectionsData } from "./catalogSectionsData";
+import { resolveProductId } from "./productAliases";
 
-const defaultDescription = [
-  "Склад: натуральні інгредієнти, підготовлені для щоденного споживання.",
-  "Поживна цінність на 100 г: білки 4.5 г, жири 6.5 г, вуглеводи 32 г.",
-  "Термін зберігання: 6 місяців.",
-  "Рекомендована температура зберігання: -18°C.",
+const getProductDescription = (product, sectionId) => [
+  `${product.title}. Демонстраційна позиція каталогу Urbanfood.`,
+  sectionId === "frozen"
+    ? "Заморожена продукція. Умови зберігання та приготування перевіряйте на упаковці виробника."
+    : sectionId === "other"
+      ? "Спосіб використання та застереження перевіряйте на упаковці виробника."
+      : "Склад, алергени, поживну цінність і термін придатності перевіряйте на упаковці виробника.",
+  "Зображення ілюстративне. Купівля та доставка в демо-версії недоступні.",
 ];
 
 const defaultUnitLabel = "шт";
@@ -29,7 +33,7 @@ const buildGallery = (image) => {
     return [];
   }
 
-  return [image, image, image];
+  return [image];
 };
 
 const catalogProductsList = Object.entries(catalogProductsByCategory).flatMap(
@@ -45,7 +49,7 @@ const catalogProductsList = Object.entries(catalogProductsByCategory).flatMap(
       categoryHref: categoryMeta?.categoryHref || `/catalog/supermarket?category=${categoryId}`,
       unitLabel: defaultUnitLabel,
       ctaLabel: defaultCtaLabel,
-      description: defaultDescription,
+      description: product.description || getProductDescription(product, categoryMeta?.sectionId),
       gallery: buildGallery(product.image),
     }));
   }
@@ -60,7 +64,7 @@ catalogProductsList.forEach((product) => {
   productsByCategoryId.set(product.categoryId, [...existingProducts, product]);
 });
 
-export const getCatalogProductById = (productId) => productById.get(productId) || null;
+export const getCatalogProductById = (productId) => productById.get(resolveProductId(productId)) || null;
 
 export const getCatalogSimilarProducts = (productId, limit = 4) => {
   const activeProduct = getCatalogProductById(productId);
@@ -70,7 +74,7 @@ export const getCatalogSimilarProducts = (productId, limit = 4) => {
   }
 
   const sameCategoryProducts = (productsByCategoryId.get(activeProduct.categoryId) || []).filter(
-    (item) => item.id !== productId
+    (item) => item.id !== activeProduct.id
   );
 
   if (sameCategoryProducts.length >= limit) {
@@ -79,7 +83,7 @@ export const getCatalogSimilarProducts = (productId, limit = 4) => {
 
   const usedIds = new Set(sameCategoryProducts.map((item) => item.id));
   const fallbackProducts = catalogProductsList.filter((item) => {
-    if (item.id === productId) {
+    if (item.id === activeProduct.id) {
       return false;
     }
 

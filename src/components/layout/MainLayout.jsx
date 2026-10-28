@@ -1,19 +1,19 @@
+import { Suspense } from "react";
+import { Outlet } from "react-router-dom";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { Outlet } from "react-router-dom";
+import styles from "./MainLayout.module.css";
 
-const MainLayout = ({ children, mainClassName, mainId }) => {
-  const layoutContent = children ?? <Outlet />;
-
-  return (
-    <>
-      <Header />
-      <main className={mainClassName} id={mainId}>
-        {layoutContent}
-      </main>
-      <Footer />
-    </>
-  );
-};
-
+const MainLayout = () => (
+  <>
+    <a href="#main-content" className={styles["skip-link"]}>Перейти до вмісту</a>
+    <Header />
+    <main id="main-content" className={styles.main} tabIndex={-1}>
+      <Suspense fallback={<p className={styles.loading} role="status">Завантаження сторінки...</p>}>
+        <Outlet />
+      </Suspense>
+    </main>
+    <Footer />
+  </>
+);
 export default MainLayout;

@@ -1,42 +1,14 @@
 import { deliveryMapZoneImage } from "@/assets/images/home/delivery";
+import { deliveryDetails } from "@/data/deliveryData";
 import styles from "../DeliveryPaymentSection.module.css";
 
-const deliveryRules = [
-    {
-    title: "Зони доставки",
-    lines: [
-      "Доставка здійснюється в районі ЖК «Варшавський Плюс»",
-      "(просп. Європейського Союзу) і ЖК «Файна Таун» (вул. Салютна).",
-    ],
-  },
-  {
-    title: "25 хвилин",
-    lines: [
-      "Доставка 25 хвилин. Приймаємо замовлення",
-      "з 7:00 до 23:00.",
-    ],
-  },
-  {
-    title: "300 грн",
-    lines: [
-      "Мінімальна сума безплатної доставки з урахуванням знижок.",
-      "Інакше вартість доставки 50 грн.",
-    ],
-  },
-  {
-    title: "Оплата",
-    lines: [
-      "При оформленні замовлення ви можете вибрати",
-      "зручний для вас спосіб розрахунку.",
-    ],
-  },
-];
+
 
 const DeliveryDetailsCard = () => {
   return (
     <div className={styles["delivery-payment-top"]}>
       <div className={styles["delivery-payment-details"]}>
-        {deliveryRules.map((rule) => (
+        {deliveryDetails.map((rule) => (
           <div key={rule.title} className={styles["delivery-payment-rule"]}>
             <h3>{rule.title}</h3>
             {rule.lines.map((line) => (

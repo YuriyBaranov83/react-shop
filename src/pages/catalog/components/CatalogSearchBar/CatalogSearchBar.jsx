@@ -21,6 +21,7 @@ const CatalogSearchBar = ({
           type="search"
           value={value}
           placeholder="Пошук товарів і категорій"
+          aria-label="Пошук товарів і категорій"
           autoComplete="off"
           onChange={(event) => onValueChange(event.target.value)}
         />
@@ -35,14 +36,14 @@ const CatalogSearchBar = ({
             <IoCloseOutline aria-hidden="true" />
           </button>
         ) : null}
+        <button type="submit" className={styles["submit-button"]}>Знайти</button>
       </form>
 
       {isCategoryScopeAvailable ? (
-        <div className={styles["scope-switch"]} role="tablist" aria-label="Область пошуку">
+        <div className={styles["scope-switch"]} role="group" aria-label="Область пошуку">
           <button
             type="button"
-            role="tab"
-            aria-selected={searchScope === "category"}
+            aria-pressed={searchScope === "category"}
             className={clsx(
               styles["scope-button"],
               searchScope === "category" && styles["scope-button-active"]
@@ -53,8 +54,7 @@ const CatalogSearchBar = ({
           </button>
           <button
             type="button"
-            role="tab"
-            aria-selected={searchScope === "all"}
+            aria-pressed={searchScope === "all"}
             className={clsx(
               styles["scope-button"],
               searchScope === "all" && styles["scope-button-active"]

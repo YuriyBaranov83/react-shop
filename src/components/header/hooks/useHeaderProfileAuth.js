@@ -37,15 +37,17 @@ const useHeaderProfileAuth = ({ isDesktopHover }) => {
     closeProfile();
   }, [closeProfile, isDesktopHover]);
 
-  const handleProfileClick = useCallback(() => {
-    if (isDesktopHover) {
+  const handleProfileClick = useCallback((event) => {
+    if (isDesktopHover && event.detail > 0) {
+      openProfile();
       return;
     }
 
     toggleProfile();
-  }, [isDesktopHover, toggleProfile]);
+  }, [isDesktopHover, openProfile, toggleProfile]);
 
   const handleLoginClick = useCallback(() => {
+    profileWrapRef.current?.querySelector("button")?.focus({ preventScroll: true });
     openAuth();
     closeProfile();
   }, [closeProfile, openAuth]);

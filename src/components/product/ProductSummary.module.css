@@ -1,0 +1,7 @@
+.summary { min-width: 0; }
+.availability { color: var(--text-muted); font-size: var(--text-sm); }
+.summary h1, .summary h2 { margin-top: var(--space-1); color: var(--text-primary); font-size: clamp(1.5rem, 2.1vw, 2.125rem); line-height: 1.2; overflow-wrap: anywhere; }
+.price-action-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-4); }
+.action-control { max-width: 13rem; margin-left: auto; }
+.description { display: grid; gap: var(--space-2); margin-top: var(--space-4); color: var(--text-secondary); font-size: var(--text-sm); }
+@media (max-width: 780px) { .action-control { max-width: none; margin-left: 0; } }

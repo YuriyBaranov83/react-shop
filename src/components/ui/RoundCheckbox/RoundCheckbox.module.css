@@ -1,8 +1,8 @@
 .root {
     position: relative;
     display: inline-flex;
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
     flex-shrink: 0;
 }
 
@@ -28,8 +28,8 @@
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 50%;
     background-color: var(--first-color);
     transform: scale(0.5);
@@ -48,6 +48,8 @@
 
 .input:focus-visible+.control {
     box-shadow: 0 0 0 2px var(--white-color);
+    outline: 2px solid var(--third-color);
+    outline-offset: 3px;
 }
 
 .input:disabled {

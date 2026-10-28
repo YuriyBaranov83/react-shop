@@ -4,11 +4,12 @@ import styles from "./NotFoundPage.module.css";
 
 const NotFoundPage = () => {
   return (
-    <main className={styles["not-found-page"]}>
+    <main id="main-content" className={styles["not-found-page"]} tabIndex={-1}>
       <section className={styles["not-found-card"]} aria-labelledby="not-found-title">
         <p className={styles["not-found-label"]}>помилка</p>
 
-        <div className={styles["not-found-code"]} id="not-found-title">
+        <h1 id="not-found-title" className="visually-hidden">Помилка 404: сторінку не знайдено</h1>
+        <div className={styles["not-found-code"]} aria-hidden="true">
           <span>4</span>
 
           <div className={styles["not-found-image-wrap"]} aria-hidden="true">

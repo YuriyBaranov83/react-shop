@@ -1,0 +1,13 @@
+.empty-state {
+    min-height: 11.25rem;
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--border-strong);
+    background: var(--surface);
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    color: var(--text-secondary);
+    text-align: center;
+}

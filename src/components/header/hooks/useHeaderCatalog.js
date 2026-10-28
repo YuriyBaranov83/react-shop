@@ -1,5 +1,4 @@
 import { useCallback, useRef, useState } from "react";
-import useBodyScrollLock from "./useBodyScrollLock";
 import useClickOutside from "./useClickOutside";
 
 const useHeaderCatalog = ({ isMobileCatalog }) => {
@@ -14,7 +13,6 @@ const useHeaderCatalog = ({ isMobileCatalog }) => {
   useClickOutside(catalogWrapRef, closeCatalog, {
     enabled: isCatalogOpen && !isMobileCatalog,
   });
-  useBodyScrollLock(isCatalogOpen && isMobileCatalog);
 
   return {
     catalogWrapRef,

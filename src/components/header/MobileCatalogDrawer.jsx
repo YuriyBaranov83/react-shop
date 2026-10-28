@@ -1,253 +1,76 @@
-﻿import { useMemo, useState } from "react";
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  IoCloseOutline,
-  IoChevronBackOutline,
-  IoChevronForwardOutline,
-  IoSearch,
-} from "react-icons/io5";
-import { MdPhoneInTalk } from "react-icons/md";
-
+import { IoCloseOutline, IoChevronBackOutline, IoChevronForwardOutline, IoSearch } from "react-icons/io5";
 import { catalogData } from "@/data/catalogData";
 import { footerClientLinks } from "@/data/footerData";
 import useFavorites from "@/features/favorites/model/useFavorites";
+import useCart from "@/features/cart/model/useCart";
+import Modal from "@/components/ui/Modal/Modal";
 import { logo } from "@assets/images";
 import styles from "./header.module.css";
 
-const clubMenuItems = footerClientLinks;
-
-const MobileCatalogDrawer = ({ onClose, onSearchClick }) => {
+const MobileCatalogDrawer = ({ onClose, onSearchClick, onLoginClick }) => {
+  const titleId = useId();
   const { favoritesCount } = useFavorites();
+  const { cartCount } = useCart();
   const [activeCategoryId, setActiveCategoryId] = useState(null);
-  const isAuthed = false;
-  const userName = "Ім'я Прізвище";
-  const hasCartItems = false;
-  const bonusCount = 0;
-
-  const activeCategory = useMemo(
-    () => catalogData.find((item) => item.id === activeCategoryId),
-    [activeCategoryId]
-  );
-
-  const profileMenuItems = useMemo(() => {
-    if (!isAuthed) {
-      return [
-        { id: "login", label: "Увійти" },
-        {
-          id: "favorites",
-          label: "Обране",
-          badge: favoritesCount > 0 ? `${favoritesCount} тов.` : undefined,
-          badgeTone: "muted",
-        },
-      ];
-    }
-
-    return [
-      { id: "user", label: userName },
-      ...(hasCartItems ? [{ id: "orders", label: "Замовлення", hasDot: true }] : []),
-      {
-        id: "bonus",
-        label: "Бонуси",
-        badge: bonusCount > 0 ? String(bonusCount) : undefined,
-        badgeTone: "accent",
-      },
-      {
-        id: "favorites",
-        label: "Обране",
-        badge: favoritesCount > 0 ? `${favoritesCount} тов.` : undefined,
-        badgeTone: "muted",
-      },
-      { id: "logout", label: "Вихід", muted: true },
-    ];
-  }, [isAuthed, userName, hasCartItems, bonusCount, favoritesCount]);
-
+  const activeCategory = catalogData.find((item) => item.id === activeCategoryId);
   return (
-    <div className={styles["catalog-drawer-overlay"]} role="dialog" aria-modal="true">
-      <div className={styles["catalog-drawer"]}>
-        <div className={styles["catalog-drawer-top"]}>
-          <button
-            type="button"
-            className={styles["catalog-drawer-close-btn"]}
-            onClick={onClose}
-            aria-label="Закрити меню"
-          >
-            <IoCloseOutline />
-          </button>
-
-          <Link
-            to="/"
-            className={styles["catalog-drawer-brand"]}
-            aria-label="На головну"
-            onClick={onClose}
-          >
-            <img src={logo} alt="Urbanfood" />
-          </Link>
-
-          <button
-            type="button"
-            className={styles["catalog-drawer-search-btn"]}
-            onClick={onSearchClick}
-            aria-label="Відкрити пошук"
-          >
-            <IoSearch />
-          </button>
-        </div>
-
-        <div className={styles["catalog-drawer-body"]}>
-          {!activeCategory && (
-            <>
-              <h2 className={styles["catalog-drawer-section-title"]}>КАТАЛОГ</h2>
-              <ul className={styles["catalog-drawer-list"]}>
-                {catalogData.map((category) => (
-                  <li key={category.id}>
-                    <button
-                      type="button"
-                      className={styles["catalog-drawer-item"]}
-                      onClick={() => {
-                        setActiveCategoryId(category.id);
-                      }}
-                    >
-                      <span>{category.title}</span>
-                      <IoChevronForwardOutline />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-
-              <section className={styles["catalog-drawer-section"]}>
-                <h3 className={styles["catalog-drawer-section-subtitle"]}>ПРОФІЛЬ</h3>
-                <ul className={styles["catalog-drawer-meta-list"]}>
-                  {profileMenuItems.map((item) => (
-                    <li key={item.id}>
-                      {item.id === "favorites" ? (
-                        <Link
-                          to="/favorites"
-                          className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
-                          onClick={onClose}
-                        >
-                          <span>{item.label}</span>
-                          <span className={styles["catalog-drawer-meta-right"]}>
-                            {item.hasDot && (
-                              <span className={styles["catalog-drawer-meta-dot"]} aria-hidden="true" />
-                            )}
-                            {item.badge && (
-                              <span
-                                className={`${styles["catalog-drawer-meta-badge"]} ${item.badgeTone === "muted" ? styles["catalog-drawer-meta-badge-muted"] : ""}`.trim()}
-                              >
-                                {item.badge}
-                              </span>
-                            )}
-                          </span>
-                        </Link>
-                      ) : (
-                        <button
-                          type="button"
-                          className={`${styles["catalog-drawer-meta-link"]} ${item.muted ? styles["catalog-drawer-meta-link-muted"] : ""}`.trim()}
-                          aria-disabled="true"
-                          disabled
-                        >
-                          <span>{item.label}</span>
-                          <span className={styles["catalog-drawer-meta-right"]}>
-                            {item.hasDot && (
-                              <span className={styles["catalog-drawer-meta-dot"]} aria-hidden="true" />
-                            )}
-                            {item.badge && (
-                              <span
-                                className={`${styles["catalog-drawer-meta-badge"]} ${item.badgeTone === "muted" ? styles["catalog-drawer-meta-badge-muted"] : ""}`.trim()}
-                              >
-                                {item.badge}
-                              </span>
-                            )}
-                          </span>
-                        </button>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <section className={styles["catalog-drawer-section"]}>
-                <h3 className={styles["catalog-drawer-section-subtitle"]}>Urbanfood КЛУБ</h3>
-                <ul className={styles["catalog-drawer-club-list"]}>
-                  {clubMenuItems.map((item) => (
-                    <li key={item.id}>
-                      {item.href ? (
-                        <a
-                          href={item.href}
-                          className={styles["catalog-drawer-club-link"]}
-                          onClick={onClose}
-                        >
-                          {item.label}
-                        </a>
-                      ) : (
-                        <button
-                          type="button"
-                          className={styles["catalog-drawer-club-link"]}
-                          aria-disabled="true"
-                          disabled
-                        >
-                          {item.label}
-                        </button>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
-              <div className={styles["catalog-drawer-phone"]}>
-                <a href="tel:+38000490999" className={styles["catalog-drawer-phone-link"]}>
-                  <MdPhoneInTalk aria-hidden="true" />
-                  <span>+38 (000) 49-09-99</span>
-                </a>
-                <p>Щоденно з 09:00 до 21:00</p>
-              </div>
-            </>
-          )}
-
-          {activeCategory && (
-            <>
-              <div className={styles["catalog-drawer-subheader"]}>
-                <button
-                  type="button"
-                  className={styles["catalog-drawer-back-btn"]}
-                  onClick={() => setActiveCategoryId(null)}
-                  aria-label="Назад до категорій"
-                >
-                  <IoChevronBackOutline />
-                </button>
-                <h3 className={styles["catalog-drawer-subtitle"]}>{activeCategory.title}</h3>
-              </div>
-
-              <ul className={styles["catalog-drawer-sub-list"]}>
-                {activeCategory.items.map((item) => (
-                  <li key={item.id || item.label}>
-                    {item.href ? (
-                      <Link
-                        to={item.href}
-                        className={styles["catalog-drawer-sub-item"]}
-                        onClick={onClose}
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <button
-                        type="button"
-                        className={styles["catalog-drawer-sub-item"]}
-                        aria-disabled="true"
-                        disabled
-                      >
-                        {item.label}
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
+    <Modal onClose={onClose} labelledBy={titleId} overlayClassName={styles["catalog-drawer-overlay"]} className={styles["catalog-drawer"]}>
+      <h2 id={titleId} className="visually-hidden">Меню каталогу</h2>
+      <div className={styles["catalog-drawer-top"]}>
+        <button type="button" className={styles["catalog-drawer-close-btn"]} onClick={onClose} aria-label="Закрити меню">
+          <IoCloseOutline aria-hidden="true" />
+        </button>
+        <Link to="/" className={styles["catalog-drawer-brand"]} aria-label="На головну" onClick={onClose}>
+          <img src={logo} alt="" width="150" height="50" />
+        </Link>
+        <button type="button" className={styles["catalog-drawer-search-btn"]} onClick={onSearchClick} aria-label="Відкрити пошук">
+          <IoSearch aria-hidden="true" />
+        </button>
       </div>
-    </div>
+      <div className={styles["catalog-drawer-body"]}>
+        {activeCategory ? <>
+          <div className={styles["catalog-drawer-subheader"]}>
+            <button type="button" className={styles["catalog-drawer-back-btn"]} onClick={() => setActiveCategoryId(null)} aria-label="Назад до категорій" autoFocus>
+              <IoChevronBackOutline aria-hidden="true" />
+            </button>
+            <h3 className={styles["catalog-drawer-subtitle"]}>{activeCategory.title}</h3>
+          </div>
+          <ul className={styles["catalog-drawer-sub-list"]}>
+            <li><Link to={activeCategory.href} className={styles["catalog-drawer-sub-item"]} onClick={onClose}>Дивитися весь розділ</Link></li>
+            {activeCategory.items.map((item) => <li key={item.id}>
+              <Link to={item.href} className={styles["catalog-drawer-sub-item"]} onClick={onClose}>{item.label}</Link>
+            </li>)}
+          </ul>
+        </> : <>
+          <h3 className={styles["catalog-drawer-section-title"]}>Каталог</h3>
+          <ul className={styles["catalog-drawer-list"]}>
+            {catalogData.map((category) => <li key={category.id}>
+              <button type="button" className={styles["catalog-drawer-item"]} onClick={() => setActiveCategoryId(category.id)}>
+                <span>{category.title}</span><IoChevronForwardOutline aria-hidden="true" />
+              </button>
+            </li>)}
+          </ul>
+          <section className={styles["catalog-drawer-section"]}>
+            <h3 className={styles["catalog-drawer-section-subtitle"]}>Покупки та профіль</h3>
+            <ul className={styles["catalog-drawer-meta-list"]}>
+              <li><Link to="/cart" className={styles["catalog-drawer-meta-link"]} onClick={onClose}>Кошик ({cartCount})</Link></li>
+              <li><Link to="/favorites" className={styles["catalog-drawer-meta-link"]} onClick={onClose}>Обране ({favoritesCount})</Link></li>
+              <li><button type="button" className={styles["catalog-drawer-meta-link"]} onClick={onLoginClick}>Увійти (демо)</button></li>
+            </ul>
+          </section>
+          <section className={styles["catalog-drawer-section"]}>
+            <h3 className={styles["catalog-drawer-section-subtitle"]}>Urbanfood клуб</h3>
+            <ul className={styles["catalog-drawer-club-list"]}>
+              {footerClientLinks.filter((item) => item.href).map((item) => <li key={item.id}>
+                <Link to={item.href} className={styles["catalog-drawer-club-link"]} onClick={onClose}>{item.label}</Link>
+              </li>)}
+            </ul>
+          </section>
+        </>}
+      </div>
+    </Modal>
   );
 };
-
 export default MobileCatalogDrawer;

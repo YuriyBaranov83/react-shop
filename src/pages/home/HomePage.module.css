@@ -1,27 +1,27 @@
 .home-page-main > section + section {
-    margin-top: 100px;
+    margin-top: 6.25rem;
 }
 
 @media (max-width: 1200px) {
     .home-page-main > section + section {
-        margin-top: 80px;
+        margin-top: 5rem;
     }
 }
 
 @media (max-width: 900px) {
     .home-page-main > section + section {
-        margin-top: 64px;
+        margin-top: 4rem;
     }
 }
 
 @media (max-width: 720px) {
     .home-page-main > section + section {
-        margin-top: 52px;
+        margin-top: 3.25rem;
     }
 }
 
 @media (max-width: 499px) {
     .home-page-main > section + section {
-        margin-top: 40px;
+        margin-top: 2.5rem;
     }
 }

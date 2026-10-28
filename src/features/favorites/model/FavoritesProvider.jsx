@@ -1,43 +1,25 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import FavoritesContext from "./FavoritesContext";
+import { allProductsData } from "@/data/allProductsData";
+import { resolveProductId } from "@/data/productAliases";
+import { readStoredValue, writeStoredValue } from "@/utils/storage";
+import { normalizeFavoriteIds } from "@/features/cart/model/cartModel";
 
 const FAVORITES_STORAGE_KEY = "react-shop:favorites";
 
-const readFavoriteIds = () => {
-  if (typeof window === "undefined") {
-    return [];
-  }
-
-  try {
-    const rawValue = window.localStorage.getItem(FAVORITES_STORAGE_KEY);
-    if (!rawValue) {
-      return [];
-    }
-
-    const parsedValue = JSON.parse(rawValue);
-    if (!Array.isArray(parsedValue)) {
-      return [];
-    }
-
-    return parsedValue.filter((id) => typeof id === "string");
-  } catch {
-    return [];
-  }
-};
+const productsById = new Map(allProductsData.map((product) => [product.id, product]));
+const readFavoriteIds = () => normalizeFavoriteIds(readStoredValue(FAVORITES_STORAGE_KEY), productsById);
 
 const FavoritesProvider = ({ children }) => {
   const [favoriteIds, setFavoriteIds] = useState(readFavoriteIds);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    window.localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favoriteIds));
+    writeStoredValue(FAVORITES_STORAGE_KEY, favoriteIds);
   }, [favoriteIds]);
 
-  const toggleFavorite = useCallback((id) => {
-    if (!id) {
+  const toggleFavorite = useCallback((requestedId) => {
+    const id = resolveProductId(requestedId);
+    if (!productsById.has(id)) {
       return;
     }
 
@@ -57,7 +39,7 @@ const FavoritesProvider = ({ children }) => {
   const favoriteIdSet = useMemo(() => new Set(favoriteIds), [favoriteIds]);
 
   const isFavorite = useCallback(
-    (id) => favoriteIdSet.has(id),
+    (id) => favoriteIdSet.has(resolveProductId(id)),
     [favoriteIdSet]
   );
 

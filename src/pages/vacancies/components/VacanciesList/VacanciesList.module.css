@@ -1,11 +1,11 @@
 .section {
-    margin-top: 14px;
+    margin-top: 0.875rem;
 }
 
 .grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
+    gap: var(--space-3);
 }
 
 @media (max-width: 1280px) {

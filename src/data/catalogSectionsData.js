@@ -4,61 +4,27 @@ import {
   homeOtherTiles,
   homeSupermarketTiles,
 } from "./homeCategoryTilesData";
+import { catalogProductsByCategory } from "./catalogProductsData";
 import { buildCatalogCategoryHref, buildCatalogSectionHref } from "./catalogRouting";
 
 export const catalogFilterOptions = [
-  { id: "all", label: "Усі категорії" },
+  { id: "all", label: "Усі" },
   { id: "sale", label: "Зі знижкою" },
-  { id: "delivery-today", label: "Доставка сьогодні" },
+  { id: "delivery-today", label: "Доставка сьогодні (демо)" },
   { id: "brand", label: "Продукція «Urbanfood»" },
 ];
 
-const withCategoryMeta = (sectionId, items, tagsById) =>
-  items.map((item, index) => ({
-    ...item,
-    image: item.image || items[0]?.image || null,
-    href: buildCatalogCategoryHref(sectionId, item.id),
-    tags: tagsById[item.id] || [],
-    deliveryToday: index % 2 === 0,
-  }));
-
-const supermarketTagsById = {
-  "water-drinks": ["delivery-today", "brand"],
-  "milk-eggs": ["sale", "delivery-today"],
-  "snacks-dried-fruits": ["sale"],
-  "coffee-tea-sweets": ["brand"],
-  "pasta-groats": ["delivery-today"],
-  "bread-bakery": ["sale", "delivery-today", "brand"],
-  "oils-sauces-spices": ["sale"],
-  "canned-pickles": ["delivery-today"],
-};
-
-const culinaryTagsById = {
-  pastries: ["sale", "brand"],
-  pizza: ["delivery-today", "brand"],
-  "grill-menu": ["delivery-today"],
-  "fresh-meat": ["sale"],
-  salads: ["delivery-today", "brand"],
-  soups: ["brand"],
-  "hot-dishes": ["sale", "delivery-today"],
-  desserts: ["brand"],
-};
-
-const frozenTagsById = {
-  dumplings: ["sale"],
-  "khinkali-manty": ["sale"],
-  "semi-finished": ["delivery-today"],
-  "frozen-vegetables": ["delivery-today"],
-  "fish-seafood": ["sale"],
-  "frozen-meat": ["delivery-today"],
-};
-
-const otherTagsById = {
-  "beauty-hygiene": ["sale"],
-  "washing-cleaning": ["sale", "delivery-today"],
-  "useful-items": ["brand"],
-  "household-chemistry": ["delivery-today"],
-};
+const withCategoryMeta = (sectionId, items) =>
+  items.map((item) => {
+    const products = catalogProductsByCategory[item.id] || [];
+    const tags = [...new Set(products.flatMap((product) => product.tags))];
+    return {
+      ...item,
+      href: buildCatalogCategoryHref(sectionId, item.id),
+      tags,
+      deliveryToday: tags.includes("delivery-today"),
+    };
+  });
 
 export const catalogSectionsData = [
   {
@@ -67,7 +33,7 @@ export const catalogSectionsData = [
     sidebarLabel: "Супермаркет",
     backgroundTone: "green",
     sectionHref: buildCatalogSectionHref("supermarket"),
-    items: withCategoryMeta("supermarket", homeSupermarketTiles, supermarketTagsById),
+    items: withCategoryMeta("supermarket", homeSupermarketTiles),
   },
   {
     id: "culinary",
@@ -75,7 +41,7 @@ export const catalogSectionsData = [
     sidebarLabel: "Кулінарія",
     backgroundTone: "beige",
     sectionHref: buildCatalogSectionHref("culinary"),
-    items: withCategoryMeta("culinary", homeCulinaryTiles, culinaryTagsById),
+    items: withCategoryMeta("culinary", homeCulinaryTiles),
   },
   {
     id: "frozen",
@@ -83,7 +49,7 @@ export const catalogSectionsData = [
     sidebarLabel: "Заморозка",
     backgroundTone: "lilac",
     sectionHref: buildCatalogSectionHref("frozen"),
-    items: withCategoryMeta("frozen", homeFrozenTiles, frozenTagsById),
+    items: withCategoryMeta("frozen", homeFrozenTiles),
   },
   {
     id: "other",
@@ -91,7 +57,7 @@ export const catalogSectionsData = [
     sidebarLabel: "Інше",
     backgroundTone: "cyan",
     sectionHref: buildCatalogSectionHref("other"),
-    items: withCategoryMeta("other", homeOtherTiles, otherTagsById),
+    items: withCategoryMeta("other", homeOtherTiles),
   },
 ];
 

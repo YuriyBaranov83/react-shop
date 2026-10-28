@@ -8,7 +8,7 @@ const HeaderTopBar = () => {
       <Container>
         <div className={clsx("flex-center", styles["header-topbar-inner"])}>
           <div className={styles["header-topbar-left"]}>
-            Харчуйтеся різноманітно і накопичуйте <a href="/#delivery-payment">знижку</a> до 10%
+            Знайомтеся з Urbanfood і спробуйте <a href="/#delivery-payment">демо-знижку</a> 10%
           </div>
           <a href="/#delivery-payment" className={styles["header-topbar-cta"]}>
             Отримати знижку

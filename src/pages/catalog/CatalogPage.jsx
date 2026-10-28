@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 import Container from "@/components/layout/Container";
+import Breadcrumbs from "@/components/ui/Breadcrumbs/Breadcrumbs";
 import {
   MIN_CATALOG_SEARCH_QUERY_LENGTH,
   searchCatalogCategories,
@@ -25,6 +26,7 @@ import CatalogSidebar from "./components/CatalogSidebar/CatalogSidebar";
 import styles from "./CatalogPage.module.css";
 
 const CatalogPage = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { sectionId } = useParams();
 
@@ -75,14 +77,14 @@ const CatalogPage = () => {
         query: searchQuery,
         filterId: activeFilterId,
         categoryId: selectedCategory.id,
-        limit: 48,
+        limit: Infinity,
       });
     }
 
     return searchCatalogProducts({
       query: searchQuery,
       filterId: activeFilterId,
-      limit: 48,
+      limit: Infinity,
     });
   }, [activeFilterId, hasSearchQuery, searchQuery, searchScope, selectedCategory]);
 
@@ -99,6 +101,18 @@ const CatalogPage = () => {
   }, [activeFilterId, hasSearchQuery, searchQuery, searchScope, selectedCategory]);
 
   const isSearchMode = searchQuery.length > 0;
+  const sortOrder = searchParams.get("sort") || "default";
+  const sortProducts = (products) => {
+    if (sortOrder === "price-asc") return [...products].sort((a, b) => a.price - b.price);
+    if (sortOrder === "price-desc") return [...products].sort((a, b) => b.price - a.price);
+    return products;
+  };
+  const resetFilters = () => {
+    setSearchInputValue("");
+    const nextParams = new URLSearchParams();
+    if (selectedCategory) nextParams.set("category", selectedCategory.id);
+    setSearchParams(nextParams);
+  };
 
   const handleFilterChange = (nextFilterId) => {
     const nextSearchParams = new URLSearchParams(searchParams);
@@ -200,19 +214,17 @@ const CatalogPage = () => {
   }
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles["catalog-main"]} ${styles.section}`}>
       <Container>
-        <nav className={styles.breadcrumbs} aria-label="Хлібні крихти">
-          <Link to="/">Головна</Link>
-          <span aria-hidden="true">/</span>
-          <span>Каталог</span>
-          <span aria-hidden="true">/</span>
-          <span>{resolvedSection.sidebarLabel}</span>
-        </nav>
+        <Breadcrumbs items={[
+          { label: "Головна", to: "/" }, { label: "Каталог", to: "/catalog" },
+          { label: resolvedSection.sidebarLabel, ...(selectedCategory ? { to: getSectionHref(resolvedSection.id) } : {}) },
+          ...(selectedCategory ? [{ label: selectedCategory.title }] : []),
+        ]} />
 
         <header className={styles.header}>
-          <h1>{resolvedSection.title}</h1>
-          <p>Обирайте підкатегорію або перейдіть в інший розділ через ліве меню.</p>
+          <h1>{selectedCategory?.title || resolvedSection.title}</h1>
+          <p>Обирайте категорію, шукайте товари та зберігайте улюблене.</p>
         </header>
 
         <div className={styles["section-tabs"]} aria-label="Розділи каталогу">
@@ -220,6 +232,7 @@ const CatalogPage = () => {
             <Link
               key={sectionItem.id}
               to={getSectionHref(sectionItem.id)}
+              aria-current={sectionItem.id === resolvedSection.id ? "page" : undefined}
               className={`${styles["section-tab"]} ${
                 sectionItem.id === resolvedSection.id ? styles["section-tab-active"] : ""
               }`.trim()}
@@ -227,6 +240,15 @@ const CatalogPage = () => {
               {sectionItem.sidebarLabel}
             </Link>
           ))}
+        </div>
+
+        <div className={styles["mobile-category-select"]}>
+          <label htmlFor="catalog-category">Категорія</label>
+          <select id="catalog-category" value={selectedCategory?.id || ""}
+            onChange={(event) => navigate(event.target.value ? getCategoryHref(resolvedSection.id, event.target.value) : getSectionHref(resolvedSection.id))}>
+            <option value="">Усі категорії розділу</option>
+            {resolvedSection.items.map((item) => <option key={item.id} value={item.id}>{item.title}</option>)}
+          </select>
         </div>
 
         <div className={styles.layout}>
@@ -254,6 +276,19 @@ const CatalogPage = () => {
               activeFilterId={activeFilterId}
               onFilterChange={handleFilterChange}
             />
+            {(selectedCategory || hasSearchQuery) && <label className={styles["sort-control"]}>
+              Сортування
+              <select value={sortOrder} onChange={(event) => {
+                const nextParams = new URLSearchParams(searchParams);
+                if (event.target.value === "default") nextParams.delete("sort");
+                else nextParams.set("sort", event.target.value);
+                setSearchParams(nextParams);
+              }}>
+                <option value="default">За замовчуванням</option>
+                <option value="price-asc">Від дешевших</option>
+                <option value="price-desc">Від дорожчих</option>
+              </select>
+            </label>}
 
             {isSearchPending ? (
               <div className={styles["search-hint"]}>
@@ -264,7 +299,8 @@ const CatalogPage = () => {
             {isSearchMode && hasSearchQuery ? (
               <>
                 <CatalogProductsGrid
-                  products={searchedProducts}
+                  products={sortProducts(searchedProducts)}
+                  onReset={resetFilters}
                   categoryTitle={
                     searchScope === "category" && selectedCategory
                       ? `Пошук у категорії: ${selectedCategory.title}`
@@ -277,14 +313,16 @@ const CatalogPage = () => {
 
             {!isSearchMode && selectedCategory ? (
               <CatalogProductsGrid
-                products={visibleProducts}
-                categoryTitle={selectedCategory.title}
+                products={sortProducts(visibleProducts)}
+                onReset={resetFilters}
+                categoryTitle="Товари"
               />
             ) : null}
 
             {!isSearchMode && !selectedCategory ? (
               <CatalogCategoryGrid
                 items={visibleItems}
+                onReset={resetFilters}
                 sectionTone={resolvedSection.backgroundTone}
                 activeCategoryId=""
                 getCategoryHref={(categoryId) => getCategoryHref(resolvedSection.id, categoryId)}

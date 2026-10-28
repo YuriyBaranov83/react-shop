@@ -1,18 +1,25 @@
 import clsx from "clsx";
 import { Link } from "react-router-dom";
+import EmptyState from "@/components/ui/EmptyState/EmptyState";
 import styles from "./CatalogCategoryGrid.module.css";
+
+const toneClasses = {
+  green: styles["card-green"],
+  beige: styles["card-beige"],
+  lilac: styles["card-lilac"],
+  cyan: styles["card-cyan"],
+};
 
 const CatalogCategoryGrid = ({
   items,
   sectionTone,
   activeCategoryId,
   getCategoryHref,
+  onReset,
 }) => {
   if (!items.length) {
     return (
-      <div className={styles["empty-state"]}>
-        <p>За обраними фільтрами категорій поки немає.</p>
-      </div>
+      <EmptyState onReset={onReset} actionLabel="Скинути фільтри">За обраними фільтрами категорій поки немає.</EmptyState>
     );
   }
 
@@ -24,12 +31,12 @@ const CatalogCategoryGrid = ({
           to={getCategoryHref(item.id)}
           className={clsx(
             styles.card,
-            styles[`card-${sectionTone}`],
+            toneClasses[sectionTone],
             activeCategoryId === item.id && styles["card-active"]
           )}
         >
           <span className={styles.title}>{item.title}</span>
-          <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+          <img src={item.image} alt="" loading="lazy" decoding="async" />
         </Link>
       ))}
     </div>

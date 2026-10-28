@@ -20,7 +20,7 @@ const fallbackIconMap = {
 };
 
 const iconModules = import.meta.glob(
-  "/src/assets/icons/vacancies/*.{svg,png,jpg,jpeg,webp}",
+  "/src/assets/icons/vacancies/*.webp",
   { eager: true, import: "default" }
 );
 

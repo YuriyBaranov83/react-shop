@@ -27,13 +27,14 @@ const CatalogDropdown = ({ onClose }) => {
                 c.id === activeId && styles["cat-item-active"]
               )}
               onMouseEnter={() => setActiveId(c.id)}
+              onFocus={() => setActiveId(c.id)}
               onClick={() => {
                 setActiveId(c.id);
                 onClose?.();
               }}
             >
               {c.title}
-              <span className={styles.arrow}>
+              <span aria-hidden="true">
                 <MdKeyboardArrowRight />
               </span>
             </Link>
@@ -51,7 +52,7 @@ const CatalogDropdown = ({ onClose }) => {
               disabled
             >
               {c.title}
-              <span className={styles.arrow}>
+              <span aria-hidden="true">
                 <MdKeyboardArrowRight />
               </span>
             </button>

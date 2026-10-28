@@ -1,114 +1,44 @@
+import { Link } from "react-router-dom";
 import Container from "@/components/layout/Container";
-import ukraineCoverageMapImage from "@/assets/images/contacts/delivery-map.webp";
+import deliveryIllustration from "@/assets/images/contacts/delivery-map.webp";
+import { shopInfo, stores } from "@/data/shopInfoData";
 import styles from "./ContactsPage.module.css";
 
-const stores = [
-  {
-    id: "kyiv-center",
-    title: "Urbanfood Супермаркет",
-    address: "м. Київ, вул. Антоновича, 12",
-    hours: "08:00 - 22:00",
-  },
-  {
-    id: "kyiv-west",
-    title: "Urbanfood Супермаркет",
-    address: "м. Київ, просп. Берестейський, 67",
-    hours: "08:00 - 22:00",
-  },
-  {
-    id: "lviv",
-    title: "Urbanfood Супермаркет",
-    address: "м. Львів, вул. Героїв УПА, 72",
-    hours: "08:00 - 21:30",
-  },
-  {
-    id: "odesa",
-    title: "Urbanfood Супермаркет",
-    address: "м. Одеса, вул. Канатна, 28",
-    hours: "08:00 - 22:00",
-  },
-  {
-    id: "dnipro",
-    title: "Urbanfood Супермаркет",
-    address: "м. Дніпро, просп. Дмитра Яворницького, 54",
-    hours: "08:00 - 22:00",
-  },
-  {
-    id: "vinnytsia",
-    title: "Urbanfood Супермаркет",
-    address: "м. Вінниця, вул. Соборна, 41",
-    hours: "08:00 - 21:00",
-  },
-  {
-    id: "ivano-frankivsk",
-    title: "Urbanfood Супермаркет",
-    address: "м. Івано-Франківськ, вул. Незалежності, 36",
-    hours: "08:00 - 21:00",
-  },
-  {
-    id: "ternopil",
-    title: "Urbanfood Супермаркет",
-    address: "м. Тернопіль, вул. Руська, 18",
-    hours: "08:00 - 21:00",
-  },
-];
-
-const ContactsPage = () => {
-  return (
-    <section className={styles["contacts-section"]}>
-      <Container>
-          <h1>Контакти</h1>
-          <p className={styles["contacts-lead"]}>
-            Urbanfood - мережа магазинів та кулінарії. Працюємо в межах України та оперативно
-            обробляємо звернення клієнтів.
-          </p>
-
-          <div className={styles["contacts-meta-grid"]}>
-            <article className={styles["contacts-card"]}>
-              <h2>Графік підтримки</h2>
-              <p>Щоденно з 08:00 до 21:00</p>
-              <p>Без вихідних</p>
-            </article>
-
-            <article className={styles["contacts-card"]}>
-              <h2>Зв&apos;язок</h2>
-              <div className={styles["contacts-link-list"]}>
-                <a className={styles["contacts-link"]} href="tel:+38000490999">
-                  <span className={styles["contacts-link-label"]}>Телефон:</span> +38 (000) 49-09-99
-                </a>
-                <a className={styles["contacts-link"]} href="mailto:contact@urbanfood.ua">
-                  <span className={styles["contacts-link-label"]}>Email:</span> contact@urbanfood.ua
-                </a>
-                <a className={styles["contacts-link"]} href="mailto:feedback@urbanfood.ua">
-                  <span className={styles["contacts-link-label"]}>Відгуки:</span> feedback@urbanfood.ua
-                </a>
-              </div>
-            </article>
+const ContactsPage = () => (
+  <section className={`${styles["contacts-main"]} ${styles["contacts-section"]}`}>
+    <Container>
+      <h1>Контакти</h1>
+      <p className={styles["contacts-lead"]}>Urbanfood — демонстраційний онлайн-супермаркет. Адреси та контакти наведено для прикладу; замовлення й звернення не приймаються.</p>
+      <div className={styles["contacts-meta-grid"]}>
+        <article className={styles["contacts-card"]}>
+          <h2>Графік підтримки (демо)</h2><p>{shopInfo.supportHours}</p><p>Без вихідних</p>
+        </article>
+        <article className={styles["contacts-card"]}>
+          <h2>Демонстраційні контакти</h2>
+          <div className={styles["contacts-link-list"]}>
+            <p><span className={styles["contacts-link-label"]}>Телефон:</span> буде додано перед запуском</p>
+            <p><span className={styles["contacts-link-label"]}>Email:</span> {shopInfo.email}</p>
+            <p><span className={styles["contacts-link-label"]}>Відгуки:</span> {shopInfo.feedbackEmail}</p>
           </div>
-
-          <figure className={styles["contacts-map-card"]}>
-            <img
-              src={ukraineCoverageMapImage}
-              alt="Карта покриття Urbanfood на території України"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Покриття Urbanfood виключно на території України.</figcaption>
-          </figure>
-
-          <h2 className={styles["contacts-stores-title"]}>Магазини Urbanfood в Україні</h2>
-          <div className={styles["contacts-stores-grid"]}>
-            {stores.map((store) => (
-              <article key={store.id} className={styles["contacts-store-card"]}>
-                <h3>{store.title}</h3>
-                <p>{store.address}</p>
-                <p>{store.hours}</p>
-              </article>
-            ))}
-          </div>
-      </Container>
-    </section>
-  );
-};
-
+        </article>
+      </div>
+      <figure className={styles["contacts-map-card"]}>
+        <img src={deliveryIllustration} alt="Ілюстрація кур'єрської доставки продуктів" width="1080" height="500" loading="lazy" decoding="async" />
+        <figcaption>Ілюстрація доставки. <Link to="/#delivery-payment" className={styles["contacts-link"]}>Переглянути демонстраційні умови</Link></figcaption>
+      </figure>
+      <h2 className={styles["contacts-stores-title"]}>Приклади магазинів в Україні</h2>
+      <div className={styles["contacts-stores-grid"]}>
+        {stores.map((store) => <article key={store.id} className={styles["contacts-store-card"]}>
+          <h3>{store.title}</h3><p>{store.address}</p><p>{store.hours}</p>
+        </article>)}
+      </div>
+      <section id="privacy" className={styles["privacy-section"]} aria-labelledby="privacy-title">
+        <h2 id="privacy-title">Конфіденційність у демо-версії</h2>
+        <p>Кошик та обране зберігаються у вашому браузері. Їх можна очистити, видаливши товари або дані цього сайту.</p>
+        <p>Форми перевіряють введення локально. Повідомлення, заявки, підписки й SMS не надсилаються, облікові записи не створюються. Для перевірки використовуйте вигадані дані.</p>
+        <p>Реальні умови користування та політику обробки даних буде опубліковано перед запуском сервісу.</p>
+      </section>
+    </Container>
+  </section>
+);
 export default ContactsPage;
