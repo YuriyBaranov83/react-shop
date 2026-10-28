@@ -1,0 +1,14 @@
+.vacancies-main {
+    padding: clamp(1.25rem, 2.2vw, 2.125rem) 0 3.75rem;
+    background: #f5f5f7;
+}
+
+.section {
+    position: relative;
+}
+
+@media (max-width: 760px) {
+    .vacancies-main {
+        padding: 0.875rem 0 2.5rem;
+    }
+}

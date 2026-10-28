@@ -1,0 +1,96 @@
+.cart-action {
+    --cart-action-height: 2.75rem;
+    --cart-action-font-size: var(--text-sm);
+    --cart-action-button-size: 1.375rem;
+    width: 100%;
+}
+
+.counter button:disabled { opacity: .45; cursor: not-allowed; }
+.counter button { min-width: 0; min-height: 2.75rem; }
+.counter output { min-width: 1.25em; text-align: center; }
+
+.action-button {
+    width: 100%;
+    min-height: var(--cart-action-height);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--first-color);
+    color: var(--first-color);
+    font-size: var(--cart-action-font-size);
+    font-weight: 600;
+    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.action-button-filled {
+    border-color: var(--first-color);
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.action-button:hover {
+    background: var(--first-color);
+    border-color: var(--first-color);
+    color: var(--white-color);
+    transform: translateY(-0.0625rem);
+}
+
+.action-button-filled:hover {
+    border-color: var(--third-color);
+    background: var(--third-color);
+    color: var(--white-color);
+}
+
+.counter {
+    width: 100%;
+    min-height: var(--cart-action-height);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--second-color);
+    background: var(--fourth-color);
+    display: grid;
+    grid-template-columns: minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr);
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    padding: 0 .125rem;
+    color: var(--third-color);
+    font-size: var(--cart-action-font-size);
+    font-weight: 600;
+}
+
+.counter-filled {
+    border-color: var(--first-color);
+    background: var(--fourth-color);
+    color: var(--third-color);
+}
+
+.counter button {
+    width: 100%;
+    height: var(--cart-action-button-size);
+    border-radius: var(--radius-pill);
+    color: var(--third-color);
+    font-size: clamp(0.875rem, 1em, 1.5rem);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s ease, color .2s ease;
+}
+
+.counter button:hover {
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.counter-filled button {
+    color: var(--first-color);
+}
+
+.counter-filled button:hover {
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.action-button:focus-visible,
+.counter button:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}

@@ -1,16 +1,54 @@
-# React + Vite
+# Urbanfood
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Навчальний інтернет-магазин: React, Vite, CSS Modules, React Router, Swiper, React Icons та Context API. Проєкт працює з локальними демонстраційними даними без backend.
 
-Currently, two official plugins are available:
+## Демо
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Опублікована версія: https://react-shop-yuribaranov.netlify.app/ (локальні зміни потребують окремого розгортання).
 
-## React Compiler
+## Сторінки
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `/` — головна, пропозиції, категорії та умови доставки.
+- `/catalog` і `/catalog/:sectionId` — категорії, пошук, фільтри та сортування.
+- `/product/:productId` — товар, галерея, схожі товари й демо-форма запиту.
+- `/cart` — кошик, знижки, доставка й демо-бонуси.
+- `/favorites` — обране.
+- `/contacts` — приклади контактів і адрес; `#privacy` пояснює зберігання даних.
+- `/vacancies` — вакансії та демонстраційна форма відгуку.
+- `/404` і невідомі URL — сторінка 404.
 
-## Expanding the ESLint configuration
+## Локальний запуск
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+## Перевірки
+
+```bash
+npm run lint
+npm test
+npm run build
+npm run preview
+```
+
+ESLint також перевіряє статичні звернення до класів CSS Modules. Тести перевіряють каталог, міграцію збережених товарів, залишки, ціни, знижки, доставку та недоступне сховище браузера.
+
+## Модель даних
+
+- 55 позицій мають стабільні ID. Головна, каталог, товар, кошик та обране використовують спільні дані.
+- Ціни зберігаються цілими числами в копійках. Для відображення використовується `formatMoney`.
+- Старі ID головної та згенерованих копій товарів підтримуються через `productAliases.js`. Кошик об'єднує дублікати й обмежує кількість залишком.
+- Кошик та обране зберігаються в `localStorage`. За помилки сховища магазин продовжує працювати в пам'яті поточної вкладки.
+- Шрифт Inter підключено локально як variable font із кириличним, латинським і розширеним латинським піднаборами. Браузер завантажує потрібні піднабори за `unicode-range`.
+- Розміри тексту та основні відступи використовують `rem`; кольори й повторювані розміри визначені в `tokens.css`.
+
+## Демо-сценарії та обмеження
+
+- Кошик: `VESNA10` дає 10%, `SAVE80` — 80 грн. Одночасно застосовується один промокод. Демо-баланс становить 100 бонусів; 1 бонус = 1 грн.
+- Доставка безкоштовна від 300 грн після всіх знижок; інакше — 50 грн. Умови спільні для головної та кошика.
+- Авторизація показує локальний сценарій із кодом `1234`; SMS, реальний обліковий запис і сесія не створюються.
+- Форми запиту, відгуку на вакансію, оцінки та підписки показують результат локальної перевірки. Дані нікуди не надсилаються.
+- Контакти, вакансії, залишки й ціни ілюстративні. Склад, алергени та умови зберігання не вигадуються: їх слід перевіряти на упаковці виробника.
+- Оформлення замовлень, бронювання доставки та оплата недоступні. Для запуску реального магазину потрібні backend і перевірені бізнес-дані.

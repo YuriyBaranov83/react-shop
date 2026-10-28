@@ -3,6 +3,7 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import cssModules from './scripts/eslint-css-modules.js'
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -25,5 +26,14 @@ export default defineConfig([
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
+    plugins: { 'css-modules': cssModules },
+  },
+  {
+    files: ['src/**/*.{js,jsx}'],
+    rules: { 'css-modules/known-class': 'error' },
+  },
+  {
+    files: ['tests/**/*.js', 'scripts/**/*.js'],
+    languageOptions: { globals: globals.node },
   },
 ])

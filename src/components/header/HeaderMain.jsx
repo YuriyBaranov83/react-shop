@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./header.module.css";
 import Container from "../layout/Container";
 import clsx from "clsx";
@@ -7,165 +7,164 @@ import { IoSearch, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import { FaHeart, FaUser, FaBasketShopping } from "react-icons/fa6";
 
 import CatalogDropdown from "./CatalogDropdown";
+import CatalogSearchDropdown from "./CatalogSearchDropdown";
+import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
 import { logo } from "@assets/images";
+import useCart from "@/features/cart/model/useCart";
+import useFavorites from "@/features/favorites/model/useFavorites";
+import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
 
 const HeaderMain = () => {
-  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
-  
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const { cartCount } = useCart();
+  const { favoritesCount } = useFavorites();
+  const hasFavorites = favoritesCount > 0;
+  const hasCartItems = cartCount > 0;
 
-  const [isDesktopHover, setIsDesktopHover] = useState(false);
-
-  const catalogWrapRef = useRef(null);
-  
-  const profileWrapRef = useRef(null);
-
-  const toggleCatalog = () => setIsCatalogOpen((v) => !v);
-  const closeCatalog = () => setIsCatalogOpen(false);
-
-  const toggleProfile = () => setIsProfileOpen((v) => !v);
-  const openProfile = () => setIsProfileOpen(true);
-  const closeProfile = () => setIsProfileOpen(false);
-
-  const openAuth = () => setIsAuthOpen(true);
-  const closeAuth = () => setIsAuthOpen(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    const update = () => setIsDesktopHover(mq.matches);
-
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
- 
-  useEffect(() => {
-    if (!isCatalogOpen) return;
-
-    const onDown = (e) => {
-      if (!catalogWrapRef.current) return;
-      if (!catalogWrapRef.current.contains(e.target)) closeCatalog();
-    };
-
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [isCatalogOpen]);
-
-
-  useEffect(() => {
-    if (!isProfileOpen) return;
-
-    const onDown = (e) => {
-      if (!profileWrapRef.current) return;
-      if (!profileWrapRef.current.contains(e.target)) closeProfile();
-    };
-
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [isProfileOpen]);
-
-  
-  useEffect(() => {
-    if (!isCatalogOpen && !isProfileOpen && !isAuthOpen) return;
-
-    const onKey = (e) => {
-      if (e.key !== "Escape") return;
-      closeCatalog();
-      closeProfile();
-      closeAuth();
-    };
-
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isCatalogOpen, isProfileOpen, isAuthOpen]);
-
-  
-  const handleProfileMouseEnter = () => {
-    if (!isDesktopHover) return;
-    openProfile();
-  };
-
-  const handleProfileMouseLeave = () => {
-    if (!isDesktopHover) return;
-    closeProfile();
-  };
-
-  const handleProfileClick = () => {
-    if (isDesktopHover) return;
-    toggleProfile();
-  };
-
-  const handleLoginClick = () => {
-    openAuth();
-    closeProfile();
-  };
+  const {
+    catalog: { catalogWrapRef, closeCatalog, isCatalogOpen, isMobileCatalog, toggleCatalog },
+    profileAuth: {
+      authModalSession,
+      closeAuth,
+      closeProfile,
+      handleLoginClick,
+      handleProfileClick,
+      handleProfileMouseEnter,
+      handleProfileMouseLeave,
+      isAuthOpen,
+      isDesktopHover,
+      isProfileOpen,
+      profileWrapRef,
+    },
+    search: {
+      handleSearchCategorySelect,
+      handleSearchInputChange,
+      handleSearchInputFocus,
+      handleSearchProductSelect,
+      handleSearchShowAllResults,
+      handleSearchSubmit,
+      isSearchDropdownVisible,
+      isMobileSearchOpen,
+      minSearchQueryLength,
+      mobileSearchInputRef,
+      openMobileSearchFromDrawer,
+      popularProducts,
+      searchCategoryResults,
+      searchProductResults,
+      searchQuery,
+      searchSubmitFeedback,
+      searchWrapRef,
+      toggleMobileSearch,
+    },
+  } = useHeaderMainLogic();
 
   return (
-    <div className={styles.header__main}>
+    <div className={styles["header-main"]}>
       <Container className="flex-between">
         <div className={clsx("flex-center", styles.left)}>
-          <a href="/" className={styles.logo} aria-label="My Shop">
-            <img src={logo} alt="Logo" />
-          </a>
-          <div className={styles.catalog__wrap} ref={catalogWrapRef}>
+          <Link to="/" className={styles.logo} aria-label="Urbanfood - на головну">
+            <img src={logo} alt="Логотип Urbanfood" />
+          </Link>
+          <div className={styles["catalog-wrap"]} ref={catalogWrapRef}>
             <button
               type="button"
               className={clsx(
                 "flex-center",
                 styles.catalog,
-                isCatalogOpen && styles.catalog__active
+                isCatalogOpen && styles["catalog-active"]
               )}
               onClick={toggleCatalog}
+              aria-label="Каталог"
               aria-expanded={isCatalogOpen}
-              aria-haspopup="menu"
+              aria-haspopup={isMobileCatalog ? "dialog" : undefined}
             >
-              {isCatalogOpen ? <IoCloseOutline /> : <IoMenuOutline />}
+              {isCatalogOpen ? <IoCloseOutline aria-hidden="true" /> : <IoMenuOutline aria-hidden="true" />}
               <span>Каталог</span>
             </button>
 
-            {isCatalogOpen && <CatalogDropdown onClose={closeCatalog} />}
+            {isCatalogOpen && !isMobileCatalog && <CatalogDropdown onClose={closeCatalog} />}
           </div>
 
           <form
-            className={styles.search}
+            ref={searchWrapRef}
+            className={clsx(
+              styles.search,
+              isMobileCatalog && styles["search-mobile"],
+              isMobileSearchOpen && styles["search-mobile-open"]
+            )}
             role="search"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSearchSubmit}
           >
-            <IoSearch className={styles.search__icon} />
+            <IoSearch className={styles["search-icon"]} aria-hidden="true" />
+            <button
+              type="button"
+              className={styles["search-toggle"]}
+              onClick={toggleMobileSearch}
+              aria-label={isMobileSearchOpen ? "Закрити пошук" : "Відкрити пошук"}
+              aria-expanded={isMobileSearchOpen}
+              aria-controls="header-search-input"
+            >
+              <IoSearch aria-hidden="true" />
+            </button>
             <input
+              id="header-search-input"
+              ref={mobileSearchInputRef}
               type="search"
               name="search"
+              value={searchQuery}
               placeholder="Почати пошук"
+              aria-label="Пошук товарів у каталозі"
               autoComplete="off"
+              onFocus={handleSearchInputFocus}
+              onChange={handleSearchInputChange}
             />
+            {isSearchDropdownVisible ? (
+              <CatalogSearchDropdown
+                query={searchQuery}
+                minLength={minSearchQueryLength}
+                popularProducts={popularProducts}
+                productResults={searchProductResults}
+                categoryResults={searchCategoryResults}
+                onProductSelect={handleSearchProductSelect}
+                onCategorySelect={handleSearchCategorySelect}
+                onShowAllResults={handleSearchShowAllResults}
+              />
+            ) : null}
+            {searchSubmitFeedback ? (
+              <p className={styles["search-feedback"]} role="status" aria-live="polite">
+                {searchSubmitFeedback}
+              </p>
+            ) : null}
           </form>
         </div>
 
         <div className={clsx("flex-center", styles.right)}>
-          <button type="button" className={styles.favorite} aria-label="Обране">
-            <FaHeart />
-          </button>
+          <Link
+            to="/favorites"
+            className={clsx(styles.favorite, hasFavorites && styles["favorite-active"])}
+            aria-label={hasFavorites ? `Обране, ${favoritesCount} товарів` : "Обране"}
+          >
+            <FaHeart aria-hidden="true" />
+            {hasFavorites ? (
+              <span className={styles["header-action-badge"]}>{favoritesCount}</span>
+            ) : null}
+          </Link>
 
           <div
             ref={profileWrapRef}
-            className={styles.profile__wrap}
+            className={styles["profile-wrap"]}
             onMouseEnter={handleProfileMouseEnter}
             onMouseLeave={handleProfileMouseLeave}
           >
             <button
               type="button"
-              className={styles.profile}
               aria-label="Профіль"
               aria-expanded={isProfileOpen}
-              aria-haspopup="menu"
+              aria-controls={isProfileOpen ? "header-profile-popover" : undefined}
               onClick={handleProfileClick}
             >
-              <FaUser />
+              <FaUser aria-hidden="true" />
             </button>
 
             <ProfilePopover
@@ -177,14 +176,33 @@ const HeaderMain = () => {
             />
           </div>
 
-          <button type="button" className={styles.basket} aria-label="Кошик">
-            <FaBasketShopping />
-            <span className={styles.baske__text}>Кошик</span>
-          </button>
+          <Link
+            to="/cart"
+            className={styles.basket}
+            aria-label={hasCartItems ? `Кошик, ${cartCount} товарів` : "Кошик"}
+          >
+            <FaBasketShopping aria-hidden="true" />
+            {hasCartItems ? (
+              <span className={styles["header-action-badge"]}>{cartCount}</span>
+            ) : null}
+            <span className={styles["basket-text"]}>Кошик</span>
+          </Link>
         </div>
       </Container>
 
-      <AuthModal isOpen={isAuthOpen} onClose={closeAuth} />
+      <AuthModal
+        key={authModalSession}
+        isOpen={isAuthOpen}
+        onClose={closeAuth}
+      />
+
+      {isMobileCatalog && isCatalogOpen && (
+        <MobileCatalogDrawer
+          onClose={closeCatalog}
+          onSearchClick={openMobileSearchFromDrawer}
+          onLoginClick={() => { closeCatalog(); handleLoginClick(); }}
+        />
+      )}
     </div>
   );
 };

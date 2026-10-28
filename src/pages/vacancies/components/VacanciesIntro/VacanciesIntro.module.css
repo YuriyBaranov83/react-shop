@@ -1,0 +1,66 @@
+.section {
+    margin-top: 1.375rem;
+    border-radius: var(--radius-sm);
+    background: var(--fourth-color);
+    padding: 1.125rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18.75rem, 26.25rem);
+    gap: 0.875rem;
+    align-items: start;
+}
+
+.left h2 {
+    color: #1a1a1a;
+    font-size: clamp(1.5rem, 2vw, 2.125rem);
+    line-height: 1.1;
+    font-weight: 700;
+    max-width: 26.25rem;
+}
+
+.left p {
+    margin-top: 0.75rem;
+    color: #272727;
+    font-size: clamp(0.875rem, 1vw, 1.0625rem);
+    line-height: 1.35;
+}
+
+.badge {
+    margin-top: 1.25rem;
+    width: 3.125rem;
+    height: 3.125rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.form {
+    align-self: stretch;
+}
+
+@media (max-width: 960px) {
+    .section {
+        grid-template-columns: 1fr;
+    }
+
+    .badge {
+        display: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .section {
+        margin-top: 1.125rem;
+        border-radius: 0.5rem;
+        padding: var(--space-3);
+    }
+
+    .left h2 {
+        font-size: clamp(1.375rem, 7vw, 1.875rem);
+    }
+}

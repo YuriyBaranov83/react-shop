@@ -1,0 +1,94 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.625rem;
+}
+
+.card {
+    position: relative;
+    min-height: 13.125rem;
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
+    padding: 0.875rem 0 0 0.875rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-0.0625rem);
+}
+
+.card-active {
+    outline: 2px solid var(--first-color);
+    outline-offset: -2px;
+}
+
+.title {
+    overflow-wrap: anywhere;
+    max-width: 68%;
+    color: #303a6d;
+    font-size: clamp(1.125rem, 1.28vw, 1.625rem);
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.card img {
+    width: min(100%, 8.25rem);
+    align-self: flex-end;
+    object-fit: contain;
+}
+
+.card-green {
+    background: var(--light-green-bg-color);
+    border-color: var(--light-green-border-color);
+}
+
+.card-beige {
+    background: var(--light-beige-bg-color);
+    border-color: var(--light-beige-border-color);
+}
+
+.card-lilac {
+    background: var(--light-lilac-bg-color);
+    border-color: var(--light-lilac-border-color);
+}
+
+.card-cyan {
+    background: var(--light-cyan-bg-color);
+    border-color: var(--light-cyan-border-color);
+}
+
+@media (max-width: 1180px) {
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 860px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+        min-height: 10.625rem;
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 0 0 0.75rem;
+    }
+
+    .title {
+        max-width: 72%;
+        font-size: clamp(1rem, 4.3vw, 1.25rem);
+    }
+
+    .card img {
+        width: min(100%, 6.75rem);
+    }
+}
+
+@media (max-width: 520px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

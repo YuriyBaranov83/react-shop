@@ -2,7 +2,37 @@
 
     /* ====Fonts==== */
     --font-base: "Inter", system-ui, sans-serif;
-    --font-heading: "Poppins", system-ui, sans-serif;
+    --font-heading: var(--font-base);
+    --text-primary: #222;
+    --text-secondary: #4d4d4d;
+    --text-muted: #666;
+    --text-error: #a62d3d;
+    --surface: #fff;
+    --surface-subtle: #f5f5f7;
+    --border-color: #e2dce4;
+    --border-strong: #a485a8;
+    --text-xs: .75rem;
+    --text-sm: .875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: .75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --radius-sm: .625rem;
+    --radius-md: .875rem;
+    --radius-lg: 1.5rem;
+    --radius-pill: 999px;
+    --shadow-card: 0 .5rem 1.5rem rgb(0 0 0 / 8%);
 
     /* ====theme-main==== */
     --first-color: #92487A;
@@ -14,27 +44,26 @@
     --white-color: #fff;
 
     /*=======Background colors=======*/
-    --body-bg-color: #fefefe;
-    --card-bg-color: #fff;
-    --modal-bg-color: #fff;
-    --bg-transparent-color: rgba(0, 0, 0, 0.1);
-    --bg-transparent-color-01: rgba(0, 0, 0, 0.1);
-    --bg-transparent-color-02: rgba(84, 147, 178, 0.1);
-    --liner-color: #d7d7d7;
-
-    /*=======Color Filter=======*/
-    --color-filter: invert(1);
+    --light-green-bg-color: #eaf2d8;
+    --light-green-border-color: #d6e2bc;
+    --light-beige-bg-color: #f6efe2;
+    --light-beige-border-color: #eedec4;
+    --light-lilac-bg-color: #e8e9fa;
+    --light-lilac-border-color: #d6dbf8;
+    --light-cyan-bg-color: #e5f1f4;
+    --light-cyan-border-color: #cde2e9;
+    --rose-color: #c96089;
+    --coral-color: #b63b44;
+    --peach-color: #f3a58e;
+    --sunflower-color: #f3bd2d;
 
     /*=======Box shadow=======*/
-    --box-shadow: 0px 0px 20px rgb(0 0 0 / 10%);
+    --box-shadow: 0 0 1.25rem rgb(0 0 0 / 10%);
 
     /*=======Font size=======*/
-    --small-font-size: 14px;
-    --normal-font-size: 20px;
-    --title-font-size: 32px;
+    --small-font-size: var(--text-sm);
+    --normal-font-size: var(--text-xl);
 
     /*=======Scroll bar colors=======*/
-    --scroll-bar-color: #c5cadf;
     --icons-first-color: #70768a;
-    --scroll-thumb-hover-color: #454f6b;
 }

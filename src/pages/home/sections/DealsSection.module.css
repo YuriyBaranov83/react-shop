@@ -1,0 +1,9 @@
+.deals { min-width: 0; }
+.deals-head { margin-bottom: var(--space-4); }
+.deals-head-nav { display: flex; gap: var(--space-2); }
+.deals-nav { flex-shrink: 0; }
+.deals-swiper { padding: var(--space-1); margin: calc(-1 * var(--space-1)); }
+.deals-slide { height: auto; display: flex; }
+.deals-slide > article { width: 100%; }
+.deals-pagination { margin-top: var(--space-4); text-align: center; min-height: 1rem; }
+@media (min-width: 1024px) { .deals-pagination { display: none; } }

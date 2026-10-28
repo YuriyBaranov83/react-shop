@@ -1,0 +1,20 @@
+.supermarket-section {
+    --tiles-card-bg: var(--light-green-bg-color);
+    --tiles-card-border: var(--light-green-border-color);
+}
+
+.culinary-section {
+    --tiles-card-bg: var(--light-beige-bg-color);
+    --tiles-card-border: var(--light-beige-border-color);
+}
+
+.frozen-section {
+    --tiles-card-bg: var(--light-lilac-bg-color);
+    --tiles-card-border: var(--light-lilac-border-color);
+}
+
+.other-section {
+    --tiles-card-bg: var(--light-cyan-bg-color);
+    --tiles-card-border: var(--light-cyan-border-color);
+    --tiles-mobile-rows: 1;
+}

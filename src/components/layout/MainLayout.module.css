@@ -1,0 +1,5 @@
+.skip-link { position: fixed; left: var(--space-4); top: var(--space-4); z-index: 500; padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); background: var(--third-color); color: var(--white-color); transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+.main { min-height: 45vh; }
+.main:focus { outline: none; }
+.loading { padding: var(--space-8); color: var(--text-secondary); }

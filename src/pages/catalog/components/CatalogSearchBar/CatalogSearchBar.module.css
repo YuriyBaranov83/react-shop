@@ -1,0 +1,105 @@
+.search-block {
+    display: grid;
+    gap: var(--space-2);
+    min-width: 0;
+}
+
+.search-form {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.search-form input {
+    flex: 1;
+    min-width: min(100%, 11rem);
+    width: 100%;
+    min-height: 2.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgb(84 8 99 / 20%);
+    background: var(--white-color);
+    padding: 0 var(--space-3) 0 2.375rem;
+    color: var(--third-color);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+}
+
+.search-form input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-icon {
+    position: absolute;
+    top: 1.375rem;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+}
+
+.clear-button {
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.submit-button { grid-column: 3; grid-row: 1; }
+.clear-button { grid-column: 2; grid-row: 1; }
+
+.clear-button > svg {
+    font-size: 1.375rem;
+}
+
+.clear-button:hover {
+    background: rgb(84 8 99 / 8%);
+    color: var(--first-color);
+}
+
+.submit-button { min-height: 2.75rem; border-radius: var(--radius-sm); background: var(--first-color); color: var(--white-color); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); font-weight: 600; }
+
+.scope-switch {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.scope-button {
+    min-height: 1.875rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgb(84 8 99 / 20%);
+    padding: 0 0.75rem;
+    color: #4f4f4f;
+    background: var(--white-color);
+    font-size: var(--text-xs);
+    line-height: 1;
+    font-weight: 500;
+}
+
+.scope-button:hover {
+    border-color: var(--first-color);
+    color: var(--first-color);
+}
+
+.scope-button-active {
+    border-color: var(--first-color);
+    background: var(--first-color);
+    color: var(--white-color);
+}
+
+.scope-button-active:hover {
+    color: var(--white-color);
+}
+
+.search-form input:focus-visible,
+.clear-button:focus-visible,
+.scope-button:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 2px;
+}
