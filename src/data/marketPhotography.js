@@ -6,8 +6,8 @@ const imageModules = import.meta.glob("/src/assets/images/market/*.webp", {
 const photo = (name) => imageModules[`/src/assets/images/market/${name}.webp`];
 
 export const categoryPhotography = {
-  "water-drinks": photo("water"),
-  "milk-eggs": photo("milk"),
+  "water-drinks": photo("category-drinks"),
+  "milk-eggs": photo("category-dairy"),
   "snacks-dried-fruits": photo("nuts"),
   "coffee-tea-sweets": photo("coffee"),
   "pasta-groats": photo("pasta"),

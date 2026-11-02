@@ -10,12 +10,13 @@ The files are stock illustrations of food and everyday products. They do not dep
 
 ## Preparation
 
-- EXIF orientation normalized; original subject, colors, and composition retained.
+- EXIF orientation normalized; original subjects and colors retained. The dairy category image is cropped to remove empty space; its crop is recorded in `asset-sources.json`.
 - Converted to WebP using Pillow; no generated imagery or branded product cutouts.
 - Catalog photographs have a maximum edge of 640–800 px; editorial photographs have a maximum edge of 1200–1600 px.
-- All 53 photographs visually checked as a contact sheet.
+- All 55 photographs visually checked; the two dedicated category thumbnails are also checked in desktop and mobile card crops.
 - No image exceeds 140 KB; total photographic payload is about 1.9 MB across the whole catalog and all pages.
 - `src/data/marketPhotography.js` maps 26 categories, 55 stable product IDs, and six editorial placements to these files. Related products may share a thematically appropriate photograph.
+- Category thumbnails should show recognizable ingredients or a prepared drink, with a clear subject that remains visible in both landscape and near-square crops. Avoid empty vessels and incidental kitchen snapshots.
 
 ## Credits
 
@@ -74,5 +75,7 @@ The files are stock illustrations of food and everyday products. They do not dep
 | `water.webp`             | cottonbro studio    | [Photo 4057746](https://www.pexels.com/photo/a-bottle-and-glass-on-table-4057746/)                                              | 533 × 800   |     31,532 |
 | `white-pump.webp`        | Mikhail Nilov       | [Photo 7814990](https://www.pexels.com/photo/white-cosmetic-plastic-pump-bottle-with-beige-background-7814990/)                 | 534 × 800   |      9,836 |
 | `wine.webp`              | Nicole Queiroz      | [Photo 10772487](https://www.pexels.com/photo/a-bottle-and-glass-of-red-wine-on-a-table-10772487/)                              | 533 × 800   |     18,674 |
+| `category-drinks.webp` | Lukas Blazek | [Photo 298720](https://www.pexels.com/photo/lemon-juice-in-cup-298720/) | 800 × 530 | 19,830 |
+| `category-dairy.webp` | RDNE Stock project | [Photo 8963368](https://www.pexels.com/photo/close-up-shot-of-a-glass-of-milk-beside-two-eggs-8963368/) | 800 × 610 | 9,048 |
 
 The machine-readable source list includes the original Pexels photo ID and a documented preferred download width. Delivery and careers photos show anonymous hands or cropped people as lifestyle context; they are not employee portraits.

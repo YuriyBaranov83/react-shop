@@ -323,5 +323,24 @@
     "id": 4084933,
     "source": "https://www.pexels.com/photo/freshly-made-pierogi-4084933/",
     "photographer": "kaboompics.com"
+  },
+  {
+    "key": "category-drinks",
+    "id": 298720,
+    "source": "https://www.pexels.com/photo/lemon-juice-in-cup-298720/",
+    "photographer": "Lukas Blazek"
+  },
+  {
+    "key": "category-dairy",
+    "id": 8963368,
+    "source": "https://www.pexels.com/photo/close-up-shot-of-a-glass-of-milk-beside-two-eggs-8963368/",
+    "photographer": "RDNE Stock project",
+    "width": 1200,
+    "crop": [
+      150,
+      0,
+      1200,
+      800
+    ]
   }
 ]
