@@ -1,42 +1,30 @@
-import {
-  promoComboPizzaImage,
-  promoHolidayImage,
-  promoPreorderImage,
-} from "@/assets/images/home/promotions";
-import homeCareImage from "@/assets/images/home/categories/other/household-chemistry.webp";
-
+import { editorialPhotography } from "./marketPhotography";
 export const homePromotionsData = [
   {
-    id: "preorder-culinary",
+    id: "weekly-table",
     variant: "preorder",
-    title: "Смачні пропозиції кулінарії зі знижкою",
-    href: "/catalog/culinary?filter=sale",
+    title: "Смачний план на тиждень",
+    text: "Знайдіть свої улюблені пропозиції",
+    href: "/catalog/supermarket?filter=sale",
     badge: null,
-    image: promoPreorderImage,
+    image: editorialPhotography.hero,
   },
   {
-    id: "holiday-arrived",
+    id: "first-basket",
     variant: "holiday",
-    title: "Спробуйте демо-знижку 10%",
-    badge: "VESNA10",
+    title: "Знайомство зі смаком",
+    text: "Спробуйте демо-знижку 10%",
     href: "/cart?promo=VESNA10",
-    image: promoHolidayImage,
+    badge: "VESNA10",
+    image: editorialPhotography.bakery,
   },
   {
-    id: "third-item-discount",
-    variant: "cleanline",
-    title: "Товари для дому за вигідною ціною",
-    href: "/catalog/other?filter=sale",
-    badge: null,
-    image: homeCareImage,
-  },
-  {
-    id: "pizza-combo",
+    id: "easy-dinner",
     variant: "combo",
-    title: "Заощаджуйте 80 грн з демо-промокодом",
-    badge: "SAVE80",
+    title: "Менше турбот. Більше смаку.",
+    text: "Демо-промокод на 80 грн",
     href: "/cart?promo=SAVE80",
-    image: promoComboPizzaImage,
+    badge: "SAVE80",
+    image: editorialPhotography.kitchen,
   },
 ];
-

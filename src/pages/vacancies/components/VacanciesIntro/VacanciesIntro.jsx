@@ -1,21 +1,23 @@
 import VacancyApplyForm from "../VacancyApplyForm/VacancyApplyForm";
-import likeIcon from "@/assets/icons/vacancies/Like_perspective_matte.webp";
 import styles from "./VacanciesIntro.module.css";
-
-const VacanciesIntro = () => {
-  return (
-    <section className={styles.section}>
-      <div className={styles.left}>
-        <h2>ХОЧЕТЕ СТАТИ ЧАСТИНОЮ НАШОЇ КОМАНДИ?</h2>
-        <p>Спробуйте заповнити демонстраційну заявку.</p>
-        <span className={styles.badge} aria-hidden="true">
-          <img src={likeIcon} alt="" loading="lazy" decoding="async" />
-        </span>
-      </div>
-
-      <VacancyApplyForm className={styles.form} />
-    </section>
-  );
-};
-
+const VacanciesIntro = () => (
+  <section className={styles.section}>
+    <div className={styles.left}>
+      <p className={styles.eyebrow}>Можливо, нам по дорозі</p>
+      <h2>
+        Не знайшли
+        <br />
+        свою роль?
+      </h2>
+      <p>
+        Розкажіть трохи про себе. Спробуйте демонстраційну форму й познайомтеся
+        з форматом заявки.
+      </p>
+      <span className={styles.note}>
+        Тут починаються хороші знайомства <span aria-hidden="true">↗</span>
+      </span>
+    </div>
+    <VacancyApplyForm className={styles.form} />
+  </section>
+);
 export default VacanciesIntro;

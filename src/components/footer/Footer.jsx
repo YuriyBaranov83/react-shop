@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Brand from "@/components/ui/Brand/Brand";
 import { shopInfo } from "@/data/shopInfoData";
 import FormStatus from "@/components/ui/FormStatus/FormStatus";
 import { useState } from "react";
@@ -76,8 +77,13 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Container>
         <div className={styles["footer-top"]}>
-          <div className={`${styles["footer-column"]} ${styles["footer-column-club"]}`}>
-            <h3 className={styles["footer-title"]}>Urbanfood клуб</h3>
+          <div
+            className={`${styles["footer-column"]} ${styles["footer-column-club"]}`}
+          >
+            <Link to="/" aria-label="Urbanfood — на головну">
+              <Brand light />
+            </Link>
+            <p>Хороші продукти. Хороший день.</p>
             <ul className={styles["footer-links"]}>
               {footerClubLinks.map((item) => (
                 <li key={item.id}>
@@ -87,7 +93,9 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={`${styles["footer-column"]} ${styles["footer-column-client"]}`}>
+          <div
+            className={`${styles["footer-column"]} ${styles["footer-column-client"]}`}
+          >
             <h3 className={styles["footer-title"]}>Клієнтам</h3>
             <ul className={styles["footer-links"]}>
               {footerClientLinks.map((item) => (
@@ -102,14 +110,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={`${styles["footer-column"]} ${styles["footer-column-phone"]}`}>
+          <div
+            className={`${styles["footer-column"]} ${styles["footer-column-phone"]}`}
+          >
             <div className={styles["footer-phone-wrap"]}>
               <Link className={styles["footer-phone-link"]} to="/contacts">
                 <MdPhoneInTalk aria-hidden="true" />
-                <span className={styles["footer-phone"]}>Контакти магазину</span>
+                <span className={styles["footer-phone"]}>
+                  Контакти магазину
+                </span>
               </Link>
             </div>
-            <p className={styles["footer-work-time"]}>{shopInfo.supportHours} (демо)</p>
+            <p className={styles["footer-work-time"]}>
+              {shopInfo.supportHours} (демо)
+            </p>
 
             <ul className={styles["footer-contacts"]}>
               <li>
@@ -127,12 +141,16 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className={`${styles["footer-column"]} ${styles["footer-column-subscribe"]}`}>
+          <div
+            className={`${styles["footer-column"]} ${styles["footer-column-subscribe"]}`}
+          >
             <h3 className={styles["footer-title"]}>
-              Спробуйте демо-підписку на новини
+              Трохи смачного у вашу пошту
             </h3>
 
-            <p className={styles["footer-demo-note"]}>Дані не надсилаються. Підписка не створюється.</p>
+            <p className={styles["footer-demo-note"]}>
+              Дані не надсилаються. Підписка не створюється.
+            </p>
             <form
               id={FOOTER_SUBSCRIBE_FORM_ID}
               className={styles["footer-subscribe"]}
@@ -140,7 +158,12 @@ const Footer = () => {
               noValidate
             >
               <div className={styles["footer-subscribe-field"]}>
-                <label htmlFor={FOOTER_EMAIL_INPUT_ID} className="visually-hidden">Ваш e-mail</label>
+                <label
+                  htmlFor={FOOTER_EMAIL_INPUT_ID}
+                  className="visually-hidden"
+                >
+                  Ваш e-mail
+                </label>
                 <input
                   id={FOOTER_EMAIL_INPUT_ID}
                   name="subscribeEmail"
@@ -151,7 +174,9 @@ const Footer = () => {
                   onChange={handleEmailChange}
                   onBlur={handleEmailBlur}
                   aria-invalid={emailError ? "true" : "false"}
-                  aria-describedby={emailError ? "footer-email-error" : undefined}
+                  aria-describedby={
+                    emailError ? "footer-email-error" : undefined
+                  }
                 />
                 {emailError && (
                   <span
@@ -163,7 +188,6 @@ const Footer = () => {
                   </span>
                 )}
               </div>
-
             </form>
 
             <div className={styles["footer-policy-wrap"]}>
@@ -179,10 +203,7 @@ const Footer = () => {
               </label>
 
               {policyError && (
-                <p
-                  className={styles["footer-error"]}
-                  role="alert"
-                >
+                <p className={styles["footer-error"]} role="alert">
                   {policyError}
                 </p>
               )}
@@ -193,18 +214,24 @@ const Footer = () => {
               form={FOOTER_SUBSCRIBE_FORM_ID}
               className={styles["footer-subscribe-submit"]}
             >
-              Перевірити підписку
+              Спробувати підписку
             </button>
-            {isSubmitted && <FormStatus className={styles["footer-status"]}>Форму заповнено коректно. Це демонстрація: підписку не створено.</FormStatus>}
+            {isSubmitted && (
+              <FormStatus className={styles["footer-status"]}>
+                Форму заповнено коректно. Це демонстрація: підписку не створено.
+              </FormStatus>
+            )}
           </div>
         </div>
 
         <div className={styles["footer-bottom"]}>
           <p className={styles["footer-copy"]}>
-            © {currentYear} Urbanfood клуб і онлайн - доставка товарів і продуктів
-            додому
+            © {currentYear} Urbanfood клуб і онлайн - доставка товарів і
+            продуктів додому
           </p>
-          <p className={styles["footer-disclaimer"]}>Інформація на сайті не є публічною офертою</p>
+          <p className={styles["footer-disclaimer"]}>
+            Інформація на сайті не є публічною офертою
+          </p>
           <div className={styles["footer-payment"]} aria-label="Способи оплати">
             <FaCcVisa title="VISA" aria-label="VISA" />
             <FaCcMastercard title="Mastercard" aria-label="Mastercard" />

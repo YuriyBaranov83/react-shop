@@ -4,10 +4,7 @@ import {
   homeOtherTiles,
   homeSupermarketTiles,
 } from "./homeCategoryTilesData";
-import {
-  dealCheesyImage, dealCofeImage, dealColaImage,
-  dealShampooImage, dealSlipersImage, dealVineImage,
-} from "@/assets/images/home/deals";
+import { productPhotography } from "./marketPhotography";
 
 const categoryImageMap = new Map(
   [
@@ -15,46 +12,39 @@ const categoryImageMap = new Map(
     ...homeCulinaryTiles,
     ...homeFrozenTiles,
     ...homeOtherTiles,
-  ].map((item) => [item.id, item.image])
+  ].map((item) => [item.id, item.image]),
 );
-
-const dealsImageMap = {
-  "cofe-1": dealCofeImage,
-  "cola-1": dealColaImage,
-  "shampoo-1": dealShampooImage,
-};
 
 const withCategoryProducts = (categoryId, products) =>
   products.map((product) => ({
     ...product,
     stock: product.stock ?? 24,
-    availability: `В наявності ${product.stock ?? 24} шт`,
-    image: product.image || categoryImageMap.get(categoryId),
+    availability:
+      (product.stock ?? 24) > 0 ? "В наявності" : "Немає в наявності",
+    image: productPhotography[product.id] || categoryImageMap.get(categoryId),
   }));
 
 export const catalogProductsByCategory = {
   "water-drinks": withCategoryProducts("water-drinks", [
     {
       id: "water-drinks-product-1",
-      title: "Вода мінеральна Urbanfood, 1.5л",
+      title: "Вода питна мінеральна, 1.5л",
       price: 3290,
       oldPrice: 3990,
       tags: ["sale", "delivery-today", "brand"],
     },
     {
       id: "water-drinks-product-2",
-      title: "Напій Cola Classic, 1.5л",
+      title: "Напій кола класичний, 1.5л",
       price: 5490,
       oldPrice: 6990,
-      image: dealsImageMap["cola-1"],
       tags: ["sale", "delivery-today"],
     },
     {
       id: "water-drinks-product-wine",
-      title: "Вино червоне Vine Reserve сухе, 0.75л",
+      title: "Вино червоне сухе, 0.75л",
       price: 24900,
       oldPrice: 32900,
-      image: dealVineImage,
       tags: ["sale"],
     },
   ]),
@@ -74,10 +64,9 @@ export const catalogProductsByCategory = {
     },
     {
       id: "milk-eggs-product-cheese",
-      title: "Сир твердий Cheesy фермерський, 180г",
+      title: "Сир твердий фермерський, 180г",
       price: 16900,
       oldPrice: 21900,
-      image: dealCheesyImage,
       tags: ["sale", "delivery-today"],
     },
   ]),
@@ -99,10 +88,9 @@ export const catalogProductsByCategory = {
   "coffee-tea-sweets": withCategoryProducts("coffee-tea-sweets", [
     {
       id: "coffee-tea-sweets-product-1",
-      title: "Кава мелена Arabica Gold, 250г",
+      title: "Кава арабіка в зернах, 250г",
       price: 18900,
       oldPrice: 22900,
-      image: dealsImageMap["cofe-1"],
       tags: ["sale", "delivery-today"],
     },
     {
@@ -130,7 +118,7 @@ export const catalogProductsByCategory = {
   "bread-bakery": withCategoryProducts("bread-bakery", [
     {
       id: "bread-bakery-product-1",
-      title: "Хліб Бородинський, 450г",
+      title: "Хліб на заквасці, 450г",
       price: 5990,
       oldPrice: 6990,
       tags: ["sale", "delivery-today", "brand"],
@@ -199,7 +187,7 @@ export const catalogProductsByCategory = {
     },
     {
       id: "pizza-product-2",
-      title: "Піца з шинкою та сиром, 460г",
+      title: "Піца сирна з томатами, 460г",
       price: 20900,
       tags: ["delivery-today"],
     },
@@ -328,7 +316,7 @@ export const catalogProductsByCategory = {
   "semi-finished": withCategoryProducts("semi-finished", [
     {
       id: "semi-finished-product-1",
-      title: "Котлети курячі напівфабрикат, 700г",
+      title: "Фарш для домашніх котлет, 700г",
       price: 12600,
       oldPrice: 14900,
       tags: ["sale"],
@@ -396,17 +384,16 @@ export const catalogProductsByCategory = {
     },
     {
       id: "beauty-hygiene-product-2",
-      title: "Шампунь Shampoo Care, 400мл",
+      title: "Шампунь для щоденного догляду, 400мл",
       price: 14900,
       oldPrice: 18900,
-      image: dealsImageMap["shampoo-1"],
       tags: ["sale"],
     },
   ]),
   "washing-cleaning": withCategoryProducts("washing-cleaning", [
     {
       id: "washing-cleaning-product-1",
-      title: "Порошок пральний Universal, 2кг",
+      title: "Гель для прання, 2л",
       price: 21900,
       oldPrice: 25900,
       tags: ["sale", "delivery-today"],
@@ -421,7 +408,7 @@ export const catalogProductsByCategory = {
   "useful-items": withCategoryProducts("useful-items", [
     {
       id: "useful-items-product-1",
-      title: "Пакети для сміття міцні, 60л x 20шт",
+      title: "Екоторбинка для покупок, 1шт",
       price: 5290,
       oldPrice: 6300,
       tags: ["sale"],
@@ -434,10 +421,9 @@ export const catalogProductsByCategory = {
     },
     {
       id: "useful-items-product-slippers",
-      title: "Капці Slipers домашні теплі, розмір 40–44",
+      title: "Капці домашні м’які, розмір 40–44",
       price: 29900,
       oldPrice: 39900,
-      image: dealSlipersImage,
       tags: ["sale"],
     },
   ]),

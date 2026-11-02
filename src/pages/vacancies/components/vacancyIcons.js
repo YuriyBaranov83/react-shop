@@ -1,37 +1,25 @@
 import {
-  MdCall,
-  MdCalculate,
-  MdDirectionsBike,
-  MdInventory2,
-  MdStorefront,
-  MdWork,
-} from "react-icons/md";
-import { FaBasketShopping, FaChartLine, FaCashRegister } from "react-icons/fa6";
-
-const fallbackIconMap = {
-  cashier: MdCalculate,
-  "bike-courier": MdDirectionsBike,
-  seller: FaBasketShopping,
-  "hall-manager": MdStorefront,
-  "call-center-operator": MdCall,
-  "senior-cashier": FaCashRegister,
-  loader: MdInventory2,
-  accountant: FaChartLine,
+  IoCalculatorOutline,
+  IoBicycleOutline,
+  IoBasketOutline,
+  IoStorefrontOutline,
+  IoCallOutline,
+  IoCardOutline,
+  IoCubeOutline,
+  IoStatsChartOutline,
+  IoBriefcaseOutline,
+} from "react-icons/io5";
+const icons = {
+  cashier: IoCalculatorOutline,
+  "bike-courier": IoBicycleOutline,
+  seller: IoBasketOutline,
+  "hall-manager": IoStorefrontOutline,
+  "call-center-operator": IoCallOutline,
+  "senior-cashier": IoCardOutline,
+  loader: IoCubeOutline,
+  accountant: IoStatsChartOutline,
 };
-
-const iconModules = import.meta.glob(
-  "/src/assets/icons/vacancies/*.webp",
-  { eager: true, import: "default" }
-);
-
-const iconSrcMap = Object.entries(iconModules).reduce((map, [filePath, src]) => {
-  const fileName = filePath.split("/").at(-1) || "";
-  const iconKey = fileName.replace(/\.[^/.]+$/, "");
-  map[iconKey] = src;
-  return map;
-}, {});
-
-export const getVacancyIcon = (iconName) => ({
-  src: iconSrcMap[iconName] ?? null,
-  FallbackIcon: fallbackIconMap[iconName] ?? MdWork,
+export const getVacancyIcon = (name) => ({
+  src: null,
+  FallbackIcon: icons[name] || IoBriefcaseOutline,
 });

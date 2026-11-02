@@ -1,386 +1,116 @@
-.delivery-payment {}
-
-.delivery-payment-head {
-    margin-bottom: 1.5rem;
+.section {
+  padding-block: 3.5rem 1.5rem;
 }
-
-.delivery-payment-head h2 {
-    font-size: clamp(1.5rem, 2vw, 2.625rem);
+.layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
 }
-
-.delivery-payment-top {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(18.75rem, 46vw, 28.75rem);
-    gap: 2.125rem;
-    align-items: stretch;
+.visual {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  min-width: 0;
 }
-
-.delivery-payment-details {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
+.visual img {
+  width: 100%;
+  height: 39rem;
+  object-fit: cover;
+  object-position: 35% center;
 }
-
-.delivery-payment-rule h3 {
-    margin-bottom: 0.5rem;
-    color: var(--coral-color);
-    font-size: clamp(1.1875rem, 1.2vw, 1.5rem);
-    line-height: 1.2;
-    font-weight: 700;
+.content {
+  min-width: 0;
 }
-
-.delivery-payment-rule p,
-.delivery-payment-note {
-    color: #282828;
-    font-size: clamp(1.0625rem, .95vw, 1.3125rem);
-    line-height: 1.45;
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
 }
-
-.delivery-payment-note {
-    margin-top: 0.125rem;
+.content h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  letter-spacing: -0.045em;
+  line-height: 1.2;
 }
-
-.delivery-payment-map-wrap {
-    min-width: 0;
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
+.steps {
+  margin-block: 2rem;
+  display: grid;
+  gap: 1.25rem;
 }
-
-.delivery-payment-map-title {
-    margin-bottom: 0.625rem;
-    color: var(--coral-color);
-    font-size: clamp(1.125rem, 1.2vw, 1.4375rem);
-    line-height: 1.2;
-    font-weight: 700;
+.steps li {
+  display: flex;
+  gap: 1rem;
 }
-
-.delivery-payment-map {
-    flex: 1;
-    min-height: 16.25rem;
-    border-radius: 1.375rem;
-    overflow: hidden;
-    border: 1px solid #f1ded7;
+.steps li > span {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  color: var(--first-color);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
-
-.delivery-payment-map img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+.steps h3 {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
 }
-
-.delivery-payment-promo {
-    margin-top: 2.125rem;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-6);
-    padding: 2rem 2.625rem;
-    border-radius: 2.125rem;
-    background: linear-gradient(90deg, var(--first-color) 0%, var(--second-color) 100%);
+.steps p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 24rem;
 }
-
-.delivery-payment-promo::after {
-    content: "";
-    position: absolute;
-    right: -6.875rem;
-    top: -5.625rem;
-    width: 18.75rem;
-    height: 18.75rem;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgb(255 255 255 / 18%) 0%, transparent 64%);
-    pointer-events: none;
+.terms {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.25rem;
+  margin-bottom: 1rem;
 }
-
-.delivery-payment-promo-text {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.125rem 1.625rem;
-    color: var(--white-color);
+.terms strong {
+  font-size: 0.8125rem;
+  color: var(--first-color);
 }
-
-.delivery-payment-promo-text strong {
-    width: 100%;
-    font-size: clamp(1.625rem, 2vw, 2.875rem);
-    line-height: 1.08;
-    font-weight: 700;
+.terms p {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
 }
-
-.delivery-payment-promo-text span {
-    font-size: clamp(1.25rem, 1.05vw, 1.5rem);
-    line-height: 1.2;
-    font-weight: 600;
+.demo {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 29rem;
 }
-
-.delivery-payment-promo-button {
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 15.625rem;
-    min-height: 3.5rem;
-    padding: 0 1.75rem;
-    border-radius: var(--radius-pill);
-    border: 2px solid var(--white-color);
-    color: var(--white-color);
-    font-size: var(--text-2xl);
-    font-weight: 500;
+.demo a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
-
-.delivery-payment-promo-button:hover {
-    background: rgb(255 255 255 / 18%);
-}
-
-.delivery-payment-promo-button:focus-visible {
-    outline: 2px solid var(--white-color);
-    outline-offset: 3px;
-}
-
-.delivery-payment-review {
-    margin-top: 1.5rem;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(13.125rem, 19vw, 17.875rem);
-    align-items: center;
-    column-gap: clamp(0.875rem, 1.8vw, 1.75rem);
-    padding: 1.125rem 1.5rem;
-    border-radius: 1.25rem;
-    border: 1px solid var(--light-beige-border-color);
-    background: var(--light-beige-bg-color);
-}
-
-.delivery-payment-review-content {
-    width: 100%;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(1rem, 2.2vw, 2.5rem);
-}
-
-.delivery-payment-review-content h3 {
-    font-size: clamp(1.875rem, 1.8vw, 2.625rem);
-    line-height: 1.1;
-    font-weight: 700;
-    color: #2f1212;
-}
-
-.delivery-payment-review-content p {
-    margin-top: 0.5rem;
-    max-width: 32.5rem;
-    font-size: clamp(1.0625rem, .95vw, 1.3125rem);
-    line-height: 1.35;
-    color: #2f1212;
-}
-
-.delivery-payment-review-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.875rem;
-    flex-shrink: 0;
-}
-
-.delivery-payment-stars {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    color: #f7c839;
-    font-size: clamp(1.375rem, 1.15vw, 1.875rem);
-}
-
-.delivery-payment-stars svg:last-child {
-    color: var(--text-muted);
-}
-
-.delivery-payment-review-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 3.375rem;
-    min-width: 13.75rem;
-    padding: 0 1.5rem;
-    border-radius: var(--radius-pill);
-    border: 2px solid var(--coral-color);
-    color: var(--coral-color);
-    font-size: clamp(1.4375rem, 1.55vw, 2rem);
-    font-weight: 500;
-    line-height: 1;
-}
-
-.delivery-payment-review-button:hover {
-    background: rgb(255 91 84 / 10%);
-}
-
-.delivery-payment-review-button:focus-visible {
-    outline: 2px solid var(--coral-color);
-    outline-offset: 3px;
-}
-.delivery-payment-review-text{
-    min-width: 0;
-}
-
-
-.delivery-payment-review-decor {
-    justify-self: end;
-    align-self: end;
-    width: 100%;
-    margin: -2.125rem -0.5rem -1.75rem 0;
-    pointer-events: none;
-}
-
-.delivery-payment-review-decor img {
-    display: block;
-    width: 100%;
-}
-
-@media (max-width: 1200px) {
-    .delivery-payment-top {
-        gap: var(--space-6);
-    }
-
-    .delivery-payment-promo {
-        border-radius: 1.625rem;
-        padding: 1.5rem 1.75rem;
-    }
-
-    .delivery-payment-promo-button {
-        min-width: 13.375rem;
-        min-height: 3.25rem;
-        font-size: var(--text-xl);
-    }
-
-    .delivery-payment-review {
-        grid-template-columns: minmax(0, 1fr) clamp(11rem, 20vw, 15rem);
-        padding: 1rem 1.125rem 0.875rem;
-        column-gap: var(--space-4);
-    }
-
-    .delivery-payment-review-content {
-        gap: 1.125rem;
-    }
-
-    .delivery-payment-review-button {
-        min-height: 3rem;
-        min-width: 11.625rem;
-        font-size: 1.4375rem;
-    }
-
-    .delivery-payment-review-decor {
-        margin: -1.5rem -0.375rem -1.125rem 0;
-    }
-}
-
-@media (max-width: 900px) {
-    .delivery-payment-head {
-        margin-bottom: 1rem;
-    }
-
-    .delivery-payment-top {
-        grid-template-columns: 1fr;
-        gap: 1.375rem;
-    }
-
-    .delivery-payment-rule {
-        gap: 0.375rem;
-    }
-
-    .delivery-payment-promo {
-        margin-top: 1.125rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-4);
-    }
-
-    .delivery-payment-promo-text {
-        gap: 0.625rem 1.25rem;
-    }
-
-    .delivery-payment-promo-text strong {
-        font-size: clamp(1.25rem, 2.8vw, 1.875rem);
-    }
-
-    .delivery-payment-promo-button {
-        min-width: 0;
-        width: fit-content;
-    }
-
-    .delivery-payment-review {
-        margin-top: 1rem;
-        grid-template-columns: 1fr;
-        row-gap: 0.625rem;
-        padding: var(--space-4);
-    }
-
-    .delivery-payment-review-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--space-3);
-    }
-
-    .delivery-payment-review-actions {
-        width: 100%;
-        flex-direction: row;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: var(--space-3);
-    }
-
-    .delivery-payment-review-decor {
-        width: clamp(8.75rem, 26vw, 13.75rem);
-        margin: -1rem 0 -0.625rem auto;
-    }
-
-    .delivery-payment-map{
-        max-height: 25rem;
-    }
-}
-
-@media (max-width: 620px) {
-    .delivery-payment-promo {
-        border-radius: 1.125rem;
-        padding: 1.125rem 1rem;
-    }
-
-    .delivery-payment-promo-button {
-        min-height: 2.625rem;
-        padding: 0 1rem;
-        font-size: 0.9375rem;
-    }
-
-    .delivery-payment-review {
-        align-items: flex-start;
-        padding: 0.875rem 0.875rem 0.625rem;
-    }
-
-    .delivery-payment-review-content h3 {
-        font-size: 1.1875rem;
-    }
-
-    .delivery-payment-review-content p {
-        margin-top: 0.375rem;
-        font-size: 0.8125rem;
-    }
-
-    .delivery-payment-stars {
-        font-size: var(--text-xl);
-    }
-
-    .delivery-payment-review-button {
-        min-height: 2.5rem;
-        min-width: 9.625rem;
-        padding: 0 0.875rem;
-        font-size: var(--text-sm);
-        border-width: 1px;
-    }
-
-    .delivery-payment-review-decor {
-        width: 7.5rem;
-        margin: -0.5rem -0.25rem -0.375rem auto;
-    }
+@media (max-width: 700px) {
+  .section {
+    padding-top: 2rem;
+  }
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+  .visual img {
+    height: 19rem;
+    object-position: center 65%;
+  }
+  .visual {
+    border-radius: 1rem;
+  }
+  .content h2 {
+    font-size: 2rem;
+  }
+  .steps {
+    gap: 1.5rem;
+  }
 }

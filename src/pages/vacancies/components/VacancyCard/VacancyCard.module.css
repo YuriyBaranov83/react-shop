@@ -1,125 +1,106 @@
 .card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(2.625rem, 4vw, 3.625rem);
-    column-gap: var(--space-3);
-    align-items: start;
-    border-radius: 1.25rem;
-    border: 1px solid #f0b926;
-    min-height: 10.75rem;
-    padding: 1.125rem 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.75rem;
+  gap: 1rem;
+  min-width: 0;
+  padding: 1.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1.125rem;
+  background: var(--surface);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
-
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
 .content {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
 }
-
 .content h2 {
-    color: #141414;
-    font-size: var(--text-lg);
-    line-height: 1.1;
-    font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  font-weight: 800;
+  min-height: 3rem;
+  overflow-wrap: anywhere;
 }
-
 .salary-label {
-    margin-top: 0.625rem;
-    color: #222;
-    font-size: clamp(0.75rem, 1.2vw, 1rem);
-    line-height: 1.3;
-    max-width: 16.875rem;
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.25rem;
 }
-
-.salary-prefix,
+.salary-prefix {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
 .salary-amount {
-    display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--first-color);
 }
-
 .button {
-    margin-top: 1rem;
-    min-height: 2.625rem;
-    border-radius: 1.875rem;
-    border: 1px solid #202020;
-    padding: 0 1.625rem;
-    color: #171717;
-    font-size: clamp(1.25rem, 1.2vw, 1.5rem);
-    line-height: 1;
-    font-weight: 500;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding-block: 0.75rem;
+  margin-top: 1.25rem;
+  color: var(--third-color);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
 }
-
 .button:hover {
-    background: #fff;
+  color: var(--coral-color);
 }
-
-.button:focus-visible {
-    outline: 2px solid var(--first-color);
-    outline-offset: 2px;
-}
-
 .icon-wrap {
-    width: 100%;
-    height: clamp(2.625rem, 4vw, 3.625rem);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--first-color);
-    font-size: clamp(2.125rem, 3.2vw, 2.875rem);
-    justify-self: end;
-    align-self: start;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--fourth-color);
+  color: var(--first-color);
+  font-size: 1.35rem;
 }
-
 .icon-wrap img {
-    width: auto;
-    height: 100%;
-    max-width: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-
 .card-sand {
-    background: #f5f2e7;
-    border-color: #f0b926;
+  --vacancy-tone: #efe4cf;
 }
-
 .card-green {
-    background: #eef6e7;
-    border-color: #bfd8a7;
+  --vacancy-tone: #e5edda;
 }
-
 .card-blue {
-    background: #e8f0fb;
-    border-color: #c6d6ec;
+  --vacancy-tone: #e3e9df;
 }
-
 .card-pink {
-    background: #fdf0f2;
-    border-color: #f4a6a6;
+  --vacancy-tone: #f2e3d6;
 }
-
 .card-violet {
-    background: #f4eef8;
-    border-color: #d2bbeb;
+  --vacancy-tone: #e7e6da;
 }
-
 .card-orange {
-    background: #fef2df;
-    border-color: #f2c074;
+  --vacancy-tone: #f3dfc8;
 }
-
 .card-mint {
-    background: #ecf6ea;
-    border-color: #cae3c3;
+  --vacancy-tone: #e0e9d7;
 }
-
-@media (max-width: 980px) {
-    .card {
-        grid-template-columns: minmax(0, 1fr) clamp(3.125rem, 12vw, 4.25rem);
-        column-gap: 0.625rem;
-        min-height: 9.375rem;
-        padding: 1rem 0.875rem;
-    }
-
-    .icon-wrap {
-        height: clamp(3.125rem, 12vw, 4.25rem);
-        font-size: clamp(2.375rem, 10vw, 3.375rem);
-    }
+.card .icon-wrap {
+  background: var(--vacancy-tone, var(--fourth-color));
+}
+@media (max-width: 650px) {
+  .card {
+    padding: 1.5rem;
+  }
+  .content h2 {
+    min-height: 0;
+  }
 }

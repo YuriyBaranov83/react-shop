@@ -1,129 +1,130 @@
-html { font-size: 100%; }
-
+html {
+  font-size: 100%;
+  scroll-padding-top: 1.5rem;
+}
 body {
   font-family: var(--font-base);
-  background-color: var(--surface);
+  font-size: var(--text-sm);
+  background: var(--page-bg);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.65;
 }
-
+::selection {
+  background: #d9e5c5;
+  color: var(--third-color);
+}
 a,
 button {
-  transition: color .2s ease-in-out, background-color .2s ease-in-out, border-color .2s ease-in-out;
-  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
-
+button {
+  line-height: 1.35;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+input,
+select,
+textarea {
+  accent-color: var(--first-color);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
 .container {
-  max-width: 80.625rem;
-  padding: 0 1rem;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 83rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
-
 .flex {
   display: flex;
 }
-
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .flex-between {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
 .flex-column {
   display: flex;
   flex-direction: column;
 }
-
-.swiper-pagination .swiper-pagination-bullet,
-.swiper-pagination-brand .swiper-pagination-bullet {
-  width: 0.625rem;
-  height: 0.625rem;
-  margin: 0 0.3125rem 0 0 !important;
-  opacity: 1;
-  background: rgb(228 155 166 / 72%);
-  transition: width .2s ease;
-  outline: none;
-  box-shadow: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  caret-color: transparent;
-  cursor: pointer;
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
-
-.swiper-pagination .swiper-pagination-bullet-active,
-.swiper-pagination-brand .swiper-pagination-bullet-active {
-  width: 1.75rem;
-  border-radius: var(--radius-pill);
-  background: var(--first-color);
-}
-
-.swiper-pagination .swiper-pagination-bullet:focus-visible,
-.swiper-pagination-brand .swiper-pagination-bullet:focus-visible {
-  outline: 2px solid var(--third-color);
-  outline-offset: 3px;
-}
-
-:where(a, button, input, select, textarea, summary):focus-visible {
-  outline: 2px solid var(--first-color);
-  outline-offset: 3px;
-}
-
-button:disabled { cursor: not-allowed; }
-
 .visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
+  padding: 0;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
   border: 0;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+.swiper-pagination .swiper-pagination-bullet,
+.swiper-pagination-brand .swiper-pagination-bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0 0.35rem 0 0 !important;
+  background: #b7c5ab;
+  opacity: 1;
+  cursor: pointer;
+  transition: width 0.2s ease;
 }
-
-.slider-nav-button {
-  width: 2.125rem;
-  height: 2.125rem;
+.swiper-pagination .swiper-pagination-bullet-active,
+.swiper-pagination-brand .swiper-pagination-bullet-active {
+  width: 1.5rem;
   border-radius: var(--radius-pill);
-  border: 1px solid var(--second-color);
-  background: var(--fourth-color);
+  background: var(--first-color);
+}
+.slider-nav-button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--surface);
   color: var(--third-color);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
-
 .slider-nav-button svg {
-  font-size: 1.375rem;
+  font-size: 1.5rem;
 }
-
 .slider-nav-button:hover {
-  background: var(--first-color);
-  border-color: var(--first-color);
-  color: var(--white-color);
+  background: var(--third-color);
+  color: white;
+  border-color: var(--third-color);
 }
-
 .slider-nav-button.swiper-button-disabled {
-  background: var(--fourth-color);
-  border-color: var(--second-color);
-  color: var(--second-color);
+  opacity: 0.35;
   cursor: default;
 }
-
-.slider-nav-button:focus-visible {
-  outline: 2px solid var(--first-color);
-  outline-offset: 2px;
+@media (max-width: 600px) {
+  .container {
+    padding-inline: 1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

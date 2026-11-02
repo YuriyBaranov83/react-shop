@@ -1,86 +1,53 @@
-import {
-  supermarketBreadImage,
-  supermarketCannedImage,
-  supermarketCoffeeTeaImage,
-  supermarketMilkEggsImage,
-  supermarketPastaImage,
-  supermarketSaucesImage,
-  supermarketSnacksImage,
-  supermarketWaterDrinksImage,
-} from "@/assets/images/home/categories/supermarket";
-import {
-  culinaryDessertsImage,
-  culinaryFreshMeatImage,
-  culinaryGrillMenuImage,
-  culinaryHotDishesImage,
-  culinaryPastriesImage,
-  culinaryPizzaImage,
-  culinarySaladsImage,
-  culinarySoupsImage,
-} from "@/assets/images/home/categories/culinary";
-import {
-  frozenDumplingsImage,
-  frozenFishSeafoodImage,
-  frozenKhinkaliMantyImage,
-  frozenMeatImage,
-  frozenSemiFinishedImage,
-  frozenVegetablesImage,
-} from "@/assets/images/home/categories/frozen";
-import {
-  otherBeautyHygieneImage,
-  otherHouseholdChemistryImage,
-  otherUsefulItemsImage,
-  otherWashingCleaningImage,
-} from "@/assets/images/home/categories/other";
+import { categoryPhotography } from "./marketPhotography";
 import { buildCatalogCategoryHref } from "./catalogRouting";
 
 export const homeSupermarketTiles = [
   {
     id: "water-drinks",
     title: "Вода й напої",
-    image: supermarketWaterDrinksImage,
+    image: categoryPhotography["water-drinks"],
     href: buildCatalogCategoryHref("supermarket", "water-drinks"),
   },
   {
     id: "milk-eggs",
     title: "Молоко, масло й яйця",
-    image: supermarketMilkEggsImage,
+    image: categoryPhotography["milk-eggs"],
     href: buildCatalogCategoryHref("supermarket", "milk-eggs"),
   },
   {
     id: "snacks-dried-fruits",
     title: "Снеки й сухофрукти",
-    image: supermarketSnacksImage,
+    image: categoryPhotography["snacks-dried-fruits"],
     href: buildCatalogCategoryHref("supermarket", "snacks-dried-fruits"),
   },
   {
     id: "coffee-tea-sweets",
     title: "Кава, чай і солодощі",
-    image: supermarketCoffeeTeaImage,
+    image: categoryPhotography["coffee-tea-sweets"],
     href: buildCatalogCategoryHref("supermarket", "coffee-tea-sweets"),
   },
   {
     id: "pasta-groats",
     title: "Макарони й крупи",
-    image: supermarketPastaImage,
+    image: categoryPhotography["pasta-groats"],
     href: buildCatalogCategoryHref("supermarket", "pasta-groats"),
   },
   {
     id: "bread-bakery",
     title: "Хліб і випічка",
-    image: supermarketBreadImage,
+    image: categoryPhotography["bread-bakery"],
     href: buildCatalogCategoryHref("supermarket", "bread-bakery"),
   },
   {
     id: "oils-sauces-spices",
     title: "Олія, соуси й спеції",
-    image: supermarketSaucesImage,
+    image: categoryPhotography["oils-sauces-spices"],
     href: buildCatalogCategoryHref("supermarket", "oils-sauces-spices"),
   },
   {
     id: "canned-pickles",
     title: "Консерви й соління",
-    image: supermarketCannedImage,
+    image: categoryPhotography["canned-pickles"],
     href: buildCatalogCategoryHref("supermarket", "canned-pickles"),
   },
 ];
@@ -89,49 +56,49 @@ export const homeCulinaryTiles = [
   {
     id: "pastries",
     title: "Випічка",
-    image: culinaryPastriesImage,
+    image: categoryPhotography["pastries"],
     href: buildCatalogCategoryHref("culinary", "pastries"),
   },
   {
     id: "pizza",
     title: "Піци",
-    image: culinaryPizzaImage,
+    image: categoryPhotography["pizza"],
     href: buildCatalogCategoryHref("culinary", "pizza"),
   },
   {
     id: "grill-menu",
     title: "Гриль-меню",
-    image: culinaryGrillMenuImage,
+    image: categoryPhotography["grill-menu"],
     href: buildCatalogCategoryHref("culinary", "grill-menu"),
   },
   {
     id: "fresh-meat",
     title: "Свіже м'ясо",
-    image: culinaryFreshMeatImage,
+    image: categoryPhotography["fresh-meat"],
     href: buildCatalogCategoryHref("culinary", "fresh-meat"),
   },
   {
     id: "salads",
     title: "Салати",
-    image: culinarySaladsImage,
+    image: categoryPhotography["salads"],
     href: buildCatalogCategoryHref("culinary", "salads"),
   },
   {
     id: "soups",
     title: "Супи",
-    image: culinarySoupsImage,
+    image: categoryPhotography["soups"],
     href: buildCatalogCategoryHref("culinary", "soups"),
   },
   {
     id: "hot-dishes",
     title: "Гарячі страви",
-    image: culinaryHotDishesImage,
+    image: categoryPhotography["hot-dishes"],
     href: buildCatalogCategoryHref("culinary", "hot-dishes"),
   },
   {
     id: "desserts",
     title: "Десерти",
-    image: culinaryDessertsImage,
+    image: categoryPhotography["desserts"],
     href: buildCatalogCategoryHref("culinary", "desserts"),
   },
 ];
@@ -140,37 +107,37 @@ export const homeFrozenTiles = [
   {
     id: "dumplings",
     title: "Пельмені, вареники й равіолі",
-    image: frozenDumplingsImage,
+    image: categoryPhotography["dumplings"],
     href: buildCatalogCategoryHref("frozen", "dumplings"),
   },
   {
     id: "khinkali-manty",
     title: "Хінкалі й манти",
-    image: frozenKhinkaliMantyImage,
+    image: categoryPhotography["khinkali-manty"],
     href: buildCatalogCategoryHref("frozen", "khinkali-manty"),
   },
   {
     id: "semi-finished",
     title: "Напівфабрикати",
-    image: frozenSemiFinishedImage,
+    image: categoryPhotography["semi-finished"],
     href: buildCatalogCategoryHref("frozen", "semi-finished"),
   },
   {
     id: "frozen-vegetables",
     title: "Заморожені овочі",
-    image: frozenVegetablesImage,
+    image: categoryPhotography["frozen-vegetables"],
     href: buildCatalogCategoryHref("frozen", "frozen-vegetables"),
   },
   {
     id: "fish-seafood",
     title: "Риба й морепродукти",
-    image: frozenFishSeafoodImage,
+    image: categoryPhotography["fish-seafood"],
     href: buildCatalogCategoryHref("frozen", "fish-seafood"),
   },
   {
     id: "frozen-meat",
     title: "М'ясо",
-    image: frozenMeatImage,
+    image: categoryPhotography["frozen-meat"],
     href: buildCatalogCategoryHref("frozen", "frozen-meat"),
   },
 ];
@@ -179,25 +146,25 @@ export const homeOtherTiles = [
   {
     id: "beauty-hygiene",
     title: "Краса й гігієна",
-    image: otherBeautyHygieneImage,
+    image: categoryPhotography["beauty-hygiene"],
     href: buildCatalogCategoryHref("other", "beauty-hygiene"),
   },
   {
     id: "washing-cleaning",
     title: "Прання й прибирання",
-    image: otherWashingCleaningImage,
+    image: categoryPhotography["washing-cleaning"],
     href: buildCatalogCategoryHref("other", "washing-cleaning"),
   },
   {
     id: "useful-items",
     title: "Корисні дрібниці",
-    image: otherUsefulItemsImage,
+    image: categoryPhotography["useful-items"],
     href: buildCatalogCategoryHref("other", "useful-items"),
   },
   {
     id: "household-chemistry",
     title: "Побутова хімія",
-    image: otherHouseholdChemistryImage,
+    image: categoryPhotography["household-chemistry"],
     href: buildCatalogCategoryHref("other", "household-chemistry"),
   },
 ];

@@ -4,14 +4,18 @@ import Container from "../layout/Container";
 import clsx from "clsx";
 
 import { IoSearch, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
-import { FaHeart, FaUser, FaBasketShopping } from "react-icons/fa6";
+import {
+  IoHeartOutline,
+  IoPersonOutline,
+  IoBagHandleOutline,
+} from "react-icons/io5";
 
 import CatalogDropdown from "./CatalogDropdown";
 import CatalogSearchDropdown from "./CatalogSearchDropdown";
 import MobileCatalogDrawer from "./MobileCatalogDrawer";
 import ProfilePopover from "../../features/auth/ui/ProfilePopover";
 import AuthModal from "../../features/auth/ui/AuthModal";
-import { logo } from "@assets/images";
+import Brand from "@/components/ui/Brand/Brand";
 import useCart from "@/features/cart/model/useCart";
 import useFavorites from "@/features/favorites/model/useFavorites";
 import useHeaderMainLogic from "./hooks/useHeaderMainLogic";
@@ -23,7 +27,13 @@ const HeaderMain = () => {
   const hasCartItems = cartCount > 0;
 
   const {
-    catalog: { catalogWrapRef, closeCatalog, isCatalogOpen, isMobileCatalog, toggleCatalog },
+    catalog: {
+      catalogWrapRef,
+      closeCatalog,
+      isCatalogOpen,
+      isMobileCatalog,
+      toggleCatalog,
+    },
     profileAuth: {
       authModalSession,
       closeAuth,
@@ -63,8 +73,12 @@ const HeaderMain = () => {
     <div className={styles["header-main"]}>
       <Container className="flex-between">
         <div className={clsx("flex-center", styles.left)}>
-          <Link to="/" className={styles.logo} aria-label="Urbanfood - на головну">
-            <img src={logo} alt="Логотип Urbanfood" />
+          <Link
+            to="/"
+            className={styles.logo}
+            aria-label="Urbanfood - на головну"
+          >
+            <Brand />
           </Link>
           <div className={styles["catalog-wrap"]} ref={catalogWrapRef}>
             <button
@@ -72,18 +86,24 @@ const HeaderMain = () => {
               className={clsx(
                 "flex-center",
                 styles.catalog,
-                isCatalogOpen && styles["catalog-active"]
+                isCatalogOpen && styles["catalog-active"],
               )}
               onClick={toggleCatalog}
               aria-label="Каталог"
               aria-expanded={isCatalogOpen}
               aria-haspopup={isMobileCatalog ? "dialog" : undefined}
             >
-              {isCatalogOpen ? <IoCloseOutline aria-hidden="true" /> : <IoMenuOutline aria-hidden="true" />}
+              {isCatalogOpen ? (
+                <IoCloseOutline aria-hidden="true" />
+              ) : (
+                <IoMenuOutline aria-hidden="true" />
+              )}
               <span>Каталог</span>
             </button>
 
-            {isCatalogOpen && !isMobileCatalog && <CatalogDropdown onClose={closeCatalog} />}
+            {isCatalogOpen && !isMobileCatalog && (
+              <CatalogDropdown onClose={closeCatalog} />
+            )}
           </div>
 
           <form
@@ -91,7 +111,7 @@ const HeaderMain = () => {
             className={clsx(
               styles.search,
               isMobileCatalog && styles["search-mobile"],
-              isMobileSearchOpen && styles["search-mobile-open"]
+              isMobileSearchOpen && styles["search-mobile-open"],
             )}
             role="search"
             onSubmit={handleSearchSubmit}
@@ -101,7 +121,9 @@ const HeaderMain = () => {
               type="button"
               className={styles["search-toggle"]}
               onClick={toggleMobileSearch}
-              aria-label={isMobileSearchOpen ? "Закрити пошук" : "Відкрити пошук"}
+              aria-label={
+                isMobileSearchOpen ? "Закрити пошук" : "Відкрити пошук"
+              }
               aria-expanded={isMobileSearchOpen}
               aria-controls="header-search-input"
             >
@@ -113,7 +135,7 @@ const HeaderMain = () => {
               type="search"
               name="search"
               value={searchQuery}
-              placeholder="Почати пошук"
+              placeholder="Знайти щось смачне..."
               aria-label="Пошук товарів у каталозі"
               autoComplete="off"
               onFocus={handleSearchInputFocus}
@@ -132,7 +154,11 @@ const HeaderMain = () => {
               />
             ) : null}
             {searchSubmitFeedback ? (
-              <p className={styles["search-feedback"]} role="status" aria-live="polite">
+              <p
+                className={styles["search-feedback"]}
+                role="status"
+                aria-live="polite"
+              >
                 {searchSubmitFeedback}
               </p>
             ) : null}
@@ -142,12 +168,19 @@ const HeaderMain = () => {
         <div className={clsx("flex-center", styles.right)}>
           <Link
             to="/favorites"
-            className={clsx(styles.favorite, hasFavorites && styles["favorite-active"])}
-            aria-label={hasFavorites ? `Обране, ${favoritesCount} товарів` : "Обране"}
+            className={clsx(
+              styles.favorite,
+              hasFavorites && styles["favorite-active"],
+            )}
+            aria-label={
+              hasFavorites ? `Обране, ${favoritesCount} товарів` : "Обране"
+            }
           >
-            <FaHeart aria-hidden="true" />
+            <IoHeartOutline aria-hidden="true" />
             {hasFavorites ? (
-              <span className={styles["header-action-badge"]}>{favoritesCount}</span>
+              <span className={styles["header-action-badge"]}>
+                {favoritesCount}
+              </span>
             ) : null}
           </Link>
 
@@ -161,10 +194,12 @@ const HeaderMain = () => {
               type="button"
               aria-label="Профіль"
               aria-expanded={isProfileOpen}
-              aria-controls={isProfileOpen ? "header-profile-popover" : undefined}
+              aria-controls={
+                isProfileOpen ? "header-profile-popover" : undefined
+              }
               onClick={handleProfileClick}
             >
-              <FaUser aria-hidden="true" />
+              <IoPersonOutline aria-hidden="true" />
             </button>
 
             <ProfilePopover
@@ -181,7 +216,7 @@ const HeaderMain = () => {
             className={styles.basket}
             aria-label={hasCartItems ? `Кошик, ${cartCount} товарів` : "Кошик"}
           >
-            <FaBasketShopping aria-hidden="true" />
+            <IoBagHandleOutline aria-hidden="true" />
             {hasCartItems ? (
               <span className={styles["header-action-badge"]}>{cartCount}</span>
             ) : null}
@@ -200,7 +235,10 @@ const HeaderMain = () => {
         <MobileCatalogDrawer
           onClose={closeCatalog}
           onSearchClick={openMobileSearchFromDrawer}
-          onLoginClick={() => { closeCatalog(); handleLoginClick(); }}
+          onLoginClick={() => {
+            closeCatalog();
+            handleLoginClick();
+          }}
         />
       )}
     </div>

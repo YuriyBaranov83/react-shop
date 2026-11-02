@@ -1,0 +1,65 @@
+.brand {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: var(--third-color);
+  flex-shrink: 0;
+}
+.brand svg {
+  flex-shrink: 0;
+}
+.wordmark {
+  font-family: var(--font-base);
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.07em;
+}
+.wordmark > span {
+  font-weight: 500;
+}
+.wordmark small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.055em;
+  line-height: 1.6;
+  margin-top: 0.25rem;
+}
+.light {
+  color: #fff9eb;
+}
+.light .wordmark small {
+  color: #b5c6b6;
+}
+@media (max-width: 500px) {
+  .wordmark {
+    font-size: 22px;
+  }
+  .brand svg {
+    width: 32px;
+    height: 36px;
+  }
+  .wordmark small {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .brand {
+    gap: 8px;
+  }
+}
+@media (max-width: 370px) {
+  .brand {
+    gap: 6px;
+  }
+  .wordmark {
+    font-size: 20px;
+  }
+  .brand svg {
+    width: 28px;
+    height: 32px;
+  }
+}

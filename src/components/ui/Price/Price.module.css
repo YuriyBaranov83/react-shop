@@ -1,3 +1,19 @@
-.price { display: grid; gap: var(--space-1); line-height: 1.2; }
-.price strong { color: var(--first-color); font-size: var(--price-size, 1.875rem); font-weight: 700; }
-.price del { color: var(--text-muted); font-size: var(--text-xs); }
+.price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.625rem;
+  line-height: 1.4;
+}
+.price strong {
+  color: var(--third-color);
+  font-size: var(--price-size, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+.price del {
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  font-weight: 500;
+}

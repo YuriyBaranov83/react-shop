@@ -1,96 +1,75 @@
 .cart-action {
-    --cart-action-height: 2.75rem;
-    --cart-action-font-size: var(--text-sm);
-    --cart-action-button-size: 1.375rem;
-    width: 100%;
+  min-width: 0;
 }
-
-.counter button:disabled { opacity: .45; cursor: not-allowed; }
-.counter button { min-width: 0; min-height: 2.75rem; }
-.counter output { min-width: 1.25em; text-align: center; }
-
 .action-button {
-    width: 100%;
-    min-height: var(--cart-action-height);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--first-color);
-    color: var(--first-color);
-    font-size: var(--cart-action-font-size);
-    font-weight: 600;
-    transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  width: 100%;
+  min-height: 2.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--first-color);
+  color: white;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--first-color);
 }
-
-.action-button-filled {
-    border-color: var(--first-color);
-    background: var(--first-color);
-    color: var(--white-color);
-}
-
 .action-button:hover {
-    background: var(--first-color);
-    border-color: var(--first-color);
-    color: var(--white-color);
-    transform: translateY(-0.0625rem);
+  background: var(--third-color);
 }
-
-.action-button-filled:hover {
-    border-color: var(--third-color);
-    background: var(--third-color);
-    color: var(--white-color);
+.action-button-filled {
+  background: var(--first-color);
 }
-
+.action-button:disabled {
+  background: var(--surface-subtle);
+  color: var(--text-muted);
+  border-color: var(--border-color);
+}
 .counter {
-    width: 100%;
-    min-height: var(--cart-action-height);
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--second-color);
-    background: var(--fourth-color);
-    display: grid;
-    grid-template-columns: minmax(1.5rem, 1fr) auto minmax(1.5rem, 1fr);
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-1);
-    padding: 0 .125rem;
-    color: var(--third-color);
-    font-size: var(--cart-action-font-size);
-    font-weight: 600;
+  display: grid;
+  grid-template-columns: minmax(1.1rem, 2.5rem) minmax(1rem, 1fr) minmax(
+      1.1rem,
+      2.5rem
+    );
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
+  min-height: 2.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  padding: 0.125rem;
+  background: var(--surface);
+  color: var(--third-color);
 }
-
-.counter-filled {
-    border-color: var(--first-color);
-    background: var(--fourth-color);
-    color: var(--third-color);
-}
-
 .counter button {
-    width: 100%;
-    height: var(--cart-action-button-size);
-    border-radius: var(--radius-pill);
-    color: var(--third-color);
-    font-size: clamp(0.875rem, 1em, 1.5rem);
-    line-height: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: background .2s ease, color .2s ease;
+  display: grid;
+  place-items: center;
+  min-height: 2.375rem;
+  border-radius: 50%;
+  font-size: 1.25rem;
 }
-
 .counter button:hover {
-    background: var(--first-color);
-    color: var(--white-color);
+  background: var(--fourth-color);
 }
-
-.counter-filled button {
-    color: var(--first-color);
+.counter button:disabled {
+  opacity: 0.3;
 }
-
-.counter-filled button:hover {
-    background: var(--first-color);
-    color: var(--white-color);
+.counter output {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 800;
 }
-
-.action-button:focus-visible,
-.counter button:focus-visible {
-    outline: 2px solid var(--first-color);
-    outline-offset: 2px;
+.counter-filled {
+  background: var(--fourth-color);
+}
+@media (max-width: 560px) {
+  .counter {
+    grid-template-columns: minmax(1rem, 1.8rem) minmax(1rem, 1fr) minmax(
+        1rem,
+        1.8rem
+      );
+    gap: 0;
+  }
+  .action-button {
+    padding-inline: 0.5rem;
+    font-size: 0.75rem;
+  }
 }

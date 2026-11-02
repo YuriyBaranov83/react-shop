@@ -5,7 +5,10 @@ import {
   homeSupermarketTiles,
 } from "./homeCategoryTilesData";
 import { catalogProductsByCategory } from "./catalogProductsData";
-import { buildCatalogCategoryHref, buildCatalogSectionHref } from "./catalogRouting";
+import {
+  buildCatalogCategoryHref,
+  buildCatalogSectionHref,
+} from "./catalogRouting";
 
 export const catalogFilterOptions = [
   { id: "all", label: "Усі" },
@@ -29,7 +32,7 @@ const withCategoryMeta = (sectionId, items) =>
 export const catalogSectionsData = [
   {
     id: "supermarket",
-    title: "СУПЕРМАРКЕТ",
+    title: "Супермаркет",
     sidebarLabel: "Супермаркет",
     backgroundTone: "green",
     sectionHref: buildCatalogSectionHref("supermarket"),
@@ -37,7 +40,7 @@ export const catalogSectionsData = [
   },
   {
     id: "culinary",
-    title: "КУЛІНАРІЯ",
+    title: "Кулінарія",
     sidebarLabel: "Кулінарія",
     backgroundTone: "beige",
     sectionHref: buildCatalogSectionHref("culinary"),
@@ -45,7 +48,7 @@ export const catalogSectionsData = [
   },
   {
     id: "frozen",
-    title: "ЗАМОРОЗКА",
+    title: "Заморожені продукти",
     sidebarLabel: "Заморозка",
     backgroundTone: "lilac",
     sectionHref: buildCatalogSectionHref("frozen"),
@@ -53,7 +56,7 @@ export const catalogSectionsData = [
   },
   {
     id: "other",
-    title: "ІНШЕ",
+    title: "Для дому та себе",
     sidebarLabel: "Інше",
     backgroundTone: "cyan",
     sectionHref: buildCatalogSectionHref("other"),
@@ -61,7 +64,8 @@ export const catalogSectionsData = [
   },
 ];
 
-export const defaultCatalogSectionId = catalogSectionsData[0]?.id || "supermarket";
+export const defaultCatalogSectionId =
+  catalogSectionsData[0]?.id || "supermarket";
 
 export const getCatalogSectionById = (sectionId) =>
   catalogSectionsData.find((section) => section.id === sectionId) || null;

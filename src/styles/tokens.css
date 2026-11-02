@@ -1,69 +1,59 @@
 :root {
-
-    /* ====Fonts==== */
-    --font-base: "Inter", system-ui, sans-serif;
-    --font-heading: var(--font-base);
-    --text-primary: #222;
-    --text-secondary: #4d4d4d;
-    --text-muted: #666;
-    --text-error: #a62d3d;
-    --surface: #fff;
-    --surface-subtle: #f5f5f7;
-    --border-color: #e2dce4;
-    --border-strong: #a485a8;
-    --text-xs: .75rem;
-    --text-sm: .875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 2rem;
-    --space-1: .25rem;
-    --space-2: .5rem;
-    --space-3: .75rem;
-    --space-4: 1rem;
-    --space-5: 1.25rem;
-    --space-6: 1.5rem;
-    --space-8: 2rem;
-    --space-10: 2.5rem;
-    --space-12: 3rem;
-    --space-16: 4rem;
-    --radius-sm: .625rem;
-    --radius-md: .875rem;
-    --radius-lg: 1.5rem;
-    --radius-pill: 999px;
-    --shadow-card: 0 .5rem 1.5rem rgb(0 0 0 / 8%);
-
-    /* ====theme-main==== */
-    --first-color: #92487A;
-    --second-color: #E49BA6;
-    --third-color: #540863;
-
-    /*=======Hover colors=======*/
-    --fourth-color: #FFD3D5;
-    --white-color: #fff;
-
-    /*=======Background colors=======*/
-    --light-green-bg-color: #eaf2d8;
-    --light-green-border-color: #d6e2bc;
-    --light-beige-bg-color: #f6efe2;
-    --light-beige-border-color: #eedec4;
-    --light-lilac-bg-color: #e8e9fa;
-    --light-lilac-border-color: #d6dbf8;
-    --light-cyan-bg-color: #e5f1f4;
-    --light-cyan-border-color: #cde2e9;
-    --rose-color: #c96089;
-    --coral-color: #b63b44;
-    --peach-color: #f3a58e;
-    --sunflower-color: #f3bd2d;
-
-    /*=======Box shadow=======*/
-    --box-shadow: 0 0 1.25rem rgb(0 0 0 / 10%);
-
-    /*=======Font size=======*/
-    --small-font-size: var(--text-sm);
-    --normal-font-size: var(--text-xl);
-
-    /*=======Scroll bar colors=======*/
-    --icons-first-color: #70768a;
+  --font-base: "Manrope", system-ui, sans-serif;
+  --font-heading: "Manrope", system-ui, sans-serif;
+  --font-display: "Lora", Georgia, serif;
+  --text-primary: #20382e;
+  --text-secondary: #52635b;
+  --text-muted: #68766c;
+  --text-error: #b13c2e;
+  --surface: #fffefa;
+  --surface-subtle: #f4f3ec;
+  --page-bg: #faf9f5;
+  --border-color: #e3e7dc;
+  --border-strong: #b1bdb0;
+  --first-color: #235640;
+  --second-color: #c4d2b8;
+  --third-color: #173f35;
+  --fourth-color: #eaf0e2;
+  --accent: #e76734;
+  --accent-soft: #fff0e5;
+  --white-color: #fff;
+  --light-green-bg-color: #edf1e6;
+  --light-green-border-color: #dbe4cf;
+  --light-beige-bg-color: #f5ecdb;
+  --light-beige-border-color: #e9dec9;
+  --light-lilac-bg-color: #eef0e8;
+  --light-lilac-border-color: #dce1d2;
+  --light-cyan-bg-color: #eaf0e9;
+  --light-cyan-border-color: #d7e2d5;
+  --rose-color: #315d45;
+  --coral-color: #b94d31;
+  --peach-color: #f4d6b6;
+  --sunflower-color: #ecd596;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --radius-sm: 0.625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 0.75rem 2.5rem rgb(29 57 38 / 7%);
+  --box-shadow: 0 1rem 3rem rgb(25 52 35 / 12%);
+  --small-font-size: var(--text-sm);
+  --normal-font-size: var(--text-base);
+  --icons-first-color: #69796a;
 }
