@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
+import clsx from "clsx";
+import { IoArrowForwardOutline, IoPricetagOutline } from "react-icons/io5";
 import Container from "@/components/layout/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { homePromotionsData } from "@/data/homePromotionsData";
 import styles from "./PromotionsSection.module.css";
+
+const tones = {
+  market: styles.market,
+  sunny: styles.sunny,
+  cream: styles.cream,
+};
+
 const PromotionsSection = () => (
   <section id="promotions" className={styles.promotions}>
     <Container>
@@ -13,25 +22,34 @@ const PromotionsSection = () => (
       />
       <div className={styles.grid}>
         {homePromotionsData.map((promo) => (
-          <Link key={promo.id} to={promo.href} className={styles.card}>
-            <div className={styles.photo}>
-              <img
-                src={promo.image}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width="800"
-                height="600"
-              />
-              {promo.badge && (
-                <span className={styles.badge}>{promo.badge}</span>
+          <Link
+            key={promo.id}
+            to={promo.href}
+            className={clsx(styles.card, tones[promo.variant])}
+          >
+            <p className={styles.eyebrow}>
+              <IoPricetagOutline aria-hidden="true" />
+              {promo.eyebrow}
+            </p>
+            <h3
+              className={clsx(
+                styles.value,
+                promo.code && styles["coupon-value"],
               )}
-            </div>
-            <div className={styles.copy}>
-              <h3>{promo.title}</h3>
-              <p>{promo.text}</p>
-              <span aria-hidden="true">↗</span>
-            </div>
+            >
+              {promo.title}
+            </h3>
+            <p className={styles.description}>{promo.text}</p>
+            {promo.code && (
+              <p className={styles.code}>
+                <span>Демо-промокод</span>
+                <strong>{promo.code}</strong>
+              </p>
+            )}
+            <span className={styles.action}>
+              {promo.action}
+              <IoArrowForwardOutline aria-hidden="true" />
+            </span>
           </Link>
         ))}
       </div>
