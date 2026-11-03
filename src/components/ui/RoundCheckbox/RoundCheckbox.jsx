@@ -9,6 +9,8 @@ const RoundCheckbox = ({
   required = false,
   disabled = false,
   ariaLabel,
+  "aria-invalid": ariaInvalid,
+  "aria-describedby": ariaDescribedBy,
   className,
 }) => {
   return (
@@ -23,6 +25,8 @@ const RoundCheckbox = ({
         required={required}
         disabled={disabled}
         aria-label={ariaLabel}
+        aria-invalid={ariaInvalid}
+        aria-describedby={ariaDescribedBy}
       />
       <span className={styles.control} aria-hidden="true">
         <span className={styles.dot} />

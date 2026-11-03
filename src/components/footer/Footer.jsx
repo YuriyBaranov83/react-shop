@@ -68,7 +68,12 @@ const Footer = () => {
     setEmailError(nextEmailError);
     setPolicyError(nextPolicyError);
 
-    if (nextEmailError || nextPolicyError) return;
+    if (nextEmailError || nextPolicyError) {
+      e.currentTarget.elements
+        .namedItem(nextEmailError ? "subscribeEmail" : "privacyPolicyAccepted")
+        ?.focus();
+      return;
+    }
 
     setIsSubmitted(true);
   };
@@ -76,6 +81,105 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <Container>
+        <section
+          className={styles.newsletter}
+          aria-labelledby="footer-newsletter-title"
+        >
+          <div className={styles["newsletter-copy"]}>
+            <p className={styles["newsletter-eyebrow"]}>
+              Залишаймося на зв’язку
+            </p>
+            <h2 id="footer-newsletter-title">Трохи смачного у вашу пошту</h2>
+            <p>
+              Ідеї до вечері, сезонні знахідки та маленькі приводи потішити
+              себе.
+            </p>
+          </div>
+          <form
+            id={FOOTER_SUBSCRIBE_FORM_ID}
+            className={styles["footer-subscribe"]}
+            onSubmit={handleSubmit}
+            aria-labelledby="footer-newsletter-title"
+            aria-describedby="footer-subscribe-note"
+            noValidate
+          >
+            <div className={styles["footer-subscribe-row"]}>
+              <div className={styles["footer-subscribe-field"]}>
+                <label
+                  htmlFor={FOOTER_EMAIL_INPUT_ID}
+                  className="visually-hidden"
+                >
+                  Ваш e-mail
+                </label>
+                <input
+                  id={FOOTER_EMAIL_INPUT_ID}
+                  name="subscribeEmail"
+                  type="email"
+                  placeholder="Ваш e-mail"
+                  autoComplete="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  onBlur={handleEmailBlur}
+                  aria-invalid={emailError ? "true" : "false"}
+                  aria-describedby={
+                    emailError ? "footer-email-error" : undefined
+                  }
+                />
+              </div>
+              <button
+                type="submit"
+                className={styles["footer-subscribe-submit"]}
+              >
+                Спробувати підписку <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+            {emailError && (
+              <p
+                id="footer-email-error"
+                className={styles["footer-error"]}
+                role="alert"
+              >
+                {emailError}
+              </p>
+            )}
+            <div className={styles["footer-policy-wrap"]}>
+              <label className={styles["footer-policy"]}>
+                <RoundCheckbox
+                  id={FOOTER_POLICY_CHECKBOX_ID}
+                  name="privacyPolicyAccepted"
+                  checked={isPolicyAccepted}
+                  onChange={handlePolicyChange}
+                  ariaLabel="Згода з політикою конфіденційності"
+                  aria-invalid={policyError ? "true" : "false"}
+                  aria-describedby={
+                    policyError ? "footer-policy-error" : undefined
+                  }
+                />
+                <span>Згоден з політикою конфіденційності</span>
+              </label>
+              {policyError && (
+                <p
+                  id="footer-policy-error"
+                  className={styles["footer-error"]}
+                  role="alert"
+                >
+                  {policyError}
+                </p>
+              )}
+            </div>
+            <p
+              id="footer-subscribe-note"
+              className={styles["footer-demo-note"]}
+            >
+              Демо-форма: дані не надсилаються, підписка не створюється.
+            </p>
+            {isSubmitted && (
+              <FormStatus className={styles["footer-status"]}>
+                Форму заповнено коректно. Це демонстрація: підписку не створено.
+              </FormStatus>
+            )}
+          </form>
+        </section>
         <div className={styles["footer-top"]}>
           <div
             className={`${styles["footer-column"]} ${styles["footer-column-club"]}`}
@@ -139,88 +243,6 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
-
-          <div
-            className={`${styles["footer-column"]} ${styles["footer-column-subscribe"]}`}
-          >
-            <h3 className={styles["footer-title"]}>
-              Трохи смачного у вашу пошту
-            </h3>
-
-            <p className={styles["footer-demo-note"]}>
-              Дані не надсилаються. Підписка не створюється.
-            </p>
-            <form
-              id={FOOTER_SUBSCRIBE_FORM_ID}
-              className={styles["footer-subscribe"]}
-              onSubmit={handleSubmit}
-              noValidate
-            >
-              <div className={styles["footer-subscribe-field"]}>
-                <label
-                  htmlFor={FOOTER_EMAIL_INPUT_ID}
-                  className="visually-hidden"
-                >
-                  Ваш e-mail
-                </label>
-                <input
-                  id={FOOTER_EMAIL_INPUT_ID}
-                  name="subscribeEmail"
-                  type="email"
-                  placeholder="Ваш e-mail"
-                  autoComplete="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  onBlur={handleEmailBlur}
-                  aria-invalid={emailError ? "true" : "false"}
-                  aria-describedby={
-                    emailError ? "footer-email-error" : undefined
-                  }
-                />
-                {emailError && (
-                  <span
-                    id="footer-email-error"
-                    className={styles["footer-error"]}
-                    role="alert"
-                  >
-                    {emailError}
-                  </span>
-                )}
-              </div>
-            </form>
-
-            <div className={styles["footer-policy-wrap"]}>
-              <label className={styles["footer-policy"]}>
-                <RoundCheckbox
-                  id={FOOTER_POLICY_CHECKBOX_ID}
-                  name="privacyPolicyAccepted"
-                  checked={isPolicyAccepted}
-                  onChange={handlePolicyChange}
-                  ariaLabel="Згода з політикою конфіденційності"
-                />
-                <span>Згоден з політикою конфіденційності</span>
-              </label>
-
-              {policyError && (
-                <p className={styles["footer-error"]} role="alert">
-                  {policyError}
-                </p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              form={FOOTER_SUBSCRIBE_FORM_ID}
-              className={styles["footer-subscribe-submit"]}
-            >
-              Спробувати підписку
-            </button>
-            {isSubmitted && (
-              <FormStatus className={styles["footer-status"]}>
-                Форму заповнено коректно. Це демонстрація: підписку не створено.
-              </FormStatus>
-            )}
           </div>
         </div>
 
