@@ -23,8 +23,8 @@
   z-index: 1;
   border-radius: var(--radius-pill);
   padding: 0.3rem 0.625rem;
-  background: var(--coral-color);
-  color: white;
+  background: var(--sale-bg);
+  color: var(--sale-ink);
   font-size: 0.75rem;
   font-weight: 800;
   line-height: 1.3;
@@ -48,7 +48,9 @@
   height: 1.125rem;
 }
 .product-favorite[aria-pressed="true"] {
-  color: var(--coral-color);
+  color: var(--first-color);
+  background: var(--fourth-color);
+  border-color: var(--second-color);
 }
 .product-image-wrap {
   display: block;

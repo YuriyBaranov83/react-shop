@@ -30,8 +30,8 @@
   position: absolute;
   bottom: 1rem;
   left: 1rem;
-  background: #fff8eb;
-  color: var(--third-color);
+  background: var(--sale-bg);
+  color: var(--sale-ink);
   font-size: 0.75rem;
   font-weight: 800;
   padding: 0.4rem 0.8rem;

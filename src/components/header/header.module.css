@@ -142,7 +142,8 @@
   background: var(--fourth-color);
 }
 .favorite-active {
-  color: var(--coral-color);
+  background: var(--fourth-color);
+  border-color: var(--second-color);
 }
 .basket {
   width: auto;
@@ -159,19 +160,23 @@
 }
 .header-action-badge {
   position: absolute;
-  top: -0.6rem;
-  right: -0.6rem;
-  height: 1.15rem;
-  min-width: 1.15rem;
+  top: -0.35rem;
+  right: -0.35rem;
+  height: 1.375rem;
+  min-width: 1.375rem;
   border-radius: var(--radius-pill);
-  padding-inline: 0.2rem;
-  background: var(--coral-color);
-  color: white;
+  padding-inline: 0.25rem;
+  background: var(--sale-bg);
+  color: var(--sale-ink);
   border: 2px solid var(--surface);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: 0;
   display: grid;
   place-items: center;
+  pointer-events: none;
 }
 .basket-text {
   display: inline;
@@ -197,7 +202,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-secondary);
   padding-block: 1rem;
@@ -212,7 +217,15 @@
   text-underline-offset: 0.4rem;
 }
 .header-nav-button-emphasized {
-  color: var(--coral-color);
+  color: var(--sale-ink);
+  background: var(--sale-soft);
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-pill);
+}
+.header-nav-button-emphasized:hover,
+.header-nav-button-emphasized[aria-current="page"] {
+  background: var(--sale-bg);
+  text-decoration: none;
 }
 .catalog-menu {
   position: absolute;
@@ -496,6 +509,9 @@
   }
   .header-nav-button svg {
     display: none;
+  }
+  .header-nav-button-emphasized {
+    padding: 0.4rem 0.75rem;
   }
   .header-topbar-cta {
     display: none;

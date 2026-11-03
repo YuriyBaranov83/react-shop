@@ -178,8 +178,11 @@ const HeaderMain = () => {
           >
             <IoHeartOutline aria-hidden="true" />
             {hasFavorites ? (
-              <span className={styles["header-action-badge"]}>
-                {favoritesCount}
+              <span
+                className={styles["header-action-badge"]}
+                aria-hidden="true"
+              >
+                {favoritesCount > 99 ? "99+" : favoritesCount}
               </span>
             ) : null}
           </Link>
@@ -218,7 +221,12 @@ const HeaderMain = () => {
           >
             <IoBagHandleOutline aria-hidden="true" />
             {hasCartItems ? (
-              <span className={styles["header-action-badge"]}>{cartCount}</span>
+              <span
+                className={styles["header-action-badge"]}
+                aria-hidden="true"
+              >
+                {cartCount > 99 ? "99+" : cartCount}
+              </span>
             ) : null}
             <span className={styles["basket-text"]}>Кошик</span>
           </Link>
