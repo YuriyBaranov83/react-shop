@@ -4,7 +4,7 @@ New editorial stock photographs for the November 2026 visual redesign. All photo
 
 ## License and source
 
-All images below were selected from Pexels free stock photo pages on 2026-11-02 and are covered by the [Pexels License](https://www.pexels.com/license/). Pexels confirms [free use for personal and commercial projects](https://help.pexels.com/hc/en-us/articles/360042295214-Can-I-use-the-photos-and-videos-for-a-commercial-project) and [optional attribution](https://help.pexels.com/hc/en-us/articles/360042295174-What-is-the-license-of-the-photos-and-videos-on-Pexels). Photographer and source-page credits are retained below and in `asset-sources.json`.
+All images below were selected from Pexels free stock photo pages in November 2026 and are covered by the [Pexels License](https://www.pexels.com/license/). Pexels confirms [free use for personal and commercial projects](https://help.pexels.com/hc/en-us/articles/360042295214-Can-I-use-the-photos-and-videos-for-a-commercial-project) and [optional attribution](https://help.pexels.com/hc/en-us/articles/360042295174-What-is-the-license-of-the-photos-and-videos-on-Pexels). Photographer and source-page credits are retained below and in `asset-sources.json`.
 
 The files are stock illustrations of food and everyday products. They do not depict actual Urbanfood stock, staff, facilities, or product packaging. No identifiable faces are used. Existing product-page wording identifies the photos as illustrative.
 
@@ -14,7 +14,7 @@ The files are stock illustrations of food and everyday products. They do not dep
 - Converted to WebP using Pillow; no generated imagery or branded product cutouts.
 - Catalog photographs have a maximum edge of 640–800 px; editorial photographs have a maximum edge of 1200–1600 px.
 - All 55 photographs visually checked; the two dedicated category thumbnails are also checked in desktop and mobile card crops.
-- No image exceeds 140 KB; total photographic payload is about 1.9 MB across the whole catalog and all pages.
+- No image exceeds 140 KB; total photographic payload is about 2 MB across the whole catalog and all pages.
 - `src/data/marketPhotography.js` maps 26 categories, 55 stable product IDs, and six editorial placements to these files. Related products may share a thematically appropriate photograph.
 - Category thumbnails should show recognizable ingredients or a prepared drink, with a clear subject that remains visible in both landscape and near-square crops. Avoid empty vessels and incidental kitchen snapshots.
 
@@ -46,9 +46,9 @@ The files are stock illustrations of food and everyday products. They do not dep
 | `khinkali.webp`          | Nadin Sh            | [Photo 17146254](https://www.pexels.com/photo/close-up-of-georgian-khinkali-17146254/)                                          | 600 × 800   |     18,278 |
 | `kitchen-hands.webp`     | cottonbro studio    | [Photo 4057678](https://www.pexels.com/photo/food-hands-chef-kitchen-4057678/)                                                  | 933 × 1400  |    102,698 |
 | `kyiv-chicken.webp`      | Shameel mukkath     | [Photo 10296276](https://www.pexels.com/photo/a-chicken-kiev-with-white-sauce-on-a-ceramic-plate-10296276/)                     | 800 × 533   |     42,344 |
-| `laundry.webp`           | Ron Lach            | [Photo 10557899](https://www.pexels.com/photo/hands-holding-cleaning-product-and-brush-10557899/)                               | 800 × 533   |      7,538 |
+| `laundry.webp` | Ron Lach | [Photo 10566522](https://www.pexels.com/photo/close-up-view-of-plastic-bottle-in-laundry-basket-10566522/) | 800 × 533 | 33,482 |
 | `market-bag.webp`        | Sarah Chai          | [Photo 7262897](https://www.pexels.com/photo/crop-unrecognizable-woman-carrying-bag-with-organic-vegetables-in-garden-7262897/) | 1600 × 1067 |    102,262 |
-| `milk.webp`              | Charlotte May       | [Photo 5946755](https://www.pexels.com/photo/glass-bottle-with-milk-on-table-5946755/)                                          | 533 × 800   |      9,542 |
+| `milk.webp` | Josephine | [Photo 7429050](https://www.pexels.com/photo/a-glass-cup-with-milk-on-white-surface-7429050/) | 533 × 800 | 6,598 |
 | `minced-meat.webp`       | Eva Bronzini        | [Photo 7225724](https://www.pexels.com/photo/close-up-photo-of-minced-meat-in-a-bowl-7225724/)                                  | 533 × 800   |     30,124 |
 | `nuts.webp`              | Engin Akyurt        | [Photo 5472169](https://www.pexels.com/photo/flatlay-of-assorted-nuts-on-black-bowl-5472169/)                                   | 800 × 533   |     21,382 |
 | `oil.webp`               | Valeria Boltneva    | [Photo 20184699](https://www.pexels.com/photo/bottle-of-olive-oil-20184699/)                                                    | 534 × 800   |     21,524 |
@@ -72,7 +72,7 @@ The files are stock illustrations of food and everyday products. They do not dep
 | `tomato-sauce.webp`      | Valentina Sergi     | [Photo 36546509](https://www.pexels.com/photo/homemade-tomato-sauce-canning-process-36546509/)                                  | 534 × 800   |     27,848 |
 | `varenyky.webp`          | kaboompics.com      | [Photo 4084933](https://www.pexels.com/photo/freshly-made-pierogi-4084933/)                                                     | 533 × 800   |     44,636 |
 | `vegetables.webp`        | IARA MELO           | [Photo 30635690](https://www.pexels.com/photo/colorful-vegetable-medley-in-white-bowl-30635690/)                                | 800 × 514   |     67,368 |
-| `water.webp`             | cottonbro studio    | [Photo 4057746](https://www.pexels.com/photo/a-bottle-and-glass-on-table-4057746/)                                              | 533 × 800   |     31,532 |
+| `water.webp` | Bogdan Giurca | [Photo 22431052](https://www.pexels.com/photo/pouring-water-in-glass-22431052/) | 689 × 800 | 29,510 |
 | `white-pump.webp`        | Mikhail Nilov       | [Photo 7814990](https://www.pexels.com/photo/white-cosmetic-plastic-pump-bottle-with-beige-background-7814990/)                 | 534 × 800   |      9,836 |
 | `wine.webp`              | Nicole Queiroz      | [Photo 10772487](https://www.pexels.com/photo/a-bottle-and-glass-of-red-wine-on-a-table-10772487/)                              | 533 × 800   |     18,674 |
 | `category-drinks.webp` | Lukas Blazek | [Photo 298720](https://www.pexels.com/photo/lemon-juice-in-cup-298720/) | 800 × 530 | 19,830 |
