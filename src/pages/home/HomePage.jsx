@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button/Button";
+import Reveal from "@/components/ui/Reveal/Reveal";
 import CategoryTilesSection from "@/components/ui/CategoryTilesSection";
 import {
   homeSupermarketTiles,
@@ -26,7 +27,7 @@ const HomePage = () => (
       linkLabel="Увесь супермаркет"
     />
     <DealsSection />
-    <section className={styles.story}>
+    <Reveal className={styles.story}>
       <Container>
         <div className={styles["story-grid"]}>
           <div className={styles["story-copy"]}>
@@ -56,7 +57,7 @@ const HomePage = () => (
           </div>
         </div>
       </Container>
-    </section>
+    </Reveal>
     <CategoryTilesSection
       sectionId="culinary"
       title="Смачні ідеї вже тут"
@@ -66,7 +67,7 @@ const HomePage = () => (
       linkHref="/catalog/culinary"
       linkLabel="Уся кулінарія"
     />
-    <section className={styles.collections}>
+    <Reveal className={styles.collections}>
       <Container>
         <div className={styles["collections-grid"]}>
           <Link to="/catalog/frozen" className={styles.collection}>
@@ -105,7 +106,7 @@ const HomePage = () => (
           </Link>
         </div>
       </Container>
-    </section>
+    </Reveal>
     <PromotionsSection />
     <DeliveryPaymentSection />
   </div>

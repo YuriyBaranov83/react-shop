@@ -1,19 +1,38 @@
 :where(.modal-layer) {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    height: 100dvh;
-    max-width: none;
-    max-height: none;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    color: var(--text-primary);
-    background: rgb(0 0 0 / 45%);
-    overflow: auto;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: var(--text-primary);
+  background: rgb(0 0 0 / 45%);
+  overflow: auto;
 }
 
-.modal-layer:not([open]) { display: none; }
-.modal-layer::backdrop { background: transparent; }
-.modal-content { min-width: 0; }
+.modal-layer:not([open]) {
+  display: none;
+}
+.modal-layer::backdrop {
+  background: transparent;
+}
+.modal-content {
+  min-width: 0;
+}
+.modal-layer[open] .modal-content {
+  animation: modal-arrive 220ms var(--ease-out);
+}
+@keyframes modal-arrive {
+  from {
+    opacity: 0.6;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

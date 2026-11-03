@@ -1,4 +1,9 @@
 .button {
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    background-color var(--motion-normal) ease,
+    color var(--motion-normal) ease,
+    box-shadow var(--motion-normal) ease;
   max-width: 100%;
   min-width: 0;
   overflow-wrap: anywhere;
@@ -33,4 +38,18 @@
 .button:disabled {
   opacity: 0.5;
   box-shadow: none;
+}
+.button svg {
+  transition: transform var(--motion-normal) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover svg {
+    transform: translateX(3px);
+  }
+  .button:hover {
+    transform: translateY(-1px);
+  }
+}
+.button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
 }

@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { IoArrowForwardOutline, IoPricetagOutline } from "react-icons/io5";
 import Container from "@/components/layout/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal/Reveal";
 import { homePromotionsData } from "@/data/homePromotionsData";
 import styles from "./PromotionsSection.module.css";
 
@@ -13,7 +14,7 @@ const tones = {
 };
 
 const PromotionsSection = () => (
-  <section id="promotions" className={styles.promotions}>
+  <Reveal id="promotions" className={styles.promotions}>
     <Container>
       <SectionHeader
         title="Приємно знайти вигоду"
@@ -54,6 +55,6 @@ const PromotionsSection = () => (
         ))}
       </div>
     </Container>
-  </section>
+  </Reveal>
 );
 export default PromotionsSection;

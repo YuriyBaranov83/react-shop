@@ -2,6 +2,10 @@
   min-width: 0;
 }
 .action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   width: 100%;
   min-height: 2.75rem;
   border-radius: var(--radius-pill);
@@ -15,6 +19,11 @@
 .action-button:hover {
   background: var(--third-color);
 }
+.action-button svg {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+}
 .action-button-filled {
   background: var(--first-color);
 }
@@ -24,6 +33,7 @@
   border-color: var(--border-color);
 }
 .counter {
+  animation: control-arrive 200ms var(--ease-out);
   display: grid;
   grid-template-columns: minmax(1.1rem, 2.5rem) minmax(1rem, 1fr) minmax(
       1.1rem,
@@ -56,6 +66,34 @@
   text-align: center;
   font-size: 0.875rem;
   font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.counter output > span {
+  display: inline-block;
+  animation: number-settle 180ms var(--ease-out);
+}
+.action-button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+@keyframes control-arrive {
+  from {
+    opacity: 0.65;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes number-settle {
+  from {
+    opacity: 0.5;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .counter-filled {
   background: var(--fourth-color);
