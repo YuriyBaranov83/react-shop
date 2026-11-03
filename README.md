@@ -4,7 +4,7 @@
 
 ## Демо
 
-- Опублікована версія: https://react-shop-yuribaranov.netlify.app/ (локальні зміни потребують окремого розгортання).
+- Опублікована версія: https://urbanfood-market.netlify.app/ (зміни автоматично публікуються після push у `develop`).
 
 ## Сторінки
 
