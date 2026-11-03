@@ -1,5 +1,6 @@
 import { useId, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { IoCheckmarkCircleOutline, IoBicycleOutline } from "react-icons/io5";
 import {
   calculateCartTotals,
   DEMO_BONUS_BALANCE,
@@ -26,6 +27,16 @@ const CartSummary = ({ products }) => {
     useBonuses,
     bonusBalance: DEMO_BONUS_BALANCE,
   });
+  const deliverySubtotal =
+    totals.subtotal - totals.promoDiscount - totals.bonusDiscount;
+  const deliveryRemaining = Math.max(
+    0,
+    deliveryRules.freeFrom - deliverySubtotal,
+  );
+  const deliveryMessage =
+    deliveryRemaining > 0
+      ? `Ще ${formatMoney(deliveryRemaining)} до безкоштовної доставки`
+      : "Ваша доставка — безкоштовна";
   const rows = [
     {
       id: "products",
@@ -70,10 +81,26 @@ const CartSummary = ({ products }) => {
   return (
     <aside className={styles["cart-summary"]} aria-label="Підсумок кошика">
       <h2 className={styles["cart-summary-delivery-title"]}>Підсумок кошика</h2>
-      <p className={styles["cart-summary-address"]}>
-        Безкоштовно від {formatMoney(deliveryRules.freeFrom)} після знижок,
-        інакше — {formatMoney(deliveryRules.fee)}.
-      </p>
+      <div className={styles["delivery-progress"]}>
+        <p className={styles["delivery-progress-title"]}>
+          {deliveryRemaining > 0 ? (
+            <IoBicycleOutline aria-hidden="true" />
+          ) : (
+            <IoCheckmarkCircleOutline aria-hidden="true" />
+          )}
+          <span>{deliveryMessage}</span>
+        </p>
+        <progress
+          value={Math.min(deliverySubtotal, deliveryRules.freeFrom)}
+          max={deliveryRules.freeFrom}
+          aria-label="До безкоштовної доставки"
+          aria-valuetext={deliveryMessage}
+        />
+        <p className={styles["cart-summary-address"]}>
+          Від {formatMoney(deliveryRules.freeFrom)} після знижок і бонусів.
+          Інакше — {formatMoney(deliveryRules.fee)}.
+        </p>
+      </div>
       <form className={styles["cart-summary-promo"]} onSubmit={applyPromo}>
         <label htmlFor={`${formId}-promo`} className="visually-hidden">
           Промокод
