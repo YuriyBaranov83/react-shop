@@ -1,0 +1,83 @@
+.notice {
+  position: fixed;
+  right: 1.5rem;
+  top: max(1rem, env(safe-area-inset-top));
+  z-index: 70;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: min(25rem, calc(100% - 3rem));
+  padding: 1.125rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 1.125rem;
+  background: var(--surface);
+  box-shadow: var(--box-shadow);
+  color: var(--text-primary);
+  animation: notice-in 250ms var(--ease-out);
+}
+.check {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--sale-bg);
+  color: var(--sale-ink);
+  font-size: 1.25rem;
+}
+.copy {
+  min-width: 0;
+  flex: 1;
+}
+.copy strong {
+  font-size: 0.875rem;
+}
+.copy p {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  overflow-wrap: anywhere;
+}
+.copy a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  margin-top: 0.25rem;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  color: var(--first-color);
+}
+.copy a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+.close {
+  display: grid;
+  place-items: center;
+  flex: 0 0 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+}
+.close:hover {
+  background: var(--fourth-color);
+}
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 600px) {
+  .notice {
+    right: 1rem;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+  }
+}

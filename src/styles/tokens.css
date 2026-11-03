@@ -20,6 +20,9 @@
   --sale-bg: #f6d867;
   --sale-ink: #263c2a;
   --sale-soft: #fff5cb;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-fast: 160ms;
+  --motion-normal: 240ms;
   --white-color: #fff;
   --light-green-bg-color: #edf1e6;
   --light-green-border-color: #dbe4cf;
