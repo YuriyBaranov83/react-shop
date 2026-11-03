@@ -42,7 +42,8 @@ const Notice = ({ notification, onDismiss }) => {
         <strong>Додано до кошика</strong>
         <p>{notification.title}</p>
         <Link to="/cart" onClick={onDismiss}>
-          Переглянути кошик <IoArrowForwardOutline aria-hidden="true" />
+          <span>Переглянути кошик</span>{" "}
+          <IoArrowForwardOutline aria-hidden="true" />
         </Link>
       </div>
       <button
